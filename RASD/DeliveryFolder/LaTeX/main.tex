@@ -1,0 +1,249 @@
+\documentclass[11pt,twoside]{article}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{tikz}
+\usepackage{microtype}
+
+% Geometry
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=25mm,
+ right=25mm,
+ top=30mm,
+ bottom=25mm,
+ heightrounded,
+ headsep=7mm}
+
+% URL
+\usepackage{hyperref}
+
+% Tables
+\usepackage{tabu}
+\usepackage{tabularx}
+\usepackage{ltablex}
+\usepackage{longtable}
+\usepackage{float}
+
+\begin{document}
+
+\begin{center}
+\thispagestyle{empty}
+\includegraphics[scale=1.25]{Images/PolimiLogo}\\
+\vspace{4cm}
+\textbf{\Huge{RASD Document}}\\
+\vspace{1.5cm}
+\textbf{\Large{Version 1.0}}\\
+\bigskip \par
+by \par
+\large{Abdallah Alkhetiar}\\
+\large{Daniel Bonardi}\\
+\bigskip \bigskip
+\large{\today}
+\end{center}
+
+\newpage
+
+\setcounter{page}{1}
+\begin{table}[h!]
+\begin{tabu} to \textwidth { |X[0.25,r,p] || X[0.75,l,p]| }
+\hline
+
+\textbf{Deliverable:} & RASD\\
+\hline
+\textbf{Title:} & Requirement Analysis and Verification Document \\
+\hline
+\textbf{Authors:} & Abdallah Alkhetiar and Daniel Bonardi \\
+\hline
+\textbf{Version:} & 1.0 \\ 
+\hline
+\textbf{Date:} & \today \\
+\hline
+\textbf{Download page:} & \href{https://github.com/Zero3474/AlkhetiarBonardi.git}{\texttt{\color{blue}{https://github.com/Zero3474/AlkhetiarBonardi.git}}} \\
+\hline
+\textbf{Copyright:} & Copyright © 2025, Abdallah Alkhetiar and Daniel Bonardi \\
+& – All rights reserved \\
+\hline
+\end{tabu}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+\textbf{Students\&Companies} (S\&C) is an internship university platform that allows matching between students seeking internships and companies offering them. The platform's goal is to facilitate the process of matching students with companies based on student skills, experiences, and interests with the needs and opportunities provided by companies.\\
+There are mainly two ways to establish a connection between the two parties: 
+\begin{itemize}
+	\item \textbf{Recommendation system}: Whenever a new internship becomes available, students compatible with the requirements specified by the company get notified and can decide to apply.
+	\item \textbf{Proactive searching}: Students can go through the available internships and apply for the ones they are interested in.
+\end{itemize}
+When an internship starts through the recommendation system, S\&C collects various kinds of information regarding the quality of the recommendation, for example by asking students and companies to provide feedback and suggestions. \\
+The platform helps with the selection process by managing interviews and finalizing choices. It also offers spaces where users can report issues, share concerns, and give updates on the status of an ongoing internship.
+
+\subsubsection{Goals}
+\begin{itemize}
+\item \textbf{[G1] - User can create an account} \\
+Both categories of users can create an account by providing the necessary information that allows the system to verify the user's status. \\
+In the case of a student the account needs to be created using the university credentials to verify the status as a student. \\
+In case of a company are required the personal information of the user creating the account as well as references that will help the system verify the identity.
+\item \textbf{[G2] - Users can customize their accounts} \\
+Through a dedicated sections user can further customize the account by adding information that were not asked during the creation of the account. \\
+In the case of students, they can add their CV, a list of their interests and a list of companies that might interest them. \\
+In the case of companies, they can add a detailed description and a list of previous projects that might help them stand out more.
+\item \textbf{[G3] - Companies can create internships} \\
+A company that has an account on the platform, after logging in using the credentials chosen during the sign up process, can create an internship specifying the skills, experiences and interests required.
+\item \textbf{[G4] - Students can view all available internships} \\
+A student that has an account on the platform, after logging in using the credentials chosen during the sign up process, can navigate through the available internships created by different companies via a specific search system.
+\item \textbf{[G5] - Recommendation system} \\
+Whenever a company creates an internship, all the students that satisfy the requirements specified in the offer are notified. All the students interested in the internship have limited time to apply. At the end of this period, the applications are closed and the list of interested students are sent to the company, that could decide to select a smaller group of students for the selection process.
+\item \textbf{[G6] - Students can apply for the internships} \\
+When proactively searching for internships, students can choose the ones that interest them the most and apply for them.
+\item \textbf{[G7] - Feedback} \\
+When an internship starts through the recommendation system, both students and companies can provide feedback regarding the quality of the recommendations offered by the system.
+\item \textbf{[G8] - Selection process} \\
+\textcolor{red}{Scoring system?}
+\item \textbf{[G9] - Complaints management} \\
+During an internship both parties, companies and students, can use an ad hoc function to write complaints regarding the other party.
+\end{itemize}
+
+	\subsection{Scope}
+	The platform facilitates interaction between two distinct user categories:
+\begin{itemize}
+	\item Companies (internship providers)
+	\item Students (possible candidates)
+\end{itemize}
+Companies maintain primary responsibility for internship creation and management. Each internship posting must provide this information:
+\begin{itemize}
+	\item Required skills
+	\item Relevant past experiences
+	\item Candidate interests
+	\item Selection process methodology
+\end{itemize}
+During the internship creation, based on the selection process adopted, the company can add a form to be filled and specify how many interviews there will be if any. In the course of the selection process, performance metrics are collected through submitted applications form and interviews' assessments. A comprehensive ranking system aggregates candidate performance across all evaluation components. Internships positions will be allocated according to the candidate's rank and the number of available slots.\\
+Students can apply for the internship that interest them and if the company accepts they will move to the selection process that varies based on the methodology specified.
+
+		\subsubsection{World phenomena}
+		\textbf{\textit{WP1}} - phenomena
+		
+		\subsubsection{Shared phenomena}
+		\textbf{\textit{SP1}} - phenomena
+		
+		\subsubsection{Machine phenomena}
+		\textbf{\textit{MP1}} - phenomena
+
+	\subsection{Definitions, acronyms and abbreviations}
+		\subsubsection{Definitions}
+\begin{itemize}
+\item \textbf{Users} $\rightarrow$ The users of the applications are both students and a representatives of their company.
+\end{itemize}
+		\subsubsection{Acronyms}
+\begin{itemize}
+\item \textbf{S\&C} $\rightarrow$ Students\&Companies, the name of the application.
+\item \textbf{API} $\rightarrow$ Application Programming Interface, a software intermediary that allows two applications to talk to each other.
+\end{itemize}
+		\subsubsection{Abbreviations}
+		
+	\subsection{Revision history}	
+\begin{itemize}
+\item Version 1.0 $\rightarrow$ \textbf{WIP}
+\end{itemize}
+	\subsection{Reference documents}
+
+	\subsection{Document structure}
+\begin{itemize}
+\item \textbf{Section 1: Introduction} \\
+This section is designed to offer a brief overview of the project, explaining the functionality required for the correct behavior of the application. It also presents a list of definitions, acronyms and abbreviations that could be found in this document.
+\item \textbf{Section 2: Overall description} \\
+This section presents the structure of the system, with all the possible scenarios and the description of the most important functions that needs to be present in the application.\\
+Here is also possible to learn about the domain assumptions that allow the system work as intended.
+\item \textbf{Section 3: Specific requirements} \\
+This section presents a precise description of every important use case and, through the goal-assumptions-requirements mapping, it emphasize the role of each functionality in reaching each goal requested by the client.\\
+It's also possible to understand the various constraints under which the system operates and the software's system attributes.
+\item \textbf{Section 4: Formal analysis using Alloy} \\
+This section presents a formal description of the system through the Alloy language.
+\item \textbf{Section 5: Effort spent} \\
+This section presents the number of hours spent per each person of the group for each section.
+\end{itemize}
+
+\section{Overall description}
+	\subsection{Product perspective}
+		\subsubsection{Class Diagram}
+		\subsubsection{Scenarios}
+	
+	\subsection{Product functions}
+	\subsection{User characteristics}
+	\subsection{Assumptions, dependencies and constraints}
+	
+\section{Specific requirements}
+	\subsection{External interface requirements}
+		\subsubsection{User interfaces}
+		\subsubsection{Hardware interfaces}
+		\subsubsection{Software interfaces}
+		\subsubsection{Communication interfaces}
+	\subsection{Functional requirements}
+	\subsection{Performance requirements}
+	\subsection{Design constraints}
+		\subsubsection{standards compliance}
+		\subsubsection{Hardware limitations}
+		\subsubsection{Any other constraints}
+	\subsection{Software system attributes}
+		\subsubsection{Reliability}
+		\subsubsection{Availability}
+		\subsubsection{Security}
+		\subsubsection{Maintainability}
+		\subsubsection{Portability}
+		
+\section{Formal analysis using Alloy}
+
+\section{Effort spent}
+\begin{itemize}
+
+\item \textbf{Abdallah Alkhetiar}
+\begin{table}[H]
+\begin{tabu}{| c || l |}
+\hline
+\textbf{Chapter} & \textbf{Effort} \\
+\hline
+1 & 8 h \\
+\hline
+2 & 0 h \\
+\hline
+3 & 0 h \\
+\hline
+4 & 0 h \\
+\hline
+\end{tabu}
+\end{table}
+
+\item \textbf{Daniel Bonardi}
+\begin{table}[H]
+\begin{tabu}{| c || l |}
+\hline
+\textbf{Chapter} & \textbf{Effort} \\
+\hline
+1 & 8 h \\
+\hline
+2 & 0 h \\
+\hline
+3 & 0 h \\
+\hline
+4 & 0 h \\
+\hline
+\end{tabu}
+\end{table}
+
+\end{itemize}
+
+\newpage
+
+\section{References}
+
+\end{document}
