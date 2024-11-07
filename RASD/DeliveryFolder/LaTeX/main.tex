@@ -1,5 +1,8 @@
 \documentclass[11pt,twoside]{article}
 
+% Text
+\usepackage[utf8]{inputenc}
+
 % Graphics
 \usepackage{graphicx}
 \usepackage{graphics}
@@ -179,6 +182,7 @@ Students can apply for the internship that interest them and if the company acce
 \item \textbf{Feedback} $\rightarrow$ It represent the opinion of the user regarding a specific feature that they tried out.
 \item \textbf{Resume} $\rightarrow$ It is the same as referring to a CV.
 \item \textbf{Certified account} $\rightarrow$ It refers to an account that when used for sign up or log in action, it redirects the user to the page of the organization.
+\item \textbf{Screening} $\rightarrow$ It refers to the process done by a company right after the applications deadline, during which only a part of the candidates are selected based on their CV and interests.
 \end{itemize}
 		\subsubsection{Acronyms}
 \begin{itemize}
@@ -221,35 +225,79 @@ This section presents the number of hours spent per each person of the group for
 	\subsection{Product perspective}
 		\subsubsection{Scenarios}
 \textbf{\large{Scenario 1}} - Account creation and posting \\
-ToSoftware is a big company looking for young talents that could be interested in working full time for them in the future. An HR employee is tasked to design internships and would like to advertise its offers to students. For this purpose he creates an S\&C account by entering all the information required and starts creating the post for an internship by describing the role covered. He also creates a form with a series of questions and for each of them sets a maximum score to facilitate the evaluation of candidates. \\
-\\
+ToSoftware is a big company looking for young talents that could be interested in working full time for them in the future. An HR employee is tasked to design internships and would like to advertise its offers to students. For this purpose he creates an S\&C account using him work email, he also need to provide his personal information and some details about the company. After the creation has been completed he starts creating the post for an internship including details such as the project domain, tasks, required skills/experiences, the applications deadline and any other relevant information. He also creates a form with a series of questions and for each of them sets a maximum score to facilitate the evaluation of the candidates.
+\vspace{1\baselineskip} \\
 \textbf{\large{Scenario 2}} - Bob wants to do an internship \\
-Bob is a third year student at the Genius University and thinks about gaining some work experience, but he does not know from where to start. His friend Sam tells him about S\&C, so he creates an account with his institutional email and also adds his interests and CV. At this point he starts looking for an internship, using the search-bar he inserts some keywords to ensure he finds something he is interested in. After confirming the filters Bob is presented with a list of internships that satisfy the inserted keywords, he selects the one he finds more suitable for himself and applies for it. \\
-\\
-\textbf{\large{Scenario 3}} - Recommendation system \\
-ToSoftware's S\&C's account manager creates an internship that involves helping in the development of its new game "Light Souls" and posts it on the platform. Sekiro is a student of the Genius University, studying computer science. He created an S\&C account and specified his interest in game development. As soon as ToSoftware posts the internship, Sekiro receives a notification that informs him about the offer. The notification reports all the important information about the internship:
+Bob is a third year student at the Genius University and thinks about gaining some work experience, but he does not know from where to start. His friend Sam tells him about S\&C, so he creates an account with his institutional email and also adds his interests and CV. At this point he starts looking for an internship, using the search-bar he inserts some keywords to ensure he finds something he is interested in. After confirming the filters Bob is presented with a list of internships that satisfy the inserted keywords, he selects the one he finds more suitable for himself and applies for it.
+\vspace{1\baselineskip} \\
+\textbf{\large{Scenario 3}} - Sekiro receives a notification through the recommendation system \\
+ToSoftware's S\&C's account manager designs an internship that involves helping in the development of its new game "Light Souls" and posts it on the platform. Sekiro is a student of the Genius University, studying computer science. Some time ago he created an S\&C account and specified his interest in game development, so as soon as ToSoftware posts the internship, Sekiro receives a notification that informs him about the offer. The notification reports all the important information about the internship:
 \begin{itemize}
 \item[] \textbf{Title} : Student experience as game developer
 \item[] \textbf{Description} : We are looking for students willing to have a taste of the working environment at our company while assisting with the development of our new game "Light Souls".
 \item[] \textbf{Application deadline} : 22 December, 2024
 \item[] \textbf{Location} : Japan
 \end{itemize}
-\textbf{\large{Scenario 4}} - Application process \\
-\\
-\textbf{\large{Scenario 5}} - Internship application period ends \\
-\\
-\textbf{\large{Scenario 6}} - Company select suitable candidates \\
-\\
-\textbf{\large{Scenario 7}} - Student behaves bad during an internship \\
-\newpage
+\vspace{1\baselineskip}
+\textbf{\large{Scenario 4}} - Sekiro applies for ToSoftware's internship \\
+Sekiro decides that the internship proposed by ToSoftware is perfect for him so he decides to apply for it. The 22 of December (applications' deadline) ToSoftware receives a list of all the students that applied for their internship. Since there are too many people they decide to pick a limited number of candidates. After some time Sekiro receives a notification saying that he was selected for the internship and had to fill in a form before the 22 of January 2025. As soon as Sekiro submits the form with all the questions answered, ToSoftware's account receives a notification containing the filled form, so an employee gives a score to each answer and saves it. The 22 of January the employee checks the ranking generated by the application and picks the top 10 candidates. Since Sekiro ended up in second place he receives a notification containing all the information necessary to participate in the internship.
+\vspace{1\baselineskip} \\
+\textbf{\large{Scenario 5}} - ToSoftware shares his opinion regarding the recommendation system \\
+ToSoftware's S\&C's account manager, notices that all the students participating in the internship are really talented and hard working so he decides to write a feedback to let S\&C developer know. As soon as he is done writing it, he sends it and the message is stored in S\&C database as a positive feedback.
+\vspace{1\baselineskip} \\
+\textbf{\large{Scenario 6}} - Sekiro is exploited by the company \\
+Since Sekiro is performing incredibly good, ToSoftware's internship manager decides to give him more work to do, even though he know Sekiro was barely managing the few task he was given before. Noticing the increasing amount of work, Sekiro decides to write a complain about the company on the application.
+
 		\subsubsection{Class Diagram}
 		
 		\subsubsection{State Charts}
 	
 	\subsection{Product functions}
+\begin{itemize}
+\item \textbf{Sign-up and login} \\
+Both of these functionalities are going to be available to all user categories. \\
+The sign-up functionality allows users to create a verified account to use on the platform. Each user will be asked to provide personal data such as name, surname, email, username and password. The user category will be recognized based on the domain of the email used for the sin-up. \\
+The login functionality allows user to gain access to an already existing account using the credentials used during sign-up. \\
+\item \textbf{Update account information} \\
+This functionality is only available for all user categories. \\
+A student can only update a new CV and change its interests, since all the personal information are extracted from the institutional email. \\
+A company can only update the description and add old projects.\\
+\item \textbf{Post internship} \\
+This functionality is available only for companies. It allows them to create a new post based on an internship they designed. The post must contain a title, a description describing the various activities, the skills required from the candidates to have a chance in being chosen. It also needs all the deadlines like the applications deadline, after which students are not allow to apply for the internship, and the form compilation deadline, that can be added after the applications deadline. And lastly it needs to specify the location an the period of the internship. \\
+\item \textbf{Create a custom form} \\
+This functionality is available only for companies. At some point companies need to create a form that allows the to select faster the candidates for the internship. The form is created by adding a list of questions and for each question it needs to be specified a maximum score that will be used to generate the ranking during the selection process. The form can be created at any time, during the posting process or even before the screening. \\
+\item \textbf{Search for specific internships} \\
+This functionality is available for all user categories, but is designed to be used mostly by students. Through a search bar users can look for specific internships or use keywords to filter through the one they are seeking. \\
+\item \textbf{Apply for internship} \\
+This functionality is only available for students. This action is going to save the student as a candidate for the internship. At the end of the applications deadline, his CV will be sent to the company with to ones of all the other students that applied for the same internship. \\
+\item \textbf{Screen candidates} \\
+This functionality is only available for companies. When the applications period ends and the company is sent the list of candidates, the company's employee will be able to select the candidates that he considers suitable for the internship and discard the one that are not. \\
+\item \textbf{Evaluate form} \\
+This functionality is only available for companies. When the company receives a submitted form, this functionality allows them to check the answers given by the candidate and grade them. Once all the answers has been graded and the company's employee closes the form, the system evaluates the total score and adds it to the ranking. \\
+\item \textbf{Send feedback} \\
+This functionality is only available for all user categories. Using this feature user can share their opinion with S\&C developers regarding the functionalites implemented in the software. \\
+\end{itemize}
+
 	\subsection{User characteristics}
+In this section it is provided a more distinct characterization of the two user categories of the platform.
+		\subsubsection{Company}
+A company is a representative of a company that wants to advertise its internships. After creating an account as a company, the user gains access to all the company reserved functionality such as internship posting, custom form creation, candidates screening and form evaluation.
+		\subsubsection{Student}
+A student is an individual whose aim is to either improve his skills or make experience in a professional context. To be able to create an account he must be affiliated with a university and own an institutional email.
+		\subsubsection{University}
+A university is an institution whose aim, in the context of S\&C application, is to monitor the current status of an internship that involves its students and they are responsible for handling complains, especially the ones that might require the interruption of the internship.
+
 	\subsection{Assumptions, dependencies and constraints}
-	
+\textbf{\textit{A1}} - \\
+\textbf{\textit{A2}} - \\
+\textbf{\textit{A3}} - \\
+\textbf{\textit{A4}} - \\
+\textbf{\textit{A5}} - \\
+\textbf{\textit{A6}} - \\
+\textbf{\textit{A7}} - \\
+\textbf{\textit{A8}} - \\
+\textbf{\textit{A9}} - 
+\newpage
 \section{Specific requirements}
 	\subsection{External interface requirements}
 		\subsubsection{User interfaces}
