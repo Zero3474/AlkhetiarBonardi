@@ -98,7 +98,7 @@ The platform helps with the selection process by managing interviews and finaliz
 Students need to create their account using the university credentials to verify the status as a student. \\
 In addition they have to add their CV, a list of their interests and optionally a list of companies that might interest them.
 \item \textbf{[G2] - Company can create an account} \\
-Companies need to create their account using a certified email (PEC) to verify the legitimacy of the company. \\
+Companies need to create their account using a certified email to verify the legitimacy of the company. \\
 In addition they can add a detailed description and a list of previous projects that might help them stand out more.
 \item \textbf{[G3] - Users can update their accounts} \\
 Through a dedicated sections users can update the information stored in their account.
@@ -116,7 +116,7 @@ When proactively searching for internships, students can choose the ones that in
 The company evaluates all the submitted forms for an internship by giving a score to each one.
 \item \textbf{[G10] - Ranking candidates} \\
 A ranking of the candidates will be created at the end of the interviewing stage based on the scores achieved in the questionnaires.
-\item \textbf{[G11] - Feedback} \\
+\item \textbf{[G11] - Users can provide feedbacks} \\
 When an internship starts through the recommendation system, both students and companies can provide feedback regarding the quality of the recommendations offered by the system.
 \item \textbf{[G12] - Complaints management} \\
 During an internship both parties, companies and students, can use an ad hoc function to write complaints regarding the other party.
@@ -147,19 +147,24 @@ Students can apply for the internship that interest them and if the company acce
 \end{spacing}
 		\subsubsection{Shared phenomena}
 \begin{spacing}{1.5}
-\textbf{\textit{SP1}} - User registers a new account. \\
-\textbf{\textit{SP2}} - User logs in. \\
-\textbf{\textit{SP3}} - \\
-\textbf{\textit{SP4}} - \\
-\textbf{\textit{SP5}} - 
+\textbf{\textit{SP1}} - User registers a new account. \textit{(World Controlled)} \\
+\textbf{\textit{SP2}} - User logs in. \textit{(World Controlled)} \\
+\textbf{\textit{SP3}} - Students proactively search for an internship. \textit{(World Controlled)}\\
+\textbf{\textit{SP4}} - The system shows a list of internships to the student. \textit{(Machine Controlled)} \\
+\textbf{\textit{SP5}} - The company inserts data regarding the internship they are creating. \textit{(World Controlled)} \\
+\textbf{\textit{SP6}} - The system sends notifications to the users. \textit{(Machine Controlled)} \\
+\textbf{\textit{SP7}} - The system terminates the application process at the end of the predetermined period, avoiding further student applications.\textit{(Machine Controlled)} \\
+\textbf{\textit{SP8}} - The system sends the list of students that applied for the internship to the company. \textit{(Machine Controlled)} \\
+\textbf{\textit{SP9}} - The system sends the forms to the accepted students. \textit{(Machine Controlled)}
 \end{spacing}
 		\subsubsection{Machine phenomena}
 \begin{spacing}{1.5}
-\textbf{\textit{MP1}} - Ranking. \\
-\textbf{\textit{MP2}} - \\
-\textbf{\textit{MP3}} - \\
-\textbf{\textit{MP4}} - \\
-\textbf{\textit{MP5}} - 
+\textbf{\textit{MP1}} - The system validates the users identity for the registration. \\
+\textbf{\textit{MP2}} - The system checks the credentials of the user for the log in. \\
+\textbf{\textit{MP3}} - The system validates data before allowing a user to change its information in the account. \\
+\textbf{\textit{MP4}} - The system validates and stores the data regarding a newly created internship. \\
+\textbf{\textit{MP5}} - After the creation of an internship, the system identifies compatible students. \\
+\textbf{\textit{MP6}} - The system dynamically updates the ranking of candidates after the submission of the score of a student. 
 \end{spacing}
 	\subsection{Definitions, acronyms and abbreviations}
 		\subsubsection{Definitions}
@@ -173,15 +178,22 @@ Students can apply for the internship that interest them and if the company acce
 \item \textbf{Score} $\rightarrow$ The score of a form is the sum of the points achieved in each question. Since each question has a maximum limit of points, then the whole form will have such a limit.
 \item \textbf{Feedback} $\rightarrow$ It represent the opinion of the user regarding a specific feature that they tried out.
 \item \textbf{Resume} $\rightarrow$ It is the same as referring to a CV.
+\item \textbf{Certified account} $\rightarrow$ It refers to an account that when used for sign up or log in action, it redirects the user to the page of the organization.
 \end{itemize}
 		\subsubsection{Acronyms}
 \begin{itemize}
 \item \textbf{S\&C} $\rightarrow$ Students\&Companies, the name of the application.
 \item \textbf{CV} $\rightarrow$ Curriculum Vitae, is a short written summary of a person's career, qualifications, and education.
-\item \textbf{PEC} $\rightarrow$ "Posta elettronica certificata", is an email meant to provide a legal equivalent of the traditional registered mail, where users are able to legally prove that a given email address is certified.
 \item \textbf{API} $\rightarrow$ Application Programming Interface, a software intermediary that allows two applications to talk to each other.
+\item \textbf{HR} $\rightarrow$ Human Resource, is a department that manages employees.
 \end{itemize}
 		\subsubsection{Abbreviations}
+\begin{itemize}
+\item \textbf{Gn} $\rightarrow$ It is used to list all the goals and the n stands for the $n_{th}$ goal described.
+\item \textbf{WPn} $\rightarrow$ It is used to list all the world phenomena and the n stands for the $n_{th}$ phenomena described.
+\item \textbf{SPn} $\rightarrow$ It is used to list all the shared phenomena and the n stands for the $n_{th}$ phenomena described.
+\item \textbf{MPn} $\rightarrow$ It is used to list all the machine phenomena and the n stands for the $n_{th}$ phenomena described.
+\end{itemize}
 		
 	\subsection{Revision history}	
 \begin{itemize}
@@ -204,11 +216,35 @@ This section presents a formal description of the system through the Alloy langu
 \item \textbf{Section 5: Effort spent} \\
 This section presents the number of hours spent per each person of the group for each section.
 \end{itemize}
-
+\newpage
 \section{Overall description}
 	\subsection{Product perspective}
-		\subsubsection{Class Diagram}
 		\subsubsection{Scenarios}
+\textbf{\large{Scenario 1}} - Account creation and posting \\
+ToSoftware is a big company looking for young talents that could be interested in working full time for them in the future. An HR employee is tasked to design internships and would like to advertise its offers to students. For this purpose he creates an S\&C account by entering all the information required and starts creating the post for an internship by describing the role covered. He also creates a form with a series of questions and for each of them sets a maximum score to facilitate the evaluation of candidates. \\
+\\
+\textbf{\large{Scenario 2}} - Bob wants to do an internship \\
+Bob is a third year student at the Genius University and thinks about gaining some work experience, but he does not know from where to start. His friend Sam tells him about S\&C, so he creates an account with his institutional email and also adds his interests and CV. At this point he starts looking for an internship, using the search-bar he inserts some keywords to ensure he finds something he is interested in. After confirming the filters Bob is presented with a list of internships that satisfy the inserted keywords, he selects the one he finds more suitable for himself and applies for it. \\
+\\
+\textbf{\large{Scenario 3}} - Recommendation system \\
+ToSoftware's S\&C's account manager creates an internship that involves helping in the development of its new game "Light Souls" and posts it on the platform. Sekiro is a student of the Genius University, studying computer science. He created an S\&C account and specified his interest in game development. As soon as ToSoftware posts the internship, Sekiro receives a notification that informs him about the offer. The notification reports all the important information about the internship:
+\begin{itemize}
+\item[] \textbf{Title} : Student experience as game developer
+\item[] \textbf{Description} : We are looking for students willing to have a taste of the working environment at our company while assisting with the development of our new game "Light Souls".
+\item[] \textbf{Application deadline} : 22 December, 2024
+\item[] \textbf{Location} : Japan
+\end{itemize}
+\textbf{\large{Scenario 4}} - Application process \\
+\\
+\textbf{\large{Scenario 5}} - Internship application period ends \\
+\\
+\textbf{\large{Scenario 6}} - Company select suitable candidates \\
+\\
+\textbf{\large{Scenario 7}} - Student behaves bad during an internship \\
+\newpage
+		\subsubsection{Class Diagram}
+		
+		\subsubsection{State Charts}
 	
 	\subsection{Product functions}
 	\subsection{User characteristics}
