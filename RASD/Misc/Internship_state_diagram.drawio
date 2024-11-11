@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0" version="24.8.4">
+  <diagram name="Page-1" id="ynq2gv-7biy59Hg6kx7h">
+    <mxGraphModel dx="1018" dy="533" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="9ol2UZtPtx5ac0zg71DZ-1" target="9ol2UZtPtx5ac0zg71DZ-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="68.75" y="260" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="40" y="251.25" width="17.5" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9ol2UZtPtx5ac0zg71DZ-2" target="9ol2UZtPtx5ac0zg71DZ-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="180" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-5" value="Internship is created" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="90" y="230" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-6" value="Open for applications" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="205" y="245" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9ol2UZtPtx5ac0zg71DZ-8" target="9ol2UZtPtx5ac0zg71DZ-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-8" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="443.75" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-9" value="First screening" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="468.75" y="245" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-10" value="Application Deadline is reached" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="320" y="229.38" width="114" height="31.25" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9ol2UZtPtx5ac0zg71DZ-14" target="9ol2UZtPtx5ac0zg71DZ-20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-14" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="444" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-15" value="Ongoing" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="469" y="415" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-19" value="Start date is reached" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="600" y="400" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9ol2UZtPtx5ac0zg71DZ-20" target="9ol2UZtPtx5ac0zg71DZ-32" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-26" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-20" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="177.75" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-21" value="Finished" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="202.75" y="415" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-28" value="End date is reached" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="334" y="400" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-30" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="44.25" y="425" width="10" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-32" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="40.5" y="421.25" width="17.5" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="IbnlbKtD46z8Y7qcOYJe-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="9ol2UZtPtx5ac0zg71DZ-33" target="IbnlbKtD46z8Y7qcOYJe-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-33" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="710" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-35" value="Second screening" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="735" y="245" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9ol2UZtPtx5ac0zg71DZ-38" value="Form deadline is reached" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="600" y="230" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IbnlbKtD46z8Y7qcOYJe-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IbnlbKtD46z8Y7qcOYJe-1" target="9ol2UZtPtx5ac0zg71DZ-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IbnlbKtD46z8Y7qcOYJe-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IbnlbKtD46z8Y7qcOYJe-2" value="Ranking" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="735" y="415" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IbnlbKtD46z8Y7qcOYJe-4" value="Interview deadline is reached" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="660" y="320" width="100" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

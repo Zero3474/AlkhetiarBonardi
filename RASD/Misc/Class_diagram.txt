@@ -1,0 +1,88 @@
+classDiagram
+
+    class User{
+        - id: int
+        - email: String
+        - name: String
+        - surname: String
+    }
+
+    class Internship{
+        - title: String
+        - description: String
+        - domain: String
+        - tasks: List~String~
+        - required_skills: List~String~
+        - work_mode: String
+        - location: String
+        - application_deadline: Date
+        - start_date: Date
+        - end_date: Date
+    }
+    
+    class Company{
+        - company_name: String
+    }
+    
+    class Student{
+        - resume: String
+        - faculty: String
+        - skills: String
+        - interests: String
+    }
+    
+    class University{
+        - university_name: String
+    }
+    
+    class Form{
+        - questions: List~String~
+        - answers: List~String~
+        - question_max_points: Map~question_index: int, max_points: int~
+        - deadline: Date
+    }
+
+    class Complaint{
+        - involved_party: String
+    }
+
+    class Feedback{
+        - rating: int
+    }
+
+    class Report{
+        - author_id: int
+        - description: String
+    }
+
+    class SCDeveloper{
+        - id: int
+    }
+
+    class PastProject{
+        - title: String
+        - description: String
+        - tasks: String
+        - location: String
+    }
+    
+    Report <|-- Complaint
+    Report <|-- Feedback
+
+    User <|-- Student
+    User <|-- Company
+    User <|-- University
+
+    Company "1" --> "*" Internship: +Creates
+    Student "*" --> "*" Internship: +AppliesTo
+    Student "*" --> "*" Internship: +ParticipatesIn
+    University "1...*" --> "*" Internship: +Monitors
+    Internship "1" --> "1" Form: +Has
+    Student "1" --> "*" Form: +Fills
+    Student "*" --> "1" University: +StudiesAt
+    Company "1" --> "*" Report: +Writes
+    Student "1" --> "*" Report: +Writes
+    University "0...1" --> "*" Complaint: +Reads
+    SCDeveloper "0...1" --> "*" Feedback: +Reads
+    Complaint "*" --> "1" Internship: +Regarding
+    Company "*" --> "" PastProject: +Archived

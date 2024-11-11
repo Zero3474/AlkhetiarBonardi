@@ -98,7 +98,7 @@ The platform helps with the selection process by managing interviews and finaliz
 \subsubsection{Goals}
 \begin{itemize}
 \item \textbf{[G1] - Student can create an account} \\
-Students need to create their account using the university credentials to verify the status as a student. \\
+Students need to select from a list containing all affiliated universities and then they can create their account using their institutional credentials to verify their status as a student. \\
 In addition they have to add their CV, a list of their interests and optionally a list of companies that might interest them.
 \item \textbf{[G2] - Company can create an account} \\
 Companies need to create their account using a certified email to verify the legitimacy of the company. \\
@@ -118,7 +118,7 @@ When proactively searching for internships, students can choose the ones that in
 \item \textbf{[G9] - Form evaluation} \\
 The company evaluates all the submitted forms for an internship by giving a score to each one.
 \item \textbf{[G10] - Ranking candidates} \\
-A ranking of the candidates will be created at the end of the interviewing stage based on the scores achieved in the questionnaires.
+A ranking of the candidates will be created at the end of the form evaluation stage based on the scores achieved in the questionnaires and updated at the end of the interviewing stage.
 \item \textbf{[G11] - Users can provide feedbacks} \\
 When an internship starts through the recommendation system, both students and companies can provide feedback regarding the quality of the recommendations offered by the system.
 \item \textbf{[G12] - Complaints management} \\
@@ -126,10 +126,11 @@ During an internship both parties, companies and students, can use an ad hoc fun
 \end{itemize}
 
 	\subsection{Scope}
-	The platform facilitates interaction between two distinct user categories:
+	The platform facilitates interaction between three distinct user categories:
 \begin{itemize}
 	\item Companies (internship providers)
 	\item Students (possible candidates)
+	\item Universities (complaint managers)
 \end{itemize}
 Companies maintain primary responsibility for internship creation and management. Each internship posting must provide this information:
 \begin{itemize}
@@ -138,7 +139,8 @@ Companies maintain primary responsibility for internship creation and management
 	\item Candidate interests
 \end{itemize}
 During the internship posting, the company can create forms to be filled by the students. In the course of the selection process, performance metrics are collected through the submitted application's form and a final ranking of the candidates is generated. Internship positions will be allocated according to the candidate's rank and the number of available slots. \\
-Students can apply for the internship that interest them and if the company accepts they will move to the selection process.
+Students can apply for the internship that interest them and if the company accepts they will move to the selection process. \\
+Universities can monitor the status of ongoing internships that involve their students and in extreme cases they might interrupt them.
 
 		\subsubsection{World phenomena}
 \begin{spacing}{1.5}
@@ -146,7 +148,8 @@ Students can apply for the internship that interest them and if the company acce
 \textbf{\textit{WP2}} - Student behaves in a non suitable manner during an internship. \\
 \textbf{\textit{WP3}} - Company thinks about hosting an internship and prepares accordingly. \\
 \textbf{\textit{WP4}} - Student prepares the resume for the creation of an account. \\
-\textbf{\textit{WP5}} - Student does internship.
+\textbf{\textit{WP5}} - Student does internship. \\
+\textbf{\textit{WP6}} - Company interviews a student through a third-party application.
 \end{spacing}
 		\subsubsection{Shared phenomena}
 \begin{spacing}{1.5}
@@ -158,7 +161,8 @@ Students can apply for the internship that interest them and if the company acce
 \textbf{\textit{SP6}} - The system sends notifications to the users. \textit{(Machine Controlled)} \\
 \textbf{\textit{SP7}} - The system terminates the application process at the end of the predetermined period, avoiding further student applications.\textit{(Machine Controlled)} \\
 \textbf{\textit{SP8}} - The system sends the list of students that applied for the internship to the company. \textit{(Machine Controlled)} \\
-\textbf{\textit{SP9}} - The system sends the forms to the accepted students. \textit{(Machine Controlled)}
+\textbf{\textit{SP9}} - The system sends the forms to the accepted students. \textit{(Machine Controlled)} \\
+\textbf{\textit{SP10}} - The university monitors an internship. \textit{(World Controlled)}
 \end{spacing}
 		\subsubsection{Machine phenomena}
 \begin{spacing}{1.5}
@@ -172,7 +176,7 @@ Students can apply for the internship that interest them and if the company acce
 	\subsection{Definitions, acronyms and abbreviations}
 		\subsubsection{Definitions}
 \begin{itemize}
-\item \textbf{Users} $\rightarrow$ The users of the applications are both students and a representatives of their company.
+\item \textbf{Users} $\rightarrow$ The users of the applications are students, representatives of a company or a university.
 \item \textbf{Internship} $\rightarrow$ It refers to projects created by companies to allow students to gain experience in a professional context.
 \item \textbf{Posting} $\rightarrow$ It is the act of creating an internship and rendering it public for the students to view.
 \item \textbf{Proactive searching} $\rightarrow$ Indicates the action performed by a student to take the initiative and look for the internship that interests them the most.
@@ -183,12 +187,12 @@ Students can apply for the internship that interest them and if the company acce
 \item \textbf{Resume} $\rightarrow$ It is the same as referring to a CV.
 \item \textbf{Certified account} $\rightarrow$ It refers to an account that when used for sign up or log in action, it redirects the user to the page of the organization.
 \item \textbf{Screening} $\rightarrow$ It refers to the process done by a company right after the applications deadline, during which only a part of the candidates are selected based on their CV and interests.
+\item \textbf{Third-party} $\rightarrow$ It refers to a company that provides an auxiliary product not supplied by the primary manufacturer.
 \end{itemize}
 		\subsubsection{Acronyms}
 \begin{itemize}
 \item \textbf{S\&C} $\rightarrow$ Students\&Companies, the name of the application.
 \item \textbf{CV} $\rightarrow$ Curriculum Vitae, is a short written summary of a person's career, qualifications, and education.
-\item \textbf{API} $\rightarrow$ Application Programming Interface, a software intermediary that allows two applications to talk to each other.
 \item \textbf{HR} $\rightarrow$ Human Resource, is a department that manages employees.
 \end{itemize}
 		\subsubsection{Abbreviations}
@@ -197,6 +201,8 @@ Students can apply for the internship that interest them and if the company acce
 \item \textbf{WPn} $\rightarrow$ It is used to list all the world phenomena and the n stands for the $n_{th}$ phenomena described.
 \item \textbf{SPn} $\rightarrow$ It is used to list all the shared phenomena and the n stands for the $n_{th}$ phenomena described.
 \item \textbf{MPn} $\rightarrow$ It is used to list all the machine phenomena and the n stands for the $n_{th}$ phenomena described.
+\item \textbf{RRn} $\rightarrow$ It is used to list all the requirements related to registration and/or login and the n stands for the $n_{th}$ requirement described.
+\item \textbf{RIn} $\rightarrow$ It is used to list all the requirements related to internships and the n stands for the $n_{th}$ requirement described.
 \end{itemize}
 		
 	\subsection{Revision history}	
@@ -224,11 +230,11 @@ This section presents the number of hours spent per each person of the group for
 \section{Overall description}
 	\subsection{Product perspective}
 		\subsubsection{Scenarios}
-\textbf{\large{Scenario 1}} - Account creation and posting \\
-ToSoftware is a big company looking for young talents that could be interested in working full time for them in the future. An HR employee is tasked to design internships and would like to advertise its offers to students. For this purpose he creates an S\&C account using his work email, he also need to provide his personal information and some details about the company. After the creation has been completed he starts creating the post for an internship including details such as the project domain, tasks, required skills/experiences, the applications deadline and any other relevant information. He also creates a form with a series of questions and for each of them sets a maximum score to facilitate the evaluation of the candidates.
+\textbf{\large{Scenario 1}} - ToSoftware wants to advertise its internships \\
+ToSoftware is a big company looking for young talents that could be interested in working full time for them in the future. An HR employee is tasked to design internships and would like to advertise its offers to students. For this purpose he creates an S\&C account using his work email, he also need to provide his personal information and some details about the company. After the creation has been completed he starts creating the post for an internship including details such as the project domain, tasks, required skills/experiences, the applications deadline and any other relevant information.
 \vspace{1\baselineskip} \\
 \textbf{\large{Scenario 2}} - Bob wants to do an internship \\
-Bob is a third year student at the Genius University and thinks about gaining some work experience, but he does not know from where to start from. His friend Sam tells him about S\&C, so he creates an account with his institutional email and also adds his interests and CV. At this point he starts looking for an internship, using the search-bar he inserts some keywords to ensure he finds something he is interested in. After confirming the filters, Bob is presented with a list of internships that satisfy the inserted keywords, he selects the one he finds more suitable for himself and applies for it.
+Bob is a third year student at the Genius University and thinks about gaining some work experience, but he does not know from where to start from. His friend Sam tells him about S\&C, so he creates an account by choosing Genius University from the available list, enters his institutional email and also adds his interests and CV. At this point he starts looking for an internship, using the search-bar he inserts some keywords to ensure he finds something he is interested in. After confirming the filters, Bob is presented with a list of internships that satisfy the inserted keywords, he selects the one he finds more suitable for himself and applies for it.
 \vspace{1\baselineskip} \\
 \textbf{\large{Scenario 3}} - Sekiro receives a notification through the recommendation system \\
 ToSoftware's S\&C's account manager designs an internship that involves helping in the development of its new game "Light Souls" and posts it on the platform. Sekiro is a student of the Genius University, studying computer science. Some time ago he created an S\&C account and specified his interest in game development, so as soon as ToSoftware posts the internship, Sekiro receives a notification that informs him about the offer. The notification reports all the important information about the internship:
@@ -240,7 +246,7 @@ ToSoftware's S\&C's account manager designs an internship that involves helping 
 \end{itemize}
 \vspace{1\baselineskip}
 \textbf{\large{Scenario 4}} - Sekiro applies for ToSoftware's internship \\
-Sekiro decides that the internship proposed by ToSoftware is perfect for him so he decides to apply for it. The 22\textsuperscript{nd} of December (applications' deadline) ToSoftware receives a list of all the students that applied for their internship. Since there are too many people they decide to pick a limited number of candidates. After some time, Sekiro receives a notification saying that his application for the internship was accepted and he has to fill in a form before the 22\textsuperscript{nd} of January 2025. As soon as Sekiro submits the form with all the questions answered, ToSoftware's account receives a notification containing the filled form, so an employee gives a score to each answer and saves it. The 22\textsuperscript{nd} of January the employee checks the ranking generated by the application and picks the top 10 candidates. Since Sekiro ended up in second place he receives a notification containing all the information necessary to participate in the internship.
+Sekiro decides that the internship proposed by ToSoftware is perfect for him so he decides to apply for it. The 22\textsuperscript{nd} of December (applications' deadline) ToSoftware receives a list of all the students that applied for their internship. Since there are too many candidates they decide to pick a limited number of them. After some time, Sekiro receives a notification saying that his application for the internship was accepted and he has to fill in a form before the 22\textsuperscript{nd} of January 2025. As soon as Sekiro submits the form with all the questions answered, ToSoftware's account receives a notification containing the filled form, so an employee gives a score to each answer and saves it. The 22\textsuperscript{nd} of January the employee checks the ranking generated by the application and picks the top 10 candidates. Since Sekiro ended up in second place he receives a notification containing the date (22\textsuperscript{nd} of February) for an interview and a link to a broom meeting. A week after the interview, Sekiro receives a notification informing him that he passed the final screening and containing all the necessary info regarding the upcoming internship.  
 \vspace{1\baselineskip} \\
 \textbf{\large{Scenario 5}} - ToSoftware shares his opinion regarding the recommendation system \\
 ToSoftware's S\&C's account manager, notices that all the students participating in the internship are really talented and hard working so he decides to write a feedback to let S\&C developer know. As soon as he is done writing it, he sends it and the message is stored in S\&C database as a positive feedback.
@@ -249,10 +255,11 @@ ToSoftware's S\&C's account manager, notices that all the students participating
 Since Sekiro is performing incredibly good, ToSoftware's internship manager decides to give him more work to do, even though he knows Sekiro was barely managing the few task he was given before. Noticing the increasing amount of work, Sekiro decides to write a complaint about the company on the platform. The complaint is then saved and can be seen by Sekiro's university (Genius University) using the platform whenever they decide to check how his internship is going.
 
 		\subsubsection{Class Diagram}
-		\includegraphics[scale=0.55]{Images/Class_Diagram}\\
+		\includegraphics[scale=0.55]{Images/Class_Diagram}
 		\subsubsection{State Chart}
-		\includegraphics[scale=0.19]{Images/Internship_state_diagram}\\
-Right after an internship is created its state is the \textit{Application} state, where students can apply for it. Subsequently to the application deadline, the company will have to select the candidates that suit them the most from those who applied, this is during the \textit{Selection} state. Each selected candidate will receive a notification, regarding the acceptance of his application, that includes a form to be filled by a specific date. Following that date, we arrive at the \textit{Ranking} state where the company has to evaluate the forms filled by each accepted candidate leading to a total score, which S\&C will use to rank all of the candidates. The company will then choose the final students based on that ranking, and S\&C will send a notification informing them of their selection. Finally, we have the \textit{Ongoing} and \textit{Finished} states that are representing when the internship is effectively in progress; here both parties can submit complaints, and when it is complete; after which feedback will be asked from students in case they received the offer through the recommendation system.
+		\includegraphics[scale=0.185]{Images/Internship_state_diagram} \\
+		
+\textcolor{red}{Right after an internship is created its state is the \textit{Application} state, where students can apply for it. Subsequently to the application deadline, the company will have to select the candidates that suit them the most from those who applied, this is during the \textit{Selection} state. Each selected candidate will receive a notification, regarding the acceptance of his application, that includes a form to be filled by a specific date. Following that date, we arrive at the \textit{Ranking} state where the company has to evaluate the forms filled by each accepted candidate leading to a total score, which S\&C will use to rank all of the candidates. The company will then choose the final students based on that ranking, and S\&C will send a notification informing them of their selection. Finally, we have the \textit{Ongoing} and \textit{Finished} states that are representing when the internship is effectively in progress; here both parties can submit complaints, and when it is complete; after which feedback will be asked from students in case they received the offer through the recommendation system. At this point, the internship will be archived as a past project of the company.}
 	\subsection{Product functions}
 \begin{itemize}
 \item \textbf{Sign-up and login} \\
@@ -296,7 +303,8 @@ A university is an institution whose aim, in the context of S\&C application, is
 \textbf{\textit{A4}} - Companies creates reasonable forms before the applications deadline. \\
 \textbf{\textit{A5}} - The recommendation system is reliable enough. \\
 \textbf{\textit{A6}} - Companies checks all submitted forms and for each of them grade all questions. \\
-\textbf{\textit{A7}} - Feedback and complaints provided by users are truthful and accurate.
+\textbf{\textit{A7}} - Feedback and complaints provided by users are truthful and accurate. \\
+\textbf{\textit{A8}} - The platform has a list of all the affiliated universities.
 \end{spacing}
 \newpage
 \section{Specific requirements}
@@ -311,11 +319,9 @@ In this page users can visualize all the internships that have per posted. In ad
 \item \textbf{Internship creation page} \\
 This page is available only for companies, and allow them to fill in all the details required to post about an internship.
 \item \textbf{Form design page} \\
-This page is available only for companies and it allows them to create custom forms needed to select the candidates that apply for their internship. To create forms, companies write a list of questions an mark them with a maximum score achievable by each one of them. At the end of this process the form can be saved for later use.
+This page is available only for companies and it allows them to create custom forms needed to select the candidates that apply for their internship. To create forms, companies write a list of questions and mark them with a maximum score achievable by each one of them. At the end of this process the form can be saved for later use.
 \item \textbf{Profile page} \\
 This page displays all personal information regarding the user logged in the application. It also allows the user to update different information based on the fact that they are students or companies.
-\item \textbf{Report page} \\
-This page can allow students to either write feedback to S\&C developers regarding the application's features or to write complaints regarding the status of an ongoing internship.
 \end{itemize}
 		\subsubsection{Hardware interfaces}
 The application does not need to provide any kind of hardware interface since it's main purpose is advertising internships and establish a connection between students and companies.
@@ -323,8 +329,41 @@ The application does not need to provide any kind of hardware interface since it
 The software will need to use some external interface to guarantee its correct behavior. For example, to guaranteed the validity of an institutional email, it needs the university to confirm the address, and the same goes for the company.
 		\subsubsection{Communication interfaces}
 The platform exploits the internet connection to communicate with the main server in order to store and retrieve all the necessary information and also to perform automatic actions such as sending notification, identifying compatible students for the recommendation system and closing an internship's application's process according to the specified deadline.
+
 	\subsection{Functional requirements}
 		\subsubsection{Functional requirements}
+\begin{itemize}
+\item \textbf{Account management}
+\begin{itemize}
+\item[RA1:] The platform shall allow users to register.
+\item[RA2:] The platform shall allow users to login using their credentials.
+\item[RA3:] The platform shall allow users to update their existing account.
+\end{itemize}
+\item \textbf{Internships}
+\begin{itemize}
+\item[RI1:] The platform must allow companies to create internships.
+\item[RI2:] The platform must allow students to view all available internships\footnote{Available internships are internships created by companies and that are in the application state; so their application deadline has not arrived yet allowing students to apply to them.}.
+\item[RI3:] The platform must allow students to search between the available internships.
+\item[RI4:] The platform must allow students to apply for any of the available internships.
+\item[RI5:] The platfrom must allow students/companies involved in an internship to complain about the other party.
+\end{itemize}
+\item \textbf{Notifications}
+\begin{itemize}
+\item[RN1:] The platform shall notify students when an internship suitable for them has been posted.
+\item[RN2:] The platform shall notify students of the result of the screening.
+\item[RN3:] The platform shall notify students reminding them to fill the internship application form when the deadline is approaching.
+\item[RN4:] The platform shall notify students of the final result of the application.
+\item[RN5:] The platform shall notify students/companies to fill a feedback form after the end of the internship.
+\item[RN6:] The platform shall notify universities whenever a complaint is filed involving one of their students.
+\item[RN7:] The platform shall send companies the list of candidates at the end of the application deadline.
+\item[RN8:] The platform shall notify companies reminding them to evaluate the questionnares when the selection deadline is approaching.
+\end{itemize}
+\item \textbf{Forms}
+\begin{itemize}
+\item asdasa
+\end{itemize}
+\item \textbf{Report}
+\end{itemize}
 		\subsubsection{Requirements mapping}
 		\subsubsection{Use cases and diagrams}
 		\subsubsection{Traceability matrix}
