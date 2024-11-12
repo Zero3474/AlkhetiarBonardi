@@ -61,7 +61,7 @@ by \par
 
 \textbf{Deliverable:} & RASD\\
 \hline
-\textbf{Title:} & Requirement Analysis and Verification Document \\
+\textbf{Title:} & Requirement Analysis and Specifiation Document \\
 \hline
 \textbf{Authors:} & Abdallah Alkhetiar and Daniel Bonardi \\
 \hline
@@ -256,10 +256,11 @@ Since Sekiro is performing incredibly good, ToSoftware's internship manager deci
 
 		\subsubsection{Class Diagram}
 		\includegraphics[scale=0.55]{Images/Class_Diagram}
+		
 		\subsubsection{State Chart}
 		\includegraphics[scale=0.185]{Images/Internship_state_diagram} \\
-		
-\textcolor{red}{Right after an internship is created its state is the \textit{Application} state, where students can apply for it. Subsequently to the application deadline, the company will have to select the candidates that suit them the most from those who applied, this is during the \textit{Selection} state. Each selected candidate will receive a notification, regarding the acceptance of his application, that includes a form to be filled by a specific date. Following that date, we arrive at the \textit{Ranking} state where the company has to evaluate the forms filled by each accepted candidate leading to a total score, which S\&C will use to rank all of the candidates. The company will then choose the final students based on that ranking, and S\&C will send a notification informing them of their selection. Finally, we have the \textit{Ongoing} and \textit{Finished} states that are representing when the internship is effectively in progress; here both parties can submit complaints, and when it is complete; after which feedback will be asked from students in case they received the offer through the recommendation system. At this point, the internship will be archived as a past project of the company.}
+Right after an internship is created its state is the \textit{Open for applications} state, where students can apply for it. Subsequently to the application deadline, the company will have to select the candidates that suit them the most from those who applied, this is during the \textit{First screening} state. Each selected candidate will receive a notification regarding the result of his application which also includes a form to be filled by a specific date (if they were accepted). Following that date, we arrive at the \textit{Second screening} state where the company has to evaluate the forms filled by each accepted candidate leading to a total score, which S\&C will use to rank all of the candidates. S\&C will then choose (possibly among the best scoring) a subset of those students, all candidates will receive a notification with the result and for those that have been chosen it will also contain a link to a third-party online meeting platform and the date of the interview. After the aforementioned date, we reach the \textit{Ranking} state where the remaining candidates will be further evaluated according to their performance during the interview. This will result in a conclusive ranking which will be used to decide the students that will be accepeted for the internship. Finally, we have the \textit{Ongoing} and \textit{Finished} states that are indicating when the internship is effectively in progress (here both parties can submit complaints) and when it is complete; after which feedback will be asked from students in case they received the offer through the recommendation system. At this point, the internship will be archived as a past project of the company.
+
 	\subsection{Product functions}
 \begin{itemize}
 \item \textbf{Sign-up and login} \\
