@@ -31,6 +31,7 @@
 \usepackage{ltablex}
 \usepackage{longtable}
 \usepackage{float}
+\usepackage{makecell}
 
 \begin{document}
 
@@ -201,8 +202,12 @@ Universities can monitor the status of ongoing internships that involve their st
 \item \textbf{WPn} $\rightarrow$ It is used to list all the world phenomena and the n stands for the $n_{th}$ phenomena described.
 \item \textbf{SPn} $\rightarrow$ It is used to list all the shared phenomena and the n stands for the $n_{th}$ phenomena described.
 \item \textbf{MPn} $\rightarrow$ It is used to list all the machine phenomena and the n stands for the $n_{th}$ phenomena described.
-\item \textbf{RRn} $\rightarrow$ It is used to list all the requirements related to registration and/or login and the n stands for the $n_{th}$ requirement described.
+\item \textbf{RAn} $\rightarrow$ It is used to list all the requirements related account management and the n stands for the $n_{th}$ requirement described.
 \item \textbf{RIn} $\rightarrow$ It is used to list all the requirements related to internships and the n stands for the $n_{th}$ requirement described.
+\item \textbf{RNn} $\rightarrow$ It is used to list all the requirements related to notifications and the n stands for the $n_{th}$ requirement described.
+\item \textbf{RFn} $\rightarrow$ It is used to list all the requirements related to forms and the n stands for the $n_{th}$ requirement described.
+\item \textbf{RRn} $\rightarrow$ It is used to list all the requirements related to reports and the n stands for the $n_{th}$ requirement described.
+\item \textbf{UCn} $\rightarrow$ It is used to list all the use cases and the n stands for the $n_{th}$ case described.
 \end{itemize}
 		
 	\subsection{Revision history}	
@@ -253,10 +258,12 @@ ToSoftware's S\&C's account manager, notices that all the students participating
 \vspace{1\baselineskip} \\
 \textbf{\large{Scenario 6}} - Sekiro is exploited by the company \\
 Since Sekiro is performing incredibly good, ToSoftware's internship manager decides to give him more work to do, even though he knows Sekiro was barely managing the few task he was given before. Noticing the increasing amount of work, Sekiro decides to write a complaint about the company on the platform. The complaint is then saved and can be seen by Sekiro's university (Genius University) using the platform whenever they decide to check how his internship is going.
-
+\newpage
 		\subsubsection{Class Diagram}
-		\includegraphics[scale=0.55]{Images/Class_Diagram}
-		
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Class_Diagram}
+\end{figure}
+\newpage
 		\subsubsection{State Chart}
 		\includegraphics[scale=0.185]{Images/Internship_state_diagram} \\
 Right after an internship is created its state is the \textit{Open for applications} state, where students can apply for it. Subsequently to the application deadline, the company will have to select the candidates that suit them the most from those who applied, this is during the \textit{First screening} state. Each selected candidate will receive a notification regarding the result of his application which also includes a form to be filled by a specific date (if they were accepted). Following that date, we arrive at the \textit{Second screening} state where the company has to evaluate the forms filled by each accepted candidate leading to a total score, which S\&C will use to rank all of the candidates. S\&C will then choose (possibly among the best scoring) a subset of those students, all candidates will receive a notification with the result and for those that have been chosen it will also contain a link to a third-party online meeting platform and the date of the interview. After the aforementioned date, we reach the \textit{Ranking} state where the remaining candidates will be further evaluated according to their performance during the interview. This will result in a conclusive ranking which will be used to decide the students that will be accepeted for the internship. Finally, we have the \textit{Ongoing} and \textit{Finished} states that are indicating when the internship is effectively in progress (here both parties can submit complaints) and when it is complete; after which feedback will be asked from students in case they received the offer through the recommendation system. At this point, the internship will be archived as a past project of the company.
@@ -301,9 +308,9 @@ A university is an institution whose aim, in the context of S\&C application, is
 \textbf{\textit{A1}} - All users have a valid active email. \\
 \textbf{\textit{A2}} - Students upload the correct file in the CV section of their account. \\
 \textbf{\textit{A3}} - Companies post correct information about existing internships. \\
-\textbf{\textit{A4}} - Companies creates reasonable forms before the applications deadline. \\
+\textbf{\textit{A4}} - Companies create reasonable forms before the applications deadline. \\
 \textbf{\textit{A5}} - The recommendation system is reliable enough. \\
-\textbf{\textit{A6}} - Companies checks all submitted forms and for each of them grade all questions. \\
+\textbf{\textit{A6}} - Companies check all submitted forms and for each of them grade all questions. \\
 \textbf{\textit{A7}} - Feedback and complaints provided by users are truthful and accurate. \\
 \textbf{\textit{A8}} - The platform has a list of all the affiliated universities.
 \end{spacing}
@@ -330,7 +337,7 @@ The application does not need to provide any kind of hardware interface since it
 The software will need to use some external interface to guarantee its correct behavior. For example, to guaranteed the validity of an institutional email, it needs the university to confirm the address, and the same goes for the company.
 		\subsubsection{Communication interfaces}
 The platform exploits the internet connection to communicate with the main server in order to store and retrieve all the necessary information and also to perform automatic actions such as sending notification, identifying compatible students for the recommendation system and closing an internship's application's process according to the specified deadline.
-
+\newpage
 	\subsection{Functional requirements}
 		\subsubsection{Functional requirements}
 \begin{itemize}
@@ -351,22 +358,357 @@ The platform exploits the internet connection to communicate with the main serve
 \item \textbf{Notifications}
 \begin{itemize}
 \item[RN1:] The platform shall notify students when an internship suitable for them has been posted.
-\item[RN2:] The platform shall notify students of the result of the screening.
-\item[RN3:] The platform shall notify students reminding them to fill the internship application form when the deadline is approaching.
-\item[RN4:] The platform shall notify students of the final result of the application.
-\item[RN5:] The platform shall notify students/companies to fill a feedback form after the end of the internship.
-\item[RN6:] The platform shall notify universities whenever a complaint is filed involving one of their students.
-\item[RN7:] The platform shall send companies the list of candidates at the end of the application deadline.
-\item[RN8:] The platform shall notify companies reminding them to evaluate the questionnares when the selection deadline is approaching.
+\item[RN2:] The platform shall notify students of the result of the first screening.
+\item[RN3:] The platform shall notify students of the final result of the application.
+\item[RN4:] The platform shall notify students/companies to fill a feedback form after the end of the internship.
+\item[RN5:] The platform shall notify universities whenever a complaint is filed involving one of their students.
+\item[RN6:] The platform shall send companies the list of candidates at the end of the application deadline.
 \end{itemize}
 \item \textbf{Forms}
 \begin{itemize}
-\item asdasa
+\item[RF1:] The platform shall allow companies to create custom forms.
+\item[RF2:] The platform shall allow companies to save created forms for later use in an internship selection process.
+\item[RF3:] The platform shall allow companies to send the candidates that passed the first screening the form for the second screening.
+\item[RF4:] The platform shall allow students to fill and submit the application form.
+\item[RF5:] The platform shall allow companies to evaluate a submitted form by grading each question.
 \end{itemize}
 \item \textbf{Report}
+\begin{itemize}
+\item[RR1:] The platform shall allow student and companies to write a feedback at the end of an internship.
+\item[RR2:] The platform shall allow students and companies involved in an internship to write complaints regarding the other party.
+\item[RR3:] The platform shall allow universities to read all complaints that involve their students.
+\end{itemize}
 \end{itemize}
 		\subsubsection{Requirements mapping}
+\begin{itemize}
+\item[\textbf{[G1]}] - Student can create an account
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RA1]} - The platform shall allow users  to register.
+& \textbf{[A1]} - All users have a valid email. \newline 
+\textbf{[A8]} - The platform has a list of all affiliated universities. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G2]}] - Company can create an account
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RA1]} - The platform shall allow users  to register.
+& \textbf{[A1]} - All users have a valid email. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G3]}] - Users can update their accounts
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RA3]} - The platform shall allow users to update their existing account.
+& \textbf{[A2]} - Students upload the correct file in the CV section of the account. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G4]}] - Companies can create internships
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RI1]} - The platform must allow companies to create internships.
+& \textbf{[A3]} - Companies post correct information about existing internships. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G5]}] - Students can view all available internships
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RI2]} - The platform must allow students to view all available internships. \newline
+\textbf{[RI3]} - The platform must allow students to search between the available internships.
+& None. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G6]}] - Companies can create forms for students to fill
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RF1]} - The platform shall allow companies to create custom forms. \newline
+\textbf{[RF2]} - The platform shall allow companies to save created forms for later use in an internship selection process.
+& \textbf{[A4]} - Companies create reasonable forms before the applications deadline. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G7]}] - Recommendation system
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RN1]} - The platform shall notify students when an internship suitable for them has been posted.
+& \textbf{[A5]} - The recommendation system is reliable enough. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G8]}] - Students can apply for the internships
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RI4]} - The platform must allow students to apply for any available internship.
+& None. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G9]}] - Form evaluation
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RN6]} - The platform shall send companies the list of candidates st the end of the application deadline. \newline
+\textbf{[RF3]} - The platform shall allow companies to send the candidates that passed the first screening the form for the second screening. \newline
+\textbf{[RF4]} - The platform shall allow students to fill and submit the application form. \newline
+\textbf{[RF5]} - The platform shall allow companies to evaluate a submitted form by grading each question.
+& \textbf{[A6]} - Companies check all submitted forms and for each of them grade all questions. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G10]}] - Ranking candidates
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RN2]} - The platform shall notify students of the result of the first screening. \newline
+\textbf{[RN3]} - The platform shall notify students of the final result of the application.
+& \textbf{[A6]} - Companies check all submitted forms and for each of them grade all questions. \\
+\hline
+\end{tabular}
+\end{table}
+
+\item[\textbf{[G11]}] - Users can provide feedbacks
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RN4]} - The platform shall notify students/companies to fill a feedback form after the end of the internship. \newline
+\textbf{[RR1]} - The platform shall allow students and companies to write a feedback at the end of an internship.
+& \textbf{[A7]} - Feedback and complaints provided by users are truthful and accurate. \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+\item[\textbf{[G12]}] - Complaints management
+\begin{table}[H]
+\begin{tabular}{| p{0.47\textwidth} | p{0.47\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{[RI5]} - The platform must allow students/companies involved in an internship to complain about the other party. \newline
+\textbf{[RN5]} - The platform shall notify universities whenever a complaint is filed involving one of their students. \newline
+\textbf{[RR2]} - The platform shall allow students and companies involved in an internship to write complaints regarding the other party. \newline
+\textbf{[RR3]} - The platform shall allow universities to read all complaints that involve their students.
+& \textbf{[A7]} - Feedback and complaints provided by users are truthful and accurate. \\
+\hline
+\end{tabular}
+\end{table}
+\end{itemize}
 		\subsubsection{Use cases and diagrams}
+In this section are reported some of the most notable use cases for the S\&C application. \\
+\includegraphics[width=\textwidth]{Images/Use_case_diagram}
+\\
+\large{\textbf{[UC1]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{Name}
+& Register user \\
+\hline
+\textbf{Actors}
+& User \\
+\hline
+\textbf{Entry conditions}
+& User opens the platform without an account \\
+\hline
+\textbf{Events flow}
+& 1. The User starts the registration process \newline
+2. The system asks the user to choose if he/she is a Student or Company and to provide: name, surname, username, email and password \newline
+3. User fills in the text fields with the required information \newline
+4. The system checks if email or username have been already used by another user to register \newline
+5. System updates the database with the User’s information and 
+displays a message of confirmed registration  \\
+\hline
+\textbf{Exit conditions}
+& User successfully registers on the platform \\
+\hline
+\textbf{Exception}
+& The user enters invalid credentials, such as non existent or already registered email. \\
+\hline
+\end{tabular}
+\end{table}
+
+\large{\textbf{[UC2]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{Name}
+& Text \\
+\hline
+\textbf{Actors}
+& Text \\
+\hline
+\textbf{Entry conditions}
+& Text \\
+\hline
+\textbf{Events flow}
+& Text  \\
+\hline
+\textbf{Exit conditions}
+& Text \\
+\hline
+\textbf{Exception}
+& Text. \\
+\hline
+\end{tabular}
+\end{table}
+
+\large{\textbf{[UC3]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{Name}
+& Text \\
+\hline
+\textbf{Actors}
+& Text \\
+\hline
+\textbf{Entry conditions}
+& Text \\
+\hline
+\textbf{Events flow}
+& Text  \\
+\hline
+\textbf{Exit conditions}
+& Text \\
+\hline
+\textbf{Exception}
+& Text. \\
+\hline
+\end{tabular}
+\end{table}
+
+\large{\textbf{[UC4]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{Name}
+& Text \\
+\hline
+\textbf{Actors}
+& Text \\
+\hline
+\textbf{Entry conditions}
+& Text \\
+\hline
+\textbf{Events flow}
+& Text  \\
+\hline
+\textbf{Exit conditions}
+& Text \\
+\hline
+\textbf{Exception}
+& Text. \\
+\hline
+\end{tabular}
+\end{table}
+
+\large{\textbf{[UC5]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{Name}
+& Text \\
+\hline
+\textbf{Actors}
+& Text \\
+\hline
+\textbf{Entry conditions}
+& Text \\
+\hline
+\textbf{Events flow}
+& Text  \\
+\hline
+\textbf{Exit conditions}
+& Text \\
+\hline
+\textbf{Exception}
+& Text. \\
+\hline
+\end{tabular}
+\end{table}
+
+\large{\textbf{[UC6]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Requirements} & \textbf{Assumptions} \\
+\hline
+\textbf{Name}
+& Text \\
+\hline
+\textbf{Actors}
+& Text \\
+\hline
+\textbf{Entry conditions}
+& Text \\
+\hline
+\textbf{Events flow}
+& Text  \\
+\hline
+\textbf{Exit conditions}
+& Text \\
+\hline
+\textbf{Exception}
+& Text. \\
+\hline
+\end{tabular}
+\end{table}
+\newpage
+
 		\subsubsection{Traceability matrix}
 	\subsection{Performance requirements}
 	\subsection{Design constraints}
