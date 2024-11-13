@@ -545,8 +545,6 @@ In this section are reported some of the most notable use cases for the S\&C app
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
-\textbf{Requirements} & \textbf{Assumptions} \\
-\hline
 \textbf{Name}
 & Register user \\
 \hline
@@ -557,156 +555,293 @@ In this section are reported some of the most notable use cases for the S\&C app
 & User opens the platform without an account \\
 \hline
 \textbf{Events flow}
-& 1. The User starts the registration process \newline
-2. The system asks the user to choose if he/she is a Student or Company and to provide: name, surname, username, email and password \newline
+& 1. The user starts the registration process \newline
+2. The system asks the user to choose if he/she is a student or a company and to provide: name, surname, username, email and password \newline
 3. User fills in the text fields with the required information \newline
 4. The system checks if email or username have been already used by another user to register \newline
-5. System updates the database with the User’s information and 
+5. System updates the database with the user’s information and 
 displays a message of confirmed registration  \\
 \hline
 \textbf{Exit conditions}
 & User successfully registers on the platform \\
 \hline
-\textbf{Exception}
-& The user enters invalid credentials, such as non existent or already registered email. \\
+\textbf{Exceptions}
+& The user enters invalid credentials, such as non existent or already registered email \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC1}
+\end{center}
 
 \large{\textbf{[UC2]}} \\
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
-\textbf{Requirements} & \textbf{Assumptions} \\
-\hline
 \textbf{Name}
-& Text \\
+& User login \\
 \hline
 \textbf{Actors}
-& Text \\
+& User \\
 \hline
 \textbf{Entry conditions}
-& Text \\
+& User opens the platform while having a registered account \\
 \hline
 \textbf{Events flow}
-& Text  \\
+& 1. User inserts fills in the appropriate fields for the login with his credentials (username and password) and presses the “Login” button \newline
+2. The system checks if the information inserted are correct \newline
+3. The system displays the home page to the user \\
 \hline
 \textbf{Exit conditions}
-& Text \\
+& The user is logged in the platform \\
 \hline
-\textbf{Exception}
-& Text. \\
+\textbf{Exceptions}
+& When the user inserts the wrong combination of username and password and presses the "Login" button, the application displays an error message. \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC2}
+\end{center}
+
+\newpage
 
 \large{\textbf{[UC3]}} \\
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
-\textbf{Requirements} & \textbf{Assumptions} \\
-\hline
 \textbf{Name}
-& Text \\
+& Internship creation \\
 \hline
 \textbf{Actors}
-& Text \\
+& Company ; \textit{Student (Notified)} \\
 \hline
 \textbf{Entry conditions}
-& Text \\
+& User is logged in a company account \\
 \hline
 \textbf{Events flow}
-& Text  \\
+& 1. Company requests to create an internship post \newline
+2. The system asks the company all the required information to create the post \newline
+3. The company submits the requested information \newline
+4. The system validates the information provided by the company \newline
+5. The system adds the internship to its database and and notifies all compatible student \\
 \hline
 \textbf{Exit conditions}
-& Text \\
+& The company successfully created an internship and the compatible students received a notification from the system \\
 \hline
-\textbf{Exception}
-& Text. \\
+\textbf{Exceptions}
+& When attempting to create the post if the company doesn't insert all the required information, the application displays an error message \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{center}
+\includegraphics[width=0.95\textwidth]{Images/UC3}
+\end{center}
+
+\newpage
 
 \large{\textbf{[UC4]}} \\
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
-\textbf{Requirements} & \textbf{Assumptions} \\
-\hline
 \textbf{Name}
-& Text \\
+& Student proactive search \\
 \hline
 \textbf{Actors}
-& Text \\
+& Student \\
 \hline
 \textbf{Entry conditions}
-& Text \\
+& - User is logged in with a student account \\
 \hline
 \textbf{Events flow}
-& Text  \\
+& 1. The student insert some keywords in the search bar in the home page \newline
+2. The system filters the internships that satisfy the keywords \newline
+3. The student chooses an internship and applies for it \\
 \hline
 \textbf{Exit conditions}
-& Text \\
+& The student successfully applies for an internship \\
 \hline
-\textbf{Exception}
-& Text. \\
+\textbf{Exceptions}
+& If there are no suitable internships the system returns a warning message \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC4}
+\end{center}
+
+\newpage
 
 \large{\textbf{[UC5]}} \\
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
-\textbf{Requirements} & \textbf{Assumptions} \\
-\hline
 \textbf{Name}
-& Text \\
+& Selection process (part 1) \\
 \hline
 \textbf{Actors}
-& Text \\
+& Company ; Student \\
 \hline
 \textbf{Entry conditions}
-& Text \\
+& A student has applied for an internship \\
 \hline
 \textbf{Events flow}
-& Text  \\
+& 1. Student applies for an internship \newline
+2. When the application deadline is reached, the company receives the list of all the candidates \newline
+3. The company performs a first screening and sends to the remaining ones a form to fill in \\
 \hline
 \textbf{Exit conditions}
-& Text \\
+& The student is selected during the first screening or rejected \\
 \hline
-\textbf{Exception}
-& Text. \\
+\textbf{Exceptions}
+& None \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC5}
+\end{center}
+
+\newpage
 
 \large{\textbf{[UC6]}} \\
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
-\textbf{Requirements} & \textbf{Assumptions} \\
-\hline
 \textbf{Name}
-& Text \\
+& Selection process (part 2) \\
 \hline
 \textbf{Actors}
-& Text \\
+& Company ; Student \\
 \hline
 \textbf{Entry conditions}
-& Text \\
+& The student applied for an internship \newline
+The student has been selected during the first screening \\
 \hline
 \textbf{Events flow}
-& Text  \\
+& 1. After receiving the form, the student fills it and submits it \newline
+2. After the form deadline, the company evaluates all forms and submits the scores \newline
+3. The system creates a ranking and sends it to the company \\
 \hline
 \textbf{Exit conditions}
-& Text \\
+& The company receives the updated ranking \\
 \hline
-\textbf{Exception}
-& Text. \\
+\textbf{Exceptions}
+& None \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC6}
+\end{center}
+
+\newpage
+
+\large{\textbf{[UC7]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Name}
+& Selection process (part 3) \\
+\hline
+\textbf{Actors}
+& Company ; Student \\
+\hline
+\textbf{Entry conditions}
+& The student applied for an internship \newline
+The company received the updated ranking \\
+\hline
+\textbf{Events flow}
+& 1. The company picks the top n candidates and sends the a link for the interview \newline
+2. After the interviews, the ranking is updated and the top candidates are accepted for the internship \newline
+3. The accepted candidates receive a notification with all the information needed for the internship \\
+\hline
+\textbf{Exit conditions}
+& The student has been either rejected or accepted \\
+\hline
+\textbf{Exceptions}
+& None \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC7}
+\end{center}
+
+\newpage
+
+\large{\textbf{[UC8]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Name}
+& User complaint \\
+\hline
+\textbf{Actors}
+& User \\
+\hline
+\textbf{Entry conditions}
+& A student is participating in an internship \\
+\hline
+\textbf{Events flow}
+& 1. The user requests for the complaint page \newline
+2. The system sends the page back \newline
+3. The user writes the complaint and submits it \newline
+4. The university is notified of the complaint \\
+\hline
+\textbf{Exit conditions}
+& The complaint is saved in the system databases \\
+\hline
+\textbf{Exceptions}
+& None \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC8}
+\end{center}
+
+\newpage
+
+\large{\textbf{[UC9]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Name}
+& User provide feedback \\
+\hline
+\textbf{Actors}
+& User \\
+\hline
+\textbf{Entry conditions}
+& The internship was concluded \\
+\hline
+\textbf{Events flow}
+& 1. When an internship is concluded, the users involved in the internship receive a notification to remind them to give a feedback \newline
+2. The user writes a feedback and submits it \newline
+3. The feedback is saved int the system database \\
+\hline
+\textbf{Exit conditions}
+& The feedback is saved in the system databases \\
+\hline
+\textbf{Exceptions}
+& None \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC9}
+\end{center}
+
 \newpage
 
 		\subsubsection{Traceability matrix}
