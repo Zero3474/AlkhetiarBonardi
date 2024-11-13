@@ -1,5 +1,5 @@
 classDiagram
-
+    direction TB
     class User{
         - id: int
         - email: String
@@ -76,13 +76,13 @@ classDiagram
     Company "1" --> "*" Internship: +Creates
     Student "*" --> "*" Internship: +AppliesTo
     Student "*" --> "*" Internship: +ParticipatesIn
-    University "1...*" --> "*" Internship: +Monitors
+    University "1..*" --> "*" Internship: +Monitors
     Internship "1" --> "1" Form: +Has
     Student "1" --> "*" Form: +Fills
     Student "*" --> "1" University: +StudiesAt
     Company "1" --> "*" Report: +Writes
     Student "1" --> "*" Report: +Writes
-    University "0...1" --> "*" Complaint: +Reads
-    SCDeveloper "0...1" --> "*" Feedback: +Reads
-    Complaint "*" --> "1" Internship: +Regarding
+    University "0..1" --> "*" Complaint: +Reads
+    SCDeveloper "0..1" --> "*" Report: +Reads
+    Report "*" --> "1" Internship: +Regarding
     Company "*" --> "" PastProject: +Archived
