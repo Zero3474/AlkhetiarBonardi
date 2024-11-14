@@ -32,6 +32,7 @@
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{makecell}
+\usepackage{array}
 
 \begin{document}
 
@@ -359,10 +360,11 @@ The platform exploits the internet connection to communicate with the main serve
 \begin{itemize}
 \item[RN1:] The platform shall notify students when an internship suitable for them has been posted.
 \item[RN2:] The platform shall notify students of the result of the first screening.
-\item[RN3:] The platform shall notify students of the final result of the application.
-\item[RN4:] The platform shall notify students/companies to fill a feedback form after the end of the internship.
-\item[RN5:] The platform shall notify universities whenever a complaint is filed involving one of their students.
-\item[RN6:] The platform shall send companies the list of candidates at the end of the application deadline.
+\item[RN3:] The platform shall notify students of the result of the second screening.
+\item[RN4:] The platform shall notify students of the final result of the application.
+\item[RN5:] The platform shall notify students/companies to fill a feedback form after the end of the internship.
+\item[RN6:] The platform shall notify universities whenever a complaint is filed involving one of their students.
+\item[RN7:] The platform shall send companies the list of candidates at the end of the application deadline.
 \end{itemize}
 \item \textbf{Forms}
 \begin{itemize}
@@ -486,7 +488,7 @@ The platform exploits the internet connection to communicate with the main serve
 \hline
 \textbf{Requirements} & \textbf{Assumptions} \\
 \hline
-\textbf{[RN6]} - The platform shall send companies the list of candidates st the end of the application deadline. \newline
+\textbf{[RN7]} - The platform shall send companies the list of candidates st the end of the application deadline. \newline
 \textbf{[RF3]} - The platform shall allow companies to send the candidates that passed the first screening the form for the second screening. \newline
 \textbf{[RF4]} - The platform shall allow students to fill and submit the application form. \newline
 \textbf{[RF5]} - The platform shall allow companies to evaluate a submitted form by grading each question.
@@ -502,7 +504,8 @@ The platform exploits the internet connection to communicate with the main serve
 \textbf{Requirements} & \textbf{Assumptions} \\
 \hline
 \textbf{[RN2]} - The platform shall notify students of the result of the first screening. \newline
-\textbf{[RN3]} - The platform shall notify students of the final result of the application.
+\textbf{[RN3]} - The platform shall notify students of the result of the second screening. \newline
+\textbf{[RN4]} - The platform shall notify students of the final result of the application.
 & \textbf{[A6]} - Companies check all submitted forms and for each of them grade all questions. \\
 \hline
 \end{tabular}
@@ -514,7 +517,7 @@ The platform exploits the internet connection to communicate with the main serve
 \hline
 \textbf{Requirements} & \textbf{Assumptions} \\
 \hline
-\textbf{[RN4]} - The platform shall notify students/companies to fill a feedback form after the end of the internship. \newline
+\textbf{[RN5]} - The platform shall notify students/companies to fill a feedback form after the end of the internship. \newline
 \textbf{[RR1]} - The platform shall allow students and companies to write a feedback at the end of an internship.
 & \textbf{[A7]} - Feedback and complaints provided by users are truthful and accurate. \\
 \hline
@@ -529,7 +532,7 @@ The platform exploits the internet connection to communicate with the main serve
 \textbf{Requirements} & \textbf{Assumptions} \\
 \hline
 \textbf{[RI5]} - The platform must allow students/companies involved in an internship to complain about the other party. \newline
-\textbf{[RN5]} - The platform shall notify universities whenever a complaint is filed involving one of their students. \newline
+\textbf{[RN6]} - The platform shall notify universities whenever a complaint is filed involving one of their students. \newline
 \textbf{[RR2]} - The platform shall allow students and companies involved in an internship to write complaints regarding the other party. \newline
 \textbf{[RR3]} - The platform shall allow universities to read all complaints that involve their students.
 & \textbf{[A7]} - Feedback and complaints provided by users are truthful and accurate. \\
@@ -726,10 +729,12 @@ The student has been selected during the first screening \\
 \textbf{Events flow}
 & 1. After receiving the form, the student fills it and submits it \newline
 2. After the form deadline, the company evaluates all forms and submits the scores \newline
-3. The system creates a ranking and sends it to the company \\
+3. The system creates a ranking and sends it to the company \newline
+4. The company submits the list of accepted candidates \newline
+5. The candidates are notified of the second screening's outcome \\
 \hline
 \textbf{Exit conditions}
-& The company receives the updated ranking \\
+& The student is either selected or rejected during the second screening \\
 \hline
 \textbf{Exceptions}
 & None \\
@@ -816,7 +821,7 @@ The company received the updated ranking \\
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
 \textbf{Name}
-& User provide feedback \\
+& User provides feedback \\
 \hline
 \textbf{Actors}
 & User \\
@@ -844,29 +849,229 @@ The company received the updated ranking \\
 
 \newpage
 
+\large{\textbf{[UC10]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Name}
+& User updates profile \\
+\hline
+\textbf{Actors}
+& User \\
+\hline
+\textbf{Entry conditions}
+& The user is logged in the platform \\
+\hline
+\textbf{Events flow}
+& 1. The user opens its profile page and requests the edit mode \newline
+2. The user updates some information and submits it \newline
+3. The system checks the information and then saves it in the database \\
+\hline
+\textbf{Exit conditions}
+& The user successfully updates the profile \\
+\hline
+\textbf{Exceptions}
+& The user leaves some required fields empty \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC10}
+\end{center}
+
+\newpage
+
+\large{\textbf{[UC11]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Name}
+& Company creates a form \\
+\hline
+\textbf{Actors}
+& Company \\
+\hline
+\textbf{Entry conditions}
+& The user is logged with a company account \\
+\hline
+\textbf{Events flow}
+& 1. The user requests the form creation page \newline
+2. The user creates a list of questions and marks them with a maximum score \newline
+3. The user saves the form in the system for later use \newline
+4. The system checks the information and then saves it in the database \\
+\hline
+\textbf{Exit conditions}
+& The user successfully creates a form \\
+\hline
+\textbf{Exceptions}
+& The user doesn't mark every question with a max score \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC11}
+\end{center}
+
+\newpage
+
+\large{\textbf{[UC12]}} \\
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\textbf{Name}
+& University monitors internship \\
+\hline
+\textbf{Actors}
+& University \\
+\hline
+\textbf{Entry conditions}
+& A complaint is submitted \\
+\hline
+\textbf{Events flow}
+& 1. The university receives a notification regarding a complaint \newline
+2. The university opens the application \newline
+3. The university reads the complaint \\
+\hline
+\textbf{Exit conditions}
+& The university has read the complaint \\
+\hline
+\textbf{Exceptions}
+& None \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Images/UC12}
+\end{center}
+
+\newpage
+
 		\subsubsection{Traceability matrix}
+\begin{table}[H]
+\begin{tabular}{| >{\arraybackslash}m{0.64\textwidth} | >{\centering\arraybackslash}m{0.3\textwidth} |}
+\hline
+\textbf{Requirement} & \textbf{Use case} \\
+\hline
+RA1 - The platform shall allow users to register. & Register user \\
+\hline
+RA2 - The platform shall allow users to login using their credentials. & User login \\
+\hline
+RA3 - The platform shall allow users to update their existing account. & User updates profile \\
+\hline
+RI1 - The platform must allow companies to create internships. & Internship creation \\
+\hline
+RI2 - The platform must allow students to view all available internships & Student proactive search \\
+\hline
+RI3 - The platform must allow students to search between the available internships. & Student proactive search \\
+\hline
+RI4 - The platform must allow students to apply for any of the available internships. & Student proactive search \\
+\hline
+RI5 - The platfrom must allow students/companies involved in an internship to complain about the other party. & User complaint \\
+\hline
+RN1 - The platform shall notify students when an internship suitable for them has been posted. & Internship creation \\
+\hline
+RN2 - The platform shall notify students of the result of the first screening. & Selection process (part 1) \\
+\hline
+RN3 - The platform shall notify students of the result of the second screening. & Selection process (part 2) \\
+\hline
+RN4 - The platform shall notify students of the final result of the application. & Selection process (part 3) \\
+\hline
+RN5 - The platform shall notify students/companies to fill a feedback form after the end of the internship. & User provides feedback \\
+\hline
+RN6 - The platform shall notify universities whenever a complaint is filed involving one of their students. & User complaint \\
+\hline
+RN7 - The platform shall send companies the list of candidates at the end of the application deadline. & Selection process (part 1) \\
+\hline
+RF1 - The platform shall allow companies to create custom forms. & Company creates a form \\
+\hline
+RF2 - The platform shall allow companies to save created forms for later use in an internship selection process. & Company creates a form \\
+\hline
+RF3 - The platform shall allow companies to send the candidates that passed the first screening the form for the second screening. & Selection process (part 1) \\
+\hline
+RF4 - The platform shall allow students to fill and submit the application form. & Selection process (part 2) \\
+\hline
+RF5 - The platform shall allow companies to evaluate a submitted form by grading each question. & Selection process (part 2) \\
+\hline
+RR1 - The platform shall allow student and companies to write a feedback at the end of an internship. & User provides feedback \\
+\hline
+RR2 - The platform shall allow students and companies involved in an internship to write complaints regarding the other party. & User complaint \\
+\hline
+RR3 - The platform shall allow universities to read all complaints that involve their students. & University monitors internship \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
 	\subsection{Performance requirements}
-	\subsection{Design constraints}
+
+Most of the times the application acts as a database for companies' internships, when students are navigating through the available offers or proactively searching for them. \\
+The rest of the time the application acts as a simple notification system that allows students to be alerted when an interesting offer is posted, or to be notified of the result of the various screenings when applied for an internship. \\
+For this reason the system's performance limits must be calculated by considering this two conditions: 
+\begin{itemize}
+\item The minimization of the time needed for querying the database.
+\item The minimization of the time needed to send notifications.
+\end{itemize}
+	
+	\subsection{Design constraints}	
 		\subsubsection{Standards compliance}
+
+\textbf{Disclosures and privacy policies} \\
+The application fully comply with data protection regulations, such as the General Data Protection Regulation (GDPR) for European users and the California Consumer Privacy Act (CCPA) for American users. The system only collects data necessary for its operation, and users have the right to access, modify, or delete their data as per GDPR requirements.\\
+\\
+\textbf{Encryption and anonymizing} \\
+Since the application highly depends on internet connectivity for syncing data, user authentication, and notifications, security is a top priority. The software uses TLS 1.2/1.3 encryption to ensures that all data exchanged between users’ devices and the servers is encrypted and protected from interception or unauthorized access.\\
+\\
+\textbf{Data storage} \\
+For data storage, the software complies with ISO/IEC 27001 standards, ensuring high levels of security, and data protection. This includes regular data backups, disaster recovery protocols, and server redundancy to prevent data loss and maintain consistent up time.
+		
 		\subsubsection{Hardware limitations}
+
+The software shall be designed to run efficiently on minimal hardware, making it accessible across a wide range of devices, including older computers and lower-end mobile devices.
+		
 		\subsubsection{Any other constraints}
+		
+The platform is intended to connect student and companies from all over the world. For this reason, it should be designed completely in English, allowing all user to understand all the features.
+		
 	\subsection{Software system attributes}
 		\subsubsection{Reliability}
+
+The application shall be designed to operate reliably under a range of conditions, and the notification system must be robust enough to ensure that users can consistently complete their tasks without any problems, like applying for internships, filling forms and so on.
+		
 		\subsubsection{Availability}
+		
+To maximize availability, the application shall operate a distributed cloud infrastructure with redundant servers, to ensure consistent up time. The application achieves a targeted up time of 99.9\%, minimizing disruptions and providing users with dependable access whenever needed.
+		
 		\subsubsection{Security}
+		
+As mentioned in section 3.4.1, to match the GDPR compliance, user authentication shall be handled via secure protocols, such as OAuth 2.0, allowing users to log in through trusted providers while protecting their credentials. \\
+In addition the system use TLS 1.2/1.3 encryption for data transmission, to protect it from external parties.
+		
 		\subsubsection{Maintainability}
+		
+The application is developed using modular code architecture that makes updates and bug fixes as efficient and straightforward as possible. The software code base is well-documented and follows standard coding practices and patterns, making it easy for developers to understand and work with. Additionally, a version control system, such as Git, is in place to manage updates, ensuring that updates do not disrupt user experience.
+		
 		\subsubsection{Portability}
+		
+The software shall be designed to be portable across multiple platforms, including Windows, macOS, Linux, iOS, and Android, allowing users to have access to their account from any device. The software shall be developed with cross-platform compatibility in mind, using frameworks and libraries that support different operating systems.	
+
+\newpage
 		
 \section{Formal analysis using Alloy}
 	\subsection{Static model}
 	\subsection{Dynamic model}
+	
+\newpage
 
 \section{Effort spent}
 \begin{itemize}
 
 \item \textbf{Abdallah Alkhetiar}
 \begin{table}[H]
-\begin{tabu}{| c || l |}
+\begin{tabular}{| >{\centering\arraybackslash}m{0.2\textwidth} || >{\centering\arraybackslash}m{0.2\textwidth} |}
 \hline
 \textbf{Chapter} & \textbf{Effort} \\
 \hline
@@ -878,12 +1083,14 @@ The company received the updated ranking \\
 \hline
 4 & 0 h \\
 \hline
-\end{tabu}
+\end{tabular}
 \end{table}
+
+\vspace{1\baselineskip}
 
 \item \textbf{Daniel Bonardi}
 \begin{table}[H]
-\begin{tabu}{| c || l |}
+\begin{tabular}{| >{\centering\arraybackslash}m{0.2\textwidth} || >{\centering\arraybackslash}m{0.2\textwidth} |}
 \hline
 \textbf{Chapter} & \textbf{Effort} \\
 \hline
@@ -895,7 +1102,7 @@ The company received the updated ranking \\
 \hline
 4 & 0 h \\
 \hline
-\end{tabu}
+\end{tabular}
 \end{table}
 
 \end{itemize}
@@ -903,6 +1110,14 @@ The company received the updated ranking \\
 \newpage
 
 \section{References}
-Wikipedia.
+\textbf{Standard compliance}\\
+\href{https://www.enterprisestorageforum.com/management/7-essential-compliance-regulations-for-data-storage-systems/}{\textcolor{blue}{www.enterprisestorageforum.com}}\\
+\href{https://beaglesecurity.com/blog/article/software-compliance-standards.html}{\textcolor{blue}{https://beaglesecurity.com}}\\
+\\
+\textbf{Software system attributes}\\
+\href{https://testsigma.com/blog/software-quality-attributes/}{\textcolor{blue}{https://testsigma.com}}\\
+\\
+\textbf{Version control}\\
+\href{https://github.com/resources/articles/software-development/what-is-version-control}{\textcolor{blue}{https://github.com}}
 
 \end{document}
