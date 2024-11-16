@@ -1061,7 +1061,195 @@ The software shall be designed to be portable across multiple platforms, includi
 \newpage
 		
 \section{Formal analysis using Alloy}
+In this chapter, the system will be modeled using the specification language Alloy 6, allowing for a better understanding of the behavior of the software-to-be and the various interactions between its different comoponents. The analysis will be based on two type of models, a static and a dynamic one, each emphasizing different aspects of the platform.
 	\subsection{Static model}
+This model is aimed at describing the relations between the entities of the platform. Its main purpose is to depict the cardinality, direction and type of relations that we can have involving the different actors.
+	\begin{itemize}
+	\item[1)] \textbf{Signatures} \\
+This is a list of all the signatures that represent different entities/actors involved in the platform.
+\begin{verbatim}
+abstract sig User {}
+
+abstract sig Report {
+    about: one Internship,
+}
+
+sig Student extends User {
+	studiesAt: one University,
+    appliesFor: set Internship,
+    particiaptesIn: set Internship,
+    fills: set Form,
+    writes: set Report,
+}
+
+sig Company extends User {
+    creates: set Internship,
+    archives: set PastProject,
+    writes: set Report,
+}
+
+sig University extends User {
+    supervises: set Student,
+    reads: set Complaint,
+}
+
+sig Internship {}
+
+sig PastProject {}
+
+sig Complaint extends Report {}
+
+sig Feedback extends Report {}
+
+sig Form {
+    _for_: one Internship,
+}
+\end{verbatim}
+\item[2)] \textbf{Facts} \vspace{10pt} \\
+With the fact keyword, we can define constraints and properties that must be
+satisfied in all the possible instances of the model. Here is the list of all the constraints of the designed model.
+{\small
+\begin{verbatim}
+// Facts
+// All internships must have exactly one company that offers them
+fact OneOfferingCompany {
+    all i: Internship |
+    one c: Company | i in c.creates
+}
+
+// All students must study at exactly one university and that university
+// must supervise them
+fact EveryStudentBelongsToUniversity {
+    all s: Student | 
+    one u: University | (s.studiesAt = u) and (s in u.supervises)
+}
+
+// All univesities can only read complaints that are made for internships
+// involving    their students
+fact UniversityReadsRelevantComplaints {
+    all u: University, c: Complaint |
+    (c in u.reads) implies (c.about in u.supervises.particiaptesIn)
+}
+
+// Each student can only fill forms for internships that they have applied
+// for
+fact StudentFillsFormsForAppliedInternships {
+    all s: Student, f: Form |
+    (f in s.fills) implies (f._for_ in s.appliesFor)
+}
+
+// Each student can submit only one form per internship
+fact UniqueFormPerStudentPerInternship {
+    all s: Student, i: Internship |
+    lone f: Form | (f in s.fills) and (f._for_ = i)
+}
+
+// Each form must be filled by a single student
+fact FormFilledBySingleStudent {
+    all f: Form |
+    one s: Student | f in s.fills
+}
+
+// Each student can only participate in internships for which they have
+// applied for and filled a form
+fact StudentParticipatesInAppliedInternships {
+    all s: Student, i: Internship |
+    (i in s.particiaptesIn) implies ((i in s.appliesFor) and
+    (one f: Form | f._for_ = i and f in s.fills))
+}
+
+// Each past project is associated with a company that has offered it
+fact PastProjectHasOfferingCompany {
+    all p: PastProject |
+    one c: Company | p in c.archives
+}
+
+// A report can only be written by a single student or a single company
+// involved in the internship and cannot have more than one author
+fact UniqueReportAuthor {
+    all r: Report |
+        (one s: Student | r in s.writes and no c: Company | r in c.writes) or
+        (one c: Company | r in c.writes and no s: Student | r in s.writes)
+}
+// A report can only be written by a student participating in the internship
+fact ReportWrittenByParticipatingStudent {
+    all r: Report, s: Student |
+    (r in s.writes) implies (r.about in s.particiaptesIn)
+}
+
+// A company can only write reports for an internship it has created and
+// in which at least one student participates
+fact ReportWrittenByOfferingCompany {
+    all r: Report, c: Company |
+    (r in c.writes) implies (r.about in c.creates and 
+    some s: Student | r.about in s.particiaptesIn)
+}
+
+// A complaint can only be made if there is another party involved in the
+// internship
+fact ComplaintMadeForActiveInternship {
+    all c: Complaint |
+    some s: Student | c.about in s.particiaptesIn
+}
+
+// Each student or company can only write one feedback for each internship
+// they are involved in
+fact UniqueFeedbackPerInternship {
+    all s: Student, c: Company, i: Internship |
+    lone f: Feedback | (f in s.writes or f in c.writes) and f.about = i
+}
+\end{verbatim}}
+\item[3)] \textbf{Scenarios} \vspace{10pt} \\
+Scenarios are predicates that demonstrate various possible states of the model. They are designed to illustrate realistic situations that could occur in practice. \vspace{10pt} \\
+Scenario 1: \\
+\small{
+\begin{verbatim}
+// Predicate showing a basic scenario where one company offers one internship
+// and one student applies for it.
+pred scenarioOneCompanyOneStudent {
+    one c: Company, i: Internship, s: Student |
+        c.creates = i and s.appliesFor = i and not i in s.particiaptesIn
+}
+run scenarioOneCompanyOneStudent for 3 but exactly 1 Company, 1 Internship,
+1 Student
+\end{verbatim}
+}
+\normalsize
+This predicate shows a simple situation where one student applies for an internship. \\
+\includegraphics[width=\textwidth]{Images/Scenario1}
+We can notice how a company can have an internship already archived as a past project. In addition, we can see how a student that applied can also have filled the form required for the first screening stage of the selection process. \vspace{10pt} \\
+Scenario 2:
+\begin{verbatim}
+pred scenarioTwoStudentsCompeting {
+    one c: Company, i: Internship | 
+    some s1, s2: Student |
+        c.creates = i and s1.appliesFor = i and s2.appliesFor = i
+        and s1 != s2
+}
+run scenarioTwoStudentsCompeting for 5 but exactly 1 Company, 1 Internship,
+2 Student
+\end{verbatim}
+This predicate shows a case where two students apply for the same internship.
+\begin{center}
+\includegraphics[width=\textwidth]{Images/Scenario2}
+\end{center}
+An important thing to notice is how only one of the candidates actually gets to participate in the internship while the other doesn't get through the final seletion. \vspace{10pt} \\
+Scenario 3:
+\begin{verbatim}
+pred scenarioMultipleCompaniesMultipleStudents {
+    # Company > 2
+    # Internship > 2
+    # University > 3
+    # PastProject < 3
+    # Complaint < 4
+    one s: Student | #s.appliesFor = 0
+    all i: Internship | #i.~appliesFor < 3 and #i.~particiaptesIn < 3
+}
+run scenarioMultipleCompaniesMultipleStudents for 15 but exactly 7 Student
+\end{verbatim}
+\includegraphics[width=\textwidth]{Images/Scenario3}
+This predicate shows almost all cases where we can have students that haven't applied to any internships (student0), universities with no students registered to the platform (university1), companies with some past projects (company1), students that have applied to different internships (student5), students that wrote complaints (student5) and finally candidates participating in internships (student6).
+	\end{itemize}
 	\subsection{Dynamic model}
 	
 \newpage
