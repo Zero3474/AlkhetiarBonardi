@@ -578,6 +578,8 @@ displays a message of confirmed registration  \\
 \includegraphics[width=\textwidth]{Images/UC1}
 \end{center}
 
+\newpage
+
 \large{\textbf{[UC2]}} \\
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
@@ -1007,7 +1009,6 @@ RR3 - The platform shall allow universities to read all complaints that involve 
 \newpage
 
 	\subsection{Performance requirements}
-
 Most of the times the application acts as a database for companies' internships, when students are navigating through the available offers or proactively searching for them. \\
 The rest of the time the application acts as a simple notification system that allows students to be alerted when an interesting offer is posted, or to be notified of the result of the various screenings when applied for an internship. \\
 For this reason the system's performance limits must be calculated by considering this two conditions: 
@@ -1018,7 +1019,6 @@ For this reason the system's performance limits must be calculated by considerin
 	
 	\subsection{Design constraints}	
 		\subsubsection{Standards compliance}
-
 \textbf{Disclosures and privacy policies} \\
 The application fully comply with data protection regulations, such as the General Data Protection Regulation (GDPR) for European users and the California Consumer Privacy Act (CCPA) for American users. The system only collects data necessary for its operation, and users have the right to access, modify, or delete their data as per GDPR requirements.\\
 \\
@@ -1064,9 +1064,9 @@ The software shall be designed to be portable across multiple platforms, includi
 In this chapter, the system will be modeled using the specification language Alloy 6, allowing for a better understanding of the behavior of the software-to-be and the various interactions between its different comoponents. The analysis will be based on two type of models, a static and a dynamic one, each emphasizing different aspects of the platform.
 	\subsection{Static model}
 This model is aimed at describing the relations between the entities of the platform. Its main purpose is to depict the cardinality, direction and type of relations that we can have involving the different actors.
-	\begin{itemize}
-	\item[1)] \textbf{Signatures} \\
+		\subsubsection{Signatures}
 This is a list of all the signatures that represent different entities/actors involved in the platform.
+{\small
 \begin{verbatim}
 abstract sig User {}
 
@@ -1104,8 +1104,9 @@ sig Feedback extends Report {}
 sig Form {
     _for_: one Internship,
 }
-\end{verbatim}
-\item[2)] \textbf{Facts} \vspace{10pt} \\
+\end{verbatim}}
+
+		\subsubsection{Facts}
 With the fact keyword, we can define constraints and properties that must be
 satisfied in all the possible instances of the model. Here is the list of all the constraints of the designed model.
 {\small
@@ -1199,10 +1200,12 @@ fact UniqueFeedbackPerInternship {
     lone f: Feedback | (f in s.writes or f in c.writes) and f.about = i
 }
 \end{verbatim}}
-\item[3)] \textbf{Scenarios} \vspace{10pt} \\
-Scenarios are predicates that demonstrate various possible states of the model. They are designed to illustrate realistic situations that could occur in practice. \vspace{10pt} \\
-Scenario 1: \\
-\small{
+
+		\subsubsection{Scenarios}
+Scenarios are predicates that demonstrate various possible states of the model. They are designed to illustrate realistic situations that could occur in practice. \\
+\vspace{1\baselineskip} \\
+\textbf{Scenario 1:} \\
+{\small
 \begin{verbatim}
 // Predicate showing a basic scenario where one company offers one internship
 // and one student applies for it.
@@ -1212,13 +1215,14 @@ pred scenarioOneCompanyOneStudent {
 }
 run scenarioOneCompanyOneStudent for 3 but exactly 1 Company, 1 Internship,
 1 Student
-\end{verbatim}
-}
-\normalsize
+\end{verbatim}}
 This predicate shows a simple situation where one student applies for an internship. \\
+\newpage
 \includegraphics[width=\textwidth]{Images/Scenario1}
-We can notice how a company can have an internship already archived as a past project. In addition, we can see how a student that applied can also have filled the form required for the first screening stage of the selection process. \vspace{10pt} \\
-Scenario 2:
+We can notice how a company can have an internship already archived as a past project. In addition, we can see how a student that applied can also have filled the form required for the first screening stage of the selection process. \\
+\vspace{1\baselineskip} \\
+\textbf{Scenario 2:}
+{\small
 \begin{verbatim}
 pred scenarioTwoStudentsCompeting {
     one c: Company, i: Internship | 
@@ -1228,13 +1232,15 @@ pred scenarioTwoStudentsCompeting {
 }
 run scenarioTwoStudentsCompeting for 5 but exactly 1 Company, 1 Internship,
 2 Student
-\end{verbatim}
+\end{verbatim}}
 This predicate shows a case where two students apply for the same internship.
 \begin{center}
 \includegraphics[width=\textwidth]{Images/Scenario2}
 \end{center}
-An important thing to notice is how only one of the candidates actually gets to participate in the internship while the other doesn't get through the final seletion. \vspace{10pt} \\
-Scenario 3:
+An important thing to notice is how only one of the candidates actually gets to participate in the internship while the other doesn't get through the final selection. \\
+\vspace{1\baselineskip} \\
+\textbf{Scenario 3:}
+{\small
 \begin{verbatim}
 pred scenarioMultipleCompaniesMultipleStudents {
     # Company > 2
@@ -1246,10 +1252,10 @@ pred scenarioMultipleCompaniesMultipleStudents {
     all i: Internship | #i.~appliesFor < 3 and #i.~particiaptesIn < 3
 }
 run scenarioMultipleCompaniesMultipleStudents for 15 but exactly 7 Student
-\end{verbatim}
+\end{verbatim}}
 \includegraphics[width=\textwidth]{Images/Scenario3}
 This predicate shows almost all cases where we can have students that haven't applied to any internships (student0), universities with no students registered to the platform (university1), companies with some past projects (company1), students that have applied to different internships (student5), students that wrote complaints (student5) and finally candidates participating in internships (student6).
-	\end{itemize}
+
 	\subsection{Dynamic model}
 	
 \newpage
