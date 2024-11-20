@@ -1,7 +1,7 @@
 abstract sig User {}
 
-abstract sig Report {
-    about: one Internship,
+var abstract sig Report {
+    var about: one Internship,
 }
 
 sig Student extends User {
@@ -24,25 +24,24 @@ sig University extends User {
 }
 
 sig Internship {
-    var status: one Status
+    var status: Status
 }
 
-sig PastProject {}
+var sig PastProject {}
 
-sig Complaint extends Report {}
+var sig Complaint extends Report {}
 
-sig Feedback extends Report {}
+var sig Feedback extends Report {}
 
-sig Form {
-    _for_: one Internship,
+var sig Form {
+    var _for_: Internship,
 }
 
-var abstract sig Status {}
-var sig Open, FirstScreening, SecondScreening, Ranking, Ongoing, Finished extends Status {}
+enum Status { Open, Screening, Ongoing, Finished }
 
 // Facts
 // ----------------------------------------------------------------------
-// Static facts
+// Old facts
 // ----------------------------------------------------------------------
 
 // All internships must have exactly one company that offers them
@@ -59,7 +58,7 @@ fact EveryStudentBelongsToUniversity {
 }
 
 // All univesities can only read complaints that are made for internships
-// involving    their students
+// involving their students
 fact UniversityReadsRelevantComplaints {
     always all u: University, c: Complaint |
     (c in u.reads) implies (c.about in u.supervises.particiaptesIn)
@@ -88,7 +87,7 @@ fact FormFilledBySingleStudent {
 // applied for and filled a form
 fact StudentParticipatesInAppliedInternships {
     always all s: Student, i: Internship |
-    (i in s.particiaptesIn) implies ((i in s.appliesFor) and
+    i in s.particiaptesIn implies once ((i in s.appliesFor) and
     (one f: Form | f._for_ = i and f in s.fills))
 }
 
@@ -102,20 +101,21 @@ fact PastProjectHasOfferingCompany {
 // involved in the internship and cannot have more than one author
 fact UniqueReportAuthor {
     always all r: Report |
-        (one s: Student | r in s.writes and no c: Company | r in c.writes) or
+    (one s: Student | r in s.writes and no c: Company | r in c.writes) or
         (one c: Company | r in c.writes and no s: Student | r in s.writes)
 }
+
 // A report can only be written by a student participating in the internship
 fact ReportWrittenByParticipatingStudent {
     always all r: Report, s: Student |
-    (r in s.writes) implies (r.about in s.particiaptesIn)
+    r in s.writes implies (r.about in s.particiaptesIn)
 }
 
 // A company can only write reports for an internship it has created and
 // in which at least one student participates
 fact ReportWrittenByOfferingCompany {
     always all r: Report, c: Company |
-    (r in c.writes) implies (r.about in c.creates and 
+    r in c.writes implies (r.about in c.creates and 
     some s: Student | r.about in s.particiaptesIn)
 }
 
@@ -134,44 +134,105 @@ fact UniqueFeedbackPerInternship {
 }
 
 // ----------------------------------------------------------------------
-// Dynamic facts
+// New facts
 // ----------------------------------------------------------------------
 
-// A student can only apply for internships that are open
+// A student can only apply for internships that are open or in screening
 fact StudentAppliesForOpenInternships {
     always all s: Student, i: Internship |
-    (i in s.appliesFor) implies (i.status = Open)
+    i in s.appliesFor implies (i.status = Open or i.status = Screening)
+}
+
+// A student must continue to apply for an internship until it is ongoing
+fact StudentApplicationUntilOngoing {
+    always all s: Student, i: Internship |
+    i.status = Open and i in s.appliesFor and (i.status' = Open or
+    i.status' = Screening) implies i in s.appliesFor'
 }
 
 // A student can only participate in internships that are ongoing or finished
 fact StudentParticipatesInOngoingInternships {
     always all s: Student, i: Internship |
-    (i in s.particiaptesIn) implies (i.status = Ongoing or i.status = Finished)
+    i in s.particiaptesIn implies (i.status = Ongoing or i.status = Finished)
 }
 
-// A complaint can only be made for internships that are ongoing or finished
+// All ongoing internships must have at least one student participating in them
+fact OngoingInternshipsHaveParticipants {
+    always all i: Internship |
+    i.status = Ongoing implies some s: Student | i in s.particiaptesIn
+}
+
+// A student must continue to participate in an internship until it is finished
+fact StudentParticipationUntilFinished {
+    always all s: Student, i: Internship |
+    i in s.particiaptesIn implies always i in s.particiaptesIn
+}
+
+// A complaint can only be made for internships that are ongoing
 fact ComplaintMadeForOngoingInternship {
     always all c: Complaint |
-    (c.about.status = Ongoing or c.about.status = Finished)
+    c.about.status = Ongoing
 }
 
 // A feedback can only be written for internships that are finished
 fact FeedbackWrittenForFinishedInternship {
     always all f: Feedback |
-    (f.about.status = Finished)
+    f.about.status = Finished
 }
 
-// For all companies, the number of past projects they have archived must be
-// less than or equal to the number of internships they have created and
-// that are finished
-fact ArchivedProjectsLimit {
-    always all c: Company |
-    #(c.archives) <= #{i: c.creates | i.status = Finished}
+// A company can only remove an internship that is finished
+fact CompanyCannotRemoveOngoingInternship {
+    always all c: Company, i: Internship |
+    i in c.creates and i.status != Finished implies i in c.creates'
 }
 
-// Cannot remove an internship from creates while students are participating
-fact NoRemovalDuringParticipation {
-    always all i: Internship, c: Company |
-        (some s: Student | i in s.particiaptesIn and i in c.creates) implies
-        i in c.creates'
+// All internships will eventually be finished
+fact AllInternshipsFinish {
+    eventually all i: Internship |
+    i.status = Finished
 }
+
+// The order of the statuses of an internship must be preserved
+fact StatusOrder {
+    always all i: Internship |
+    (i.status = Open implies i.status' = Open or i.status' = Screening)
+    and (i.status = Open implies eventually i.status = Screening)
+    and (i.status = Screening implies i.status' = Screening or i.status' = Ongoing)
+    and (i.status = Ongoing implies i.status' = Ongoing or i.status' = Finished)
+    and (i.status = Ongoing implies eventually i.status = Finished)
+    and (i.status = Finished implies i.status' = Finished)
+}
+
+// Predicates -------------------------------------------------------------
+pred InitialSituation {
+    # Student = 3
+    # Company = 2
+    # University = 2
+    # Internship = 3
+    # PastProject = 0
+    all i: Internship |
+    i.status = Open
+}
+
+pred InternshipEvolution {
+    eventually all i: Internship | i.status = Open implies i.status' = Screening
+    eventually all i: Internship | i.status = Screening implies i.status' = Ongoing
+    eventually all i: Internship | i.status = Ongoing implies i.status' = Finished
+}
+
+pred InternshipApplication {
+    eventually all s: Student, i: Internship |
+    i.status = Open implies after i in s.appliesFor and i.status = Screening
+}
+
+pred InternshipConclusion {
+    eventually all i: Internship, c: Company |
+    i.status = Finished and i in c.creates implies after no s: Student | i in s.particiaptesIn
+    and #c.archives' = #c.archives + 1
+}
+
+pred show {
+    InternshipEvolution;InternshipApplication;
+    InternshipConclusion;InitialSituation
+}
+run show for 7

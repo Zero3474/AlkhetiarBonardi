@@ -96,6 +96,7 @@ fact UniqueReportAuthor {
         (one s: Student | r in s.writes and no c: Company | r in c.writes) or
         (one c: Company | r in c.writes and no s: Student | r in s.writes)
 }
+
 // A report can only be written by a student participating in the internship
 fact ReportWrittenByParticipatingStudent {
     all r: Report, s: Student |
