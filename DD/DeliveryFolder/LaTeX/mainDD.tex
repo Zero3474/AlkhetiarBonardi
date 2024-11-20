@@ -87,14 +87,50 @@ by \par
 
 \section{Introduction}
 	\subsection{Purpose}
+This design document outlines the architectural framework, user interface design, and other system components necessary to meet the functional and non-functional requirements described in the Requirement Analysis and Specification Document. \\
+It also serves as a foundation for developers, testers, and stakeholders to understand the system's structure and ensures that the final implementation adheres to the defined goals. \\
+The main purpose of the S\&C platform is to grant efficient and effective matchmaking between university students seeking experience through internships and companies offering them. The design aims to ensure:
+\begin{itemize}
+\item \textbf{Precision in matching}: The system adopts a sophisticated recommendation system to notify students about suitable internships, based on criteria such as skills and experiences.
+\item \textbf{Smooth user experience}: The system shall grant its users the best experience by smoothly managing all internship-related workflows, including searching, application, selection, feedback collection, and monitoring of ongoing internships.
+\item \textbf{Scalability}: The system's design shall accommodate future adjustments, such as advanced data analytics, integration with external tools, or even an expanded scope.
+\end{itemize}
+
 	\subsection{Scope}
+Same as purpose?!
+
 	\subsection{Definitions, acronyms, abbreviations}
+TBD
+
 	\subsection{Revision history}
+Version 1.0 - WIP
+
 	\subsection{Reference documents}
+TBD
+
 	\subsection{Document structure}
+\textbf{Section 1: Introduction} \\
+This section is presented with a brief overview of this document's content including the description of the purpose, the scope, and all the definitions, acronyms and abbreviations used.
+\vspace{1\baselineskip} \\
+\textbf{Section 2: Architectural design} \\
+This section is presented with a detailed description of the architectural choices for the system, including a high-level description of the system and its components. In addition it is presented a detailed description of the deployment view and the main runtime views of the system.
+\vspace{1\baselineskip} \\
+\textbf{Section 3: User interface design} \\
+This section is presented with a series of prototypes for the most important pages of the software to help graphic designers. Each image is accurately described to avoid any misunderstanding on the pages' available functionalities.
+\vspace{1\baselineskip} \\
+\textbf{Section 4: Requirements traceability} \\
+This section is highly dependent on the RASD, as it provides a complete mapping of both functional and non-functional requirements described in that document, with the modules introduced and described in this document.
+\vspace{1\baselineskip} \\
+\textbf{Section 5: Implementation, integration and test plan} \\
+The last section describes the procedures followed for implementing, integrating and testing the components of the platform.
+
+\newpage
 
 \section{Architectural design}
 	\subsection{Overview}
+S\&C is a web application that follows the commonly known paradigm of \textit{thin client}, where most of the logic, computation, and data handling occurring on the server-side, leaving to the client a few tasks as possible.\\
+\textcolor{red}{There is a problem with 3-tier or 4-tier architecture... which one do we choose???}
+	
 	\subsection{Component view}
 	\subsection{Deployment view}
 	\subsection{Runtime view}
@@ -102,11 +138,68 @@ by \par
 	\subsection{Selected architectural styles and patterns}
 	\subsection{Other design decisions}
 
+\newpage
+
 \section{User interface design}
+The aim of this section is to present the prototypes of the most important pages of the application and explain the features by emulating scenarios of a user interacting with the system.
+\vspace{1\baselineskip} \\
+\large{\textbf{Login and Sign Up page}}\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Login}
+\caption{Login prototype page}\label{Login}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Sign Up}
+\caption{Sign up prototype page}\label{Sign Up}
+\end{figure}
+The picture [\ref{Login}] shows the prototype of the login page, allowing to either login by entering the correct credentials, create an account in case the user doesn't have one yet, or reset the password in case it was forgotten.\\
+The picture [\ref{Sign Up}] shows the prototype of the sign up page for students, that allows students to create a new account by entering all the required information. In case the user already has an account there is a button that redirects to the login page. The case of a company creating an account is really similar to the one shown above with the simple difference that the user wont be required to choose a university.
+\vspace{1\baselineskip} \\
+\large{\textbf{Profile page}}\\
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Profile}
+\caption{Student profile prototype page}\label{Student Profile}
+\end{figure}
+The picture [\ref{Student Profile}] shows the prototype of the profile page of a user logged in as a student. On the left, there is the section containing all the information provided by the user, and through the pencil button on the right, the user can modify the information. On the bottom there is the CV section. By clicking the file icon it opens the file allowing the user to check if the uploaded file is correct, otherwise the button on the right allows to upload a different file.\\
+On the right side of the picture there is the "Suggested" area that show all the companies that might interest the user based on his interests.
+\newpage
+\large{\textbf{Notifications page}}\\
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Notifications}
+\caption{Notifications prototype page}\label{Notifications}
+\end{figure}
+The picture [\ref{Notifications}] shows the prototype of the notifications page and is show to all three user categories. In general all notifications shown in the page render only a part of the whole message, and clicking on it allows the user to open a page that shows the whole text. In addition, notifications can be pinned to be always shown on top in their specific section by clicking on the yellow flag, or can be also permanently deleted by clicking on the trash can.
+\newpage
+\large{\textbf{Search page}}\\
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Search}
+\caption{Search prototype page}\label{Search}
+\end{figure}
+The picture [\ref{Search}] shows the prototype of the search page, that allow students to proactively search for internship by entering keywords in the search bar.\\
+Right after searching the keywords the internship found are displayed on the left side and only show the basic details. By clicking on the desired internship, all the additional information entered by the company are displayed on the right side. Only when visualizing the details of an internship it is possible to apply for said offer through a dedicated button.
+\newpage
+\large{\textbf{Form creation page}}\\
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Create form}
+\caption{Form creation prototype page}\label{Form}
+\end{figure}
+The picture [\ref{Form}] shows the prototype of the form creation page that allows only companies to create custom forms for the candidates to fill during an application. In the form can be added two different types of questions: open and closed.\\
+Open question only require the question text and the number of maximum point. \\
+The closed ones not only require the question text and the maximum points like the open ones, but they also need the options the candidates have to choose from. Each option can be either deleted, marked as correct with the checkbox on the left, or can have its text changed. In addition the company can choose to add more options to the closed question with the \textit{"Add answer..."} button. \\
+Lastly the company can decide to either add questions with the \textit{"Add question..."} button or delete them with the trash can icon on the right.\\
+Once the form has been completed it can be saved or deleted by using the dedicated buttons.
+
+\newpage
 
 \section{Requirement traceability}
 
+\newpage
+
 \section{Implementation, integration and test plan}
+
+\newpage
 
 \section{Effort spent}
 
@@ -157,5 +250,9 @@ by \par
 \newpage
 
 \section{References}
+\textbf{N-tier architectures}\\
+\href{https://dev.to/3bdelrahman/understanding-layers-tiers-and-n-tier-architecture-in-application-development-1hlb}{\textcolor{blue}{https://dev.to/3bdelrahman}}\\
+\href{https://blog.nginx.org/blog/time-to-move-to-a-four-tier-application-architecture#:~:text=Forrester\%27s\%20Four‑Tier\%20Engagement\%20Platform,\%2C\%20aggregation\%2C\%20and\%20services\%20layers.}{\textcolor{blue}{https://blog.nginx.org/blog}}\\
+\href{https://www.klipfolio.com/resources/data-stack/integration-layer}{\textcolor{blue}{https://www.klipfolio.com}}
 
 \end{document}
