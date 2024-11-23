@@ -1061,7 +1061,7 @@ The software shall be designed to be portable across multiple platforms, includi
 \newpage
 		
 \section{Formal analysis using Alloy}
-In this chapter, the system will be modeled using the specification language Alloy 6, allowing for a better understanding of the behavior of the software-to-be and the various interactions between its different comoponents. The analysis will be based on two type of models, a static and a dynamic one, each emphasizing different aspects of the platform.
+In this chapter, the system will be modeled using the specification language Alloy 6, allowing for a better understanding of the behavior of the software-to-be and the various interactions between its different comoponents. The analysis will be based on two types of models, a static and a dynamic one, each emphasizing different aspects of the platform.
 	\subsection{Static model}
 This model is aimed at describing the relations between the entities of the platform. Its main purpose is to depict the cardinality, direction and type of relations that we can have involving the different actors.
 		\subsubsection{Signatures}
@@ -1257,7 +1257,264 @@ run scenarioMultipleCompaniesMultipleStudents for 15 but exactly 7 Student
 This predicate shows almost all cases where we can have students that haven't applied to any internships (student0), universities with no students registered to the platform (university1), companies with some past projects (company1), students that have applied to different internships (student5), students that wrote complaints (student5) and finally candidates participating in internships (student6).
 
 	\subsection{Dynamic model}
-	
+This model's purpose is to add a time concept to the system, so that it's possible to model the evolution of its entities and their relations. This will allow us to focus on the dynamic aspects of the possible interactions and use case scenarios of the software-to-be. \\
+All of this is made possible thanks to Alloy 6 and the use of time operators like: \textit{var, always, eventually, once, after etc.} to define signatures and constraints that should only be satified under certain conditions. \\
+	\subsubsection{Signatures}
+This is a list of all the signatures of the dynamic model, they are quite similar to the ones from the static model, as expected, but some adjustments had to be made to make sure that the new ones reflect the purpose of this model.
+
+{\small
+\begin{verbatim}
+abstract sig User {}
+
+var abstract sig Report {
+    var about: one Internship,
+}
+
+sig Student extends User {
+	studiesAt: one University,
+    var appliesFor: set Internship,
+    var participatesIn: set Internship,
+    var fills: set Form,
+    var writes: set Report,
+}
+
+sig Company extends User {
+    var creates: set Internship,
+    var archives: set Internship,
+    var writes: set Report,
+}
+
+sig University extends User {
+    var supervises: set Student,
+    var reads: set Complaint,
+}
+
+sig Internship {
+    var status: Status
+}
+
+var sig Complaint extends Report {}
+
+var sig Feedback extends Report {}
+
+var sig Form {
+    var _for_: Internship,
+}
+
+enum Status { Open, Screening, Ongoing, Finished, PastProject }
+
+\end{verbatim}
+}
+
+	\subsubsection{Facts}
+This a list of all the facts which includes all the ones from the static model updated to work with this one and new facts that have to deal with the evolution of the internships, from their creation to their archival. \\
+{\small
+\begin{verbatim}
+// Facts
+// ----------------------------------------------------------------------
+// Old facts
+// ----------------------------------------------------------------------
+
+// All internships must have exactly one company that offers them or
+// has archived them
+fact OneOfferingCompany {
+    always all i: Internship |
+    one c: Company | i in c.creates or i in c.archives
+}
+
+// All students must study at exactly one university and that university
+// must supervise them
+fact EveryStudentBelongsToUniversity {
+    always all s: Student | 
+    one u: University | (s.studiesAt = u) and (s in u.supervises)
+}
+
+// All univesities can only read complaints that are made for internships
+// involving their students
+fact UniversityReadsRelevantComplaints {
+    always all u: University, c: Complaint, i: Internship |
+    c.about = i and c in u.reads implies
+    once i in u.supervises.participatesIn
+}
+
+// Each student can only fill forms for internships that they have applied
+// for
+fact StudentFillsFormsForAppliedInternships {
+    always all s: Student, f: Form |
+    f in s.fills implies once f._for_ in s.appliesFor
+}
+
+// Each student can submit only one form per internship
+fact UniqueFormPerStudentPerInternship {
+    always all s: Student, i: Internship |
+    lone f: Form | (f in s.fills) and (f._for_ = i)
+}
+
+// Each form must be filled by a single student
+fact FormFilledBySingleStudent {
+    always all f: Form |
+    one s: Student | f in s.fills
+}
+
+// Each student can only participate in internships for which they have
+// applied for and filled a form
+fact StudentParticipatesInAppliedInternships {
+    always all s: Student, i: Internship |
+    i in s.participatesIn implies ((once i in s.appliesFor) and
+    (once one f: Form | f._for_ = i and f in s.fills))
+}
+
+// A report can only be written by a single student or a single company
+// cannot have more than one author
+fact UniqueReportAuthor {
+    always all r: Report |
+    (one s: Student | r in s.writes and no c: Company | r in c.writes) or
+    (one c: Company | r in c.writes and no s: Student | r in s.writes)
+}
+
+// A report can only be written by a student who is participating/has participated 
+// in the internship
+fact ReportWrittenByParticipatingStudent {
+    always all s: Student, r: s.writes, i: Internship |
+    (r.about = i and r in s.writes) implies once i in s.participatesIn
+}
+
+// A company can only write reports for an internship it has created and
+// in which at least one student participates
+fact ReportWrittenByOfferingCompany {
+    always all r: Report, c: Company, i: Internship |
+    (r.about = i and r in c.writes) implies (r.about in c.creates and
+    some s: Student | once r.about in s.participatesIn)
+}
+
+// Each student or company can only write one feedback for each internship
+// they are involved in
+fact UniqueFeedbackPerInternship {
+    always all s: Student, c: Company, i: Internship |
+    lone f: Feedback | (f in s.writes or f in c.writes) and f.about = i
+}
+
+// ----------------------------------------------------------------------
+// New facts
+// ----------------------------------------------------------------------
+
+// A student can only apply for internships that are open
+fact StudentAppliesForOpenInternships {
+    always all s: Student, i: Internship |
+    i in s.appliesFor implies i.status = Open
+}
+
+// A student can only fill forms for internships during the screening phase
+fact StudentFillsFormsDuringScreening {
+    always all s: Student, f: Form |
+    f in s.fills implies f._for_.status = Screening
+}
+
+// A student can only participate in internships that are ongoing
+fact StudentParticipatesInOngoingInternships {
+    always all s: Student, i: Internship |
+    i in s.participatesIn implies i.status = Ongoing
+}
+
+// A complaint can only be made for internships that are ongoing
+fact ComplaintMadeForOngoingInternship {
+    always all c: Complaint |
+    c.about.status = Ongoing
+}
+
+// A feedback can only be written for internships that are finished
+fact FeedbackWrittenForFinishedInternship {
+    always all f: Feedback |
+    f.about.status = Finished
+}
+
+// A company can only remove an internship that is finished
+fact CompanyCannotRemoveOngoingInternship {
+    always all c: Company, i: Internship |
+    i in c.creates and i.status != Finished implies i in c.creates'
+}
+
+// All internships will eventually be finished
+fact AllInternshipsFinish {
+    eventually all i: Internship |
+    i.status = Finished
+}
+
+// All finished internships will eventually be archived by
+// the company that created them
+fact ArchiveFinishedInternships {
+    always all c: Company, i: c.creates |
+    i.status = Finished implies after (i.status = PastProject 
+    and i in c.archives)
+}
+
+// A company can only archive an internship that is a past project
+fact CompanyArchivesPastProject {
+    always all c: Company, i: c.archives |
+    i.status = PastProject
+}
+
+// The order of the statuses of an internship must be preserved
+fact StatusOrder {
+    always all i: Internship |
+    (i.status = Open implies i.status' = Screening or i.status' = Open)
+    and (i.status = Open implies eventually i.status = Screening)
+    and (i.status = Screening implies i.status' = Ongoing)
+    and (i.status = Ongoing implies i.status' = Finished)
+    and (i.status = Finished implies i.status' = PastProject)
+    and (i.status = PastProject implies i.status' = PastProject)
+}
+\end{verbatim}
+}
+
+	\subsubsection{Scenario}
+Here we will present a comprehensive scenario that will give us a view of how the model can evolve over time.
+{\small
+\begin{verbatim}
+pred InitialSituation {
+    # Student = 3
+    # Company = 2
+    # University = 2
+    # Internship = 3
+    all i: Internship |
+    i.status = Open
+}
+
+pred InternshipApplication {
+    always all s: Student, i: Internship |
+    i.status = Open implies i in s.appliesFor
+}
+
+pred InternshipExecution {
+    always all i: Internship |
+    (i.status = Ongoing implies some s: Student | i in s.participatesIn) and
+    (i.status = Ongoing implies some cl: Complaint | cl.about = i) and
+    (i.status = Ongoing implies some cl: Complaint, u: University | cl in u.reads) and
+    (i.status = Finished implies some f: Feedback | f.about = i) and
+    (i.status = Finished implies some c: Company, s: Student | # c.writes > 0 and # s.writes > 0)
+}
+
+pred show {
+    InitialSituation;InternshipApplication;
+    InternshipExecution
+}
+run show for 7
+\end{verbatim}
+}
+When we run the "show" predicate the Visualizer provides a step-by-step progression of the model's entities and relationships. \\
+In this initial step we can see three internships that are open and two students who are applying for them. \\
+\includegraphics[width=\textwidth]{Images/Scene_step0}
+\newpage
+Now, we can see that the students who applied have also filled the forms for the screening phase of the internships. \\
+\includegraphics[width=\textwidth]{Images/Scene_step1}
+\newpage
+At this step, the students are all participating in the internships they have applied for and we can see some complaints written by them regarding those internships and one is read by an involved university. For simplicity's sake, we didn't model the interviews, so we assume that they did them and passed the final screening. \\
+\includegraphics[width=\textwidth]{Images/Scene_step2}
+Here, we can see that the internships have concluded and the students have written some feedbacks about them. \\
+\includegraphics[width=\textwidth]{Images/Scene_step3}
+\newpage
+Finally, the companies decide to archive the concluded internships transforming them into past projects. Another thing of importance to note is our decision in modeling past projects simply as a state of the internships instead of a new entity like we did in the static model, this was another consequence of the dynamic nature of this model. \\
+\includegraphics[width=\textwidth]{Images/Scene_step4}
 \newpage
 
 \section{Effort spent}

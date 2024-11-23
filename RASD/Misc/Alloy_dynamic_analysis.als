@@ -59,8 +59,9 @@ fact EveryStudentBelongsToUniversity {
 // All univesities can only read complaints that are made for internships
 // involving their students
 fact UniversityReadsRelevantComplaints {
-    always all u: University, c: Complaint |
-    c in u.reads implies once c.about in u.supervises.participatesIn
+    always all u: University, c: Complaint, i: Internship |
+    c.about = i and c in u.reads implies
+    once i in u.supervises.participatesIn
 }
 
 // Each student can only fill forms for internships that they have applied
@@ -210,6 +211,7 @@ pred InternshipExecution {
     always all i: Internship |
     (i.status = Ongoing implies some s: Student | i in s.participatesIn) and
     (i.status = Ongoing implies some cl: Complaint | cl.about = i) and
+    (i.status = Ongoing implies some cl: Complaint, u: University | cl in u.reads) and
     (i.status = Finished implies some f: Feedback | f.about = i) and
     (i.status = Finished implies some c: Company, s: Student | # c.writes > 0 and # s.writes > 0)
 }
