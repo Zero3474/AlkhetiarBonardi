@@ -128,15 +128,16 @@ The last section describes the procedures followed for implementing, integrating
 
 \section{Architectural design}
 	\subsection{Overview}
-S\&C is a web application that follows the commonly known paradigm of \textit{thin client}, where most of the logic, computation, and data handling occurring on the server-side, leaving to the client a few tasks as possible.\\
-The system is based on a 4-tiers architecture where each tier has a specific function:
+The S\&C design is based on two architectural choices:
 \begin{itemize}
-\item \textbf{Presentation tier:} 
-\item \textbf{Application tier:} 
-\item \textbf{Integration tier:} 
-\item \textbf{Data tier:} 
+\item Microservices architecture
+\item Thin-client model
 \end{itemize}
-	
+This choices were made to ensure scalability and modularity, making it easier to modify the system in the future or simply for maintenance.\\
+Thanks to the microservices approach, the system shall be divided into separate and independent modules, each of which is responsible of a single feature, like user management, recommendation system, internship management and report collection.\\
+The thin-client approach instead, ensures the smoothest experience for the users, by keeping the client-side of the application as lightweight as possible. With this approach the client shall focus solely on the rendering of the user interface and the management of basic interactions, the rest of the computation happens on the server-side.\\
+To facilitate the communication between client and the backend, the system shall implement well-defined RESTful APIs.
+
 	\subsection{Component view}
 	\subsection{Deployment view}
 	\subsection{Runtime view}
@@ -149,21 +150,22 @@ The system is based on a 4-tiers architecture where each tier has a specific fun
 \section{User interface design}
 The aim of this section is to present the prototypes of the most important pages of the application and explain the features by emulating scenarios of a user interacting with the system.
 \vspace{1\baselineskip} \\
-\large{\textbf{Login and Sign Up page}}\\
+\large{\textbf{Login and Sign Up page}}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Images/Login}
+\includegraphics[width=0.98\textwidth]{Images/Login}
 \caption{Login prototype page}\label{Login}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Images/Sign Up}
+\includegraphics[width=0.98\textwidth]{Images/Sign Up}
 \caption{Sign up prototype page}\label{Sign Up}
 \end{figure}
+\newpage
 The picture [\ref{Login}] shows the prototype of the login page, allowing to either login by entering the correct credentials, create an account in case the user doesn't have one yet, or reset the password in case it was forgotten.\\
 The picture [\ref{Sign Up}] shows the prototype of the sign up page for students, that allows students to create a new account by entering all the required information. In case the user already has an account there is a button that redirects to the login page. The case of a company creating an account is really similar to the one shown above with the simple difference that the user wont be required to choose a university.
 \vspace{1\baselineskip} \\
-\large{\textbf{Profile page}}\\
+\large{\textbf{Profile page}}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{Images/Profile}
 \caption{Student profile prototype page}\label{Student Profile}
@@ -171,14 +173,14 @@ The picture [\ref{Sign Up}] shows the prototype of the sign up page for students
 The picture [\ref{Student Profile}] shows the prototype of the profile page of a user logged in as a student. On the left, there is the section containing all the information provided by the user, and through the pencil button on the right, the user can modify the information. On the bottom there is the CV section. By clicking the file icon it opens the file allowing the user to check if the uploaded file is correct, otherwise the button on the right allows to upload a different file.\\
 On the right side of the picture there is the "Suggested" area that show all the companies that might interest the user based on his interests.
 \newpage
-\large{\textbf{Notifications page}}\\
+\large{\textbf{Notifications page}}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{Images/Notifications}
 \caption{Notifications prototype page}\label{Notifications}
 \end{figure}
 The picture [\ref{Notifications}] shows the prototype of the notifications page and is show to all three user categories. In general all notifications shown in the page render only a part of the whole message, and clicking on it allows the user to open a page that shows the whole text. In addition, notifications can be pinned to be always shown on top in their specific section by clicking on the yellow flag, or can be also permanently deleted by clicking on the trash can.
 \newpage
-\large{\textbf{Search page}}\\
+\large{\textbf{Search page}}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{Images/Search}
 \caption{Search prototype page}\label{Search}
@@ -186,7 +188,7 @@ The picture [\ref{Notifications}] shows the prototype of the notifications page 
 The picture [\ref{Search}] shows the prototype of the search page, that allow students to proactively search for internship by entering keywords in the search bar.\\
 Right after searching the keywords the internship found are displayed on the left side and only show the basic details. By clicking on the desired internship, all the additional information entered by the company are displayed on the right side. Only when visualizing the details of an internship it is possible to apply for said offer through a dedicated button.
 \newpage
-\large{\textbf{Form creation page}}\\
+\large{\textbf{Form creation page}}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{Images/Create form}
 \caption{Form creation prototype page}\label{Form}
@@ -196,6 +198,27 @@ Open question only require the question text and the number of maximum point. \\
 The closed ones not only require the question text and the maximum points like the open ones, but they also need the options the candidates have to choose from. Each option can be either deleted, marked as correct with the checkbox on the left, or can have its text changed. In addition the company can choose to add more options to the closed question with the \textit{"Add answer..."} button. \\
 Lastly the company can decide to either add questions with the \textit{"Add question..."} button or delete them with the trash can icon on the right.\\
 Once the form has been completed it can be saved or deleted by using the dedicated buttons.
+
+\newpage
+
+\large{\textbf{Home page}}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Home}
+\caption{Home prototype page}\label{Home}
+\end{figure}
+The picture [\ref{Home}] shows the prototype of the home page that allows students to see all the available internships posted by various companies.\\
+The section on the left shows all the internships and by interacting with them the student can access a page that shows more details about the post and apply for the internship.\\
+On the right there is a panel that shows the basic data regarding the user that is currently logged in.
+
+\newpage
+
+\large{\textbf{Internship creation page}}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Images/Create internship}
+\caption{Internship creation prototype page}\label{Create internship}
+\end{figure}
+The picture [\ref{Create internship}] shows the prototype of the page that allows companies to create and post about an internship.\\
+In this page the company can add all the required information that allows the system to select the suitable students and notify them.
 
 \newpage
 
