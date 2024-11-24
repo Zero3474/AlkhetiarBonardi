@@ -540,11 +540,12 @@ The platform exploits the internet connection to communicate with the main serve
 \end{tabular}
 \end{table}
 \end{itemize}
+
 		\subsubsection{Use cases and diagrams}
 In this section are reported some of the most notable use cases for the S\&C application. \\
 \includegraphics[width=\textwidth]{Images/Use_case_diagram}
 \newpage
-\large{\textbf{[UC1]}} \\
+\large{\textbf{[UC1]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -580,7 +581,7 @@ displays a message of confirmed registration  \\
 
 \newpage
 
-\large{\textbf{[UC2]}} \\
+\large{\textbf{[UC2]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -613,7 +614,7 @@ displays a message of confirmed registration  \\
 
 \newpage
 
-\large{\textbf{[UC3]}} \\
+\large{\textbf{[UC3]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -648,7 +649,7 @@ displays a message of confirmed registration  \\
 
 \newpage
 
-\large{\textbf{[UC4]}} \\
+\large{\textbf{[UC4]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -681,7 +682,7 @@ displays a message of confirmed registration  \\
 
 \newpage
 
-\large{\textbf{[UC5]}} \\
+\large{\textbf{[UC5]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -714,7 +715,7 @@ displays a message of confirmed registration  \\
 
 \newpage
 
-\large{\textbf{[UC6]}} \\
+\large{\textbf{[UC6]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -750,7 +751,7 @@ The student has been selected during the first screening \\
 
 \newpage
 
-\large{\textbf{[UC7]}} \\
+\large{\textbf{[UC7]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -784,7 +785,7 @@ The company received the updated ranking \\
 
 \newpage
 
-\large{\textbf{[UC8]}} \\
+\large{\textbf{[UC8]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -818,7 +819,7 @@ The company received the updated ranking \\
 
 \newpage
 
-\large{\textbf{[UC9]}} \\
+\large{\textbf{[UC9]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -851,7 +852,7 @@ The company received the updated ranking \\
 
 \newpage
 
-\large{\textbf{[UC10]}} \\
+\large{\textbf{[UC10]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -884,7 +885,7 @@ The company received the updated ranking \\
 
 \newpage
 
-\large{\textbf{[UC11]}} \\
+\large{\textbf{[UC11]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -918,7 +919,7 @@ The company received the updated ranking \\
 
 \newpage
 
-\large{\textbf{[UC12]}} \\
+\large{\textbf{[UC12]}}
 \begin{table}[H]
 \begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
 \hline
@@ -1020,42 +1021,35 @@ For this reason the system's performance limits must be calculated by considerin
 	\subsection{Design constraints}	
 		\subsubsection{Standards compliance}
 \textbf{Disclosures and privacy policies} \\
-The application fully comply with data protection regulations, such as the General Data Protection Regulation (GDPR) for European users and the California Consumer Privacy Act (CCPA) for American users. The system only collects data necessary for its operation, and users have the right to access, modify, or delete their data as per GDPR requirements.\\
-\\
+The application fully comply with data protection regulations, such as the General Data Protection Regulation (GDPR) for European users and the California Consumer Privacy Act (CCPA) for American users. The system only collects data necessary for its operation, and users have the right to access, modify, or delete their data as per GDPR requirements.
+\vspace{1\baselineskip}\\
 \textbf{Encryption and anonymizing} \\
-Since the application highly depends on internet connectivity for syncing data, user authentication, and notifications, security is a top priority. The software uses TLS 1.2/1.3 encryption to ensures that all data exchanged between users’ devices and the servers is encrypted and protected from interception or unauthorized access.\\
-\\
+Since the application highly depends on internet connectivity for syncing data, user authentication, and notifications, security is a top priority. The software uses TLS 1.2/1.3 encryption to ensures that all data exchanged between users’ devices and the servers is encrypted and protected from interception or unauthorized access.
+\vspace{1\baselineskip}\\
 \textbf{Data storage} \\
 For data storage, the software complies with ISO/IEC 27001 standards, ensuring high levels of security, and data protection. This includes regular data backups, disaster recovery protocols, and server redundancy to prevent data loss and maintain consistent up time.
 		
 		\subsubsection{Hardware limitations}
-
 The software shall be designed to run efficiently on minimal hardware, making it accessible across a wide range of devices, including older computers and lower-end mobile devices.
 		
 		\subsubsection{Any other constraints}
-		
 The platform is intended to connect student and companies from all over the world. For this reason, it should be designed completely in English, allowing all user to understand all the features.
 		
 	\subsection{Software system attributes}
 		\subsubsection{Reliability}
-
 The application shall be designed to operate reliably under a range of conditions, and the notification system must be robust enough to ensure that users can consistently complete their tasks without any problems, like applying for internships, filling forms and so on.
 		
 		\subsubsection{Availability}
-		
 To maximize availability, the application shall operate a distributed cloud infrastructure with redundant servers, to ensure consistent up time. The application achieves a targeted up time of 99.9\%, minimizing disruptions and providing users with dependable access whenever needed.
 		
 		\subsubsection{Security}
-		
 As mentioned in section 3.4.1, to match the GDPR compliance, user authentication shall be handled via secure protocols, such as OAuth 2.0, allowing users to log in through trusted providers while protecting their credentials. \\
 In addition the system use TLS 1.2/1.3 encryption for data transmission, to protect it from external parties.
 		
 		\subsubsection{Maintainability}
-		
 The application is developed using modular code architecture that makes updates and bug fixes as efficient and straightforward as possible. The software code base is well-documented and follows standard coding practices and patterns, making it easy for developers to understand and work with. Additionally, a version control system, such as Git, is in place to manage updates, ensuring that updates do not disrupt user experience.
 		
 		\subsubsection{Portability}
-		
 The software shall be designed to be portable across multiple platforms, including Windows, macOS, Linux, iOS, and Android, allowing users to have access to their account from any device. The software shall be developed with cross-platform compatibility in mind, using frameworks and libraries that support different operating systems.	
 
 \newpage
@@ -1202,9 +1196,9 @@ fact UniqueFeedbackPerInternship {
 \end{verbatim}}
 
 		\subsubsection{Scenarios}
-Scenarios are predicates that demonstrate various possible states of the model. They are designed to illustrate realistic situations that could occur in practice. \\
+Scenarios are predicates that demonstrate various possible states of the model. They are designed to illustrate realistic situations that could occur in practice.
 \vspace{1\baselineskip} \\
-\textbf{Scenario 1:} \\
+\textbf{Scenario 1:}
 {\small
 \begin{verbatim}
 // Predicate showing a basic scenario where one company offers one internship
@@ -1216,9 +1210,11 @@ pred scenarioOneCompanyOneStudent {
 run scenarioOneCompanyOneStudent for 3 but exactly 1 Company, 1 Internship,
 1 Student
 \end{verbatim}}
-This predicate shows a simple situation where one student applies for an internship. \\
+This predicate shows a simple situation where one student applies for an internship.
 \newpage
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scenario1}
+\end{center}
 We can notice how a company can have an internship already archived as a past project. In addition, we can see how a student that applied can also have filled the form required for the first screening stage of the selection process. \\
 \vspace{1\baselineskip} \\
 \textbf{Scenario 2:}
@@ -1237,6 +1233,7 @@ This predicate shows a case where two students apply for the same internship.
 \begin{center}
 \includegraphics[width=\textwidth]{Images/Scenario2}
 \end{center}
+\newpage
 An important thing to notice is how only one of the candidates actually gets to participate in the internship while the other doesn't get through the final selection. \\
 \vspace{1\baselineskip} \\
 \textbf{Scenario 3:}
@@ -1253,12 +1250,14 @@ pred scenarioMultipleCompaniesMultipleStudents {
 }
 run scenarioMultipleCompaniesMultipleStudents for 15 but exactly 7 Student
 \end{verbatim}}
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scenario3}
+\end{center}
 This predicate shows almost all cases where we can have students that haven't applied to any internships (student0), universities with no students registered to the platform (university1), companies with some past projects (company1), students that have applied to different internships (student5), students that wrote complaints (student5) and finally candidates participating in internships (student6).
 
 	\subsection{Dynamic model}
 This model's purpose is to add a time concept to the system, so that it's possible to model the evolution of its entities and their relations. This will allow us to focus on the dynamic aspects of the possible interactions and use case scenarios of the software-to-be. \\
-All of this is made possible thanks to Alloy 6 and the use of time operators like: \textit{var, always, eventually, once, after etc.} to define signatures and constraints that should only be satified under certain conditions. \\
+All of this is made possible thanks to Alloy 6 and the use of time operators like: \textit{var, always, eventually, once, after etc.} to define signatures and constraints that should only be satified under certain conditions.
 	\subsubsection{Signatures}
 This is a list of all the signatures of the dynamic model, they are quite similar to the ones from the static model, as expected, but some adjustments had to be made to make sure that the new ones reflect the purpose of this model.
 
@@ -1307,7 +1306,7 @@ enum Status { Open, Screening, Ongoing, Finished, PastProject }
 }
 
 	\subsubsection{Facts}
-This a list of all the facts which includes all the ones from the static model updated to work with this one and new facts that have to deal with the evolution of the internships, from their creation to their archival. \\
+This a list of all the facts which includes all the ones from the static model updated to work with this one and new facts that have to deal with the evolution of the internships, from their creation to their archival.
 {\small
 \begin{verbatim}
 // Facts
@@ -1491,7 +1490,8 @@ pred InternshipExecution {
     (i.status = Ongoing implies some cl: Complaint | cl.about = i) and
     (i.status = Ongoing implies some cl: Complaint, u: University | cl in u.reads) and
     (i.status = Finished implies some f: Feedback | f.about = i) and
-    (i.status = Finished implies some c: Company, s: Student | # c.writes > 0 and # s.writes > 0)
+    (i.status = Finished implies some c: Company, s: Student | # c.writes > 0 and 
+     # s.writes > 0)
 }
 
 pred show {
@@ -1499,22 +1499,31 @@ pred show {
     InternshipExecution
 }
 run show for 7
-\end{verbatim}
-}
+\end{verbatim}}
 When we run the "show" predicate the Visualizer provides a step-by-step progression of the model's entities and relationships. \\
-In this initial step we can see three internships that are open and two students who are applying for them. \\
+In this initial step we can see three internships that are open and two students who are applying for them.
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scene_step0}
+\end{center}
 \newpage
-Now, we can see that the students who applied have also filled the forms for the screening phase of the internships. \\
+Now, we can see that the students who applied have also filled the forms for the screening phase of the internships.
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scene_step1}
+\end{center}
 \newpage
-At this step, the students are all participating in the internships they have applied for and we can see some complaints written by them regarding those internships and one is read by an involved university. For simplicity's sake, we didn't model the interviews, so we assume that they did them and passed the final screening. \\
+At this step, the students are all participating in the internships they have applied for and we can see some complaints written by them regarding those internships and one is read by an involved university. For simplicity's sake, we didn't model the interviews, so we assume that they did them and passed the final screening.
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scene_step2}
-Here, we can see that the internships have concluded and the students have written some feedbacks about them. \\
+\end{center}
+Here, we can see that the internships have concluded and the students have written some feedbacks about them.
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scene_step3}
+\end{center}
 \newpage
-Finally, the companies decide to archive the concluded internships transforming them into past projects. Another thing of importance to note is our decision in modeling past projects simply as a state of the internships instead of a new entity like we did in the static model, this was another consequence of the dynamic nature of this model. \\
+Finally, the companies decide to archive the concluded internships transforming them into past projects. Another thing of importance to note is our decision in modeling past projects simply as a state of the internships instead of a new entity like we did in the static model, this was another consequence of the dynamic nature of this model.
+\begin{center}
 \includegraphics[width=\textwidth]{Images/Scene_step4}
+\end{center}
 \newpage
 
 \section{Effort spent}
@@ -1563,11 +1572,11 @@ Finally, the companies decide to archive the concluded internships transforming 
 \section{References}
 \textbf{Standard compliance}\\
 \href{https://www.enterprisestorageforum.com/management/7-essential-compliance-regulations-for-data-storage-systems/}{\textcolor{blue}{www.enterprisestorageforum.com}}\\
-\href{https://beaglesecurity.com/blog/article/software-compliance-standards.html}{\textcolor{blue}{https://beaglesecurity.com}}\\
-\\
+\href{https://beaglesecurity.com/blog/article/software-compliance-standards.html}{\textcolor{blue}{https://beaglesecurity.com}}
+\vspace{1\baselineskip} \\
 \textbf{Software system attributes}\\
-\href{https://testsigma.com/blog/software-quality-attributes/}{\textcolor{blue}{https://testsigma.com}}\\
-\\
+\href{https://testsigma.com/blog/software-quality-attributes/}{\textcolor{blue}{https://testsigma.com}}
+\vspace{1\baselineskip} \\
 \textbf{Version control}\\
 \href{https://github.com/resources/articles/software-development/what-is-version-control}{\textcolor{blue}{https://github.com}}
 
