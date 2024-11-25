@@ -56,19 +56,18 @@ fact EveryStudentBelongsToUniversity {
     one u: University | (s.studiesAt = u) and (s in u.supervises)
 }
 
-// All univesities can only read complaints that are made for internships
+// All univesities can only read complaints that are made about internships
 // involving their students
 fact UniversityReadsRelevantComplaints {
-    always all u: University, c: Complaint, i: Internship |
-    c.about = i and c in u.reads implies
-    once i in u.supervises.participatesIn
+    always all u: University | all c: u.reads | some s: Student |
+    s.studiesAt = u and once c.about in s.participatesIn
 }
 
 // Each student can only fill forms for internships that they have applied
 // for
 fact StudentFillsFormsForAppliedInternships {
-    always all s: Student, f: Form |
-    f in s.fills implies once f._for_ in s.appliesFor
+    always all s: Student | all f: s.fills |
+    once f._for_ in s.appliesFor
 }
 
 // Each student can submit only one form per internship
@@ -86,9 +85,9 @@ fact FormFilledBySingleStudent {
 // Each student can only participate in internships for which they have
 // applied for and filled a form
 fact StudentParticipatesInAppliedInternships {
-    always all s: Student, i: Internship |
-    i in s.participatesIn implies ((once i in s.appliesFor) and
-    (once one f: Form | f._for_ = i and f in s.fills))
+    always all s: Student | all i: s.participatesIn |
+    once i in s.appliesFor and
+    (once one f: Form | f._for_ = i and f in s.fills)
 }
 
 // A report can only be written by a single student or a single company
@@ -102,16 +101,15 @@ fact UniqueReportAuthor {
 // A report can only be written by a student who is participating/has participated 
 // in the internship
 fact ReportWrittenByParticipatingStudent {
-    always all s: Student, r: s.writes, i: Internship |
-    (r.about = i and r in s.writes) implies once i in s.participatesIn
+    always all s: Student |all r: s.writes |
+    once r.about in s.participatesIn
 }
 
 // A company can only write reports for an internship it has created and
 // in which at least one student participates
 fact ReportWrittenByOfferingCompany {
-    always all r: Report, c: Company, i: Internship |
-    (r.about = i and r in c.writes) implies (r.about in c.creates and
-    some s: Student | once r.about in s.participatesIn)
+    always all c: Company | all r: c.writes |
+    r.about in c.creates and some s: Student | once r.about in s.participatesIn
 }
 
 // Each student or company can only write one feedback for each internship
@@ -127,20 +125,20 @@ fact UniqueFeedbackPerInternship {
 
 // A student can only apply for internships that are open
 fact StudentAppliesForOpenInternships {
-    always all s: Student, i: Internship |
-    i in s.appliesFor implies i.status = Open
+    always all s: Student | all i: s.appliesFor |
+    i.status = Open
 }
 
 // A student can only fill forms for internships during the screening phase
 fact StudentFillsFormsDuringScreening {
-    always all s: Student, f: Form |
-    f in s.fills implies f._for_.status = Screening
+    always all s: Student | all f: s.fills |
+    f._for_.status = Screening
 }
 
 // A student can only participate in internships that are ongoing
 fact StudentParticipatesInOngoingInternships {
-    always all s: Student, i: Internship |
-    i in s.participatesIn implies i.status = Ongoing
+    always all s: Student | all i: s.participatesIn |
+    i.status = Ongoing
 }
 
 // A complaint can only be made for internships that are ongoing
@@ -157,8 +155,8 @@ fact FeedbackWrittenForFinishedInternship {
 
 // A company can only remove an internship that is finished
 fact CompanyCannotRemoveOngoingInternship {
-    always all c: Company, i: Internship |
-    i in c.creates and i.status != Finished implies i in c.creates'
+    always all c: Company | all i: c.creates |
+    i.status != Finished implies i in c.creates'
 }
 
 // All internships will eventually be finished
@@ -170,14 +168,14 @@ fact AllInternshipsFinish {
 // All finished internships will eventually be archived by
 // the company that created them
 fact ArchiveFinishedInternships {
-    always all c: Company, i: c.creates |
+    always all c: Company | all i: c.creates |
     i.status = Finished implies after (i.status = PastProject 
     and i in c.archives)
 }
 
 // A company can only archive an internship that is a past project
 fact CompanyArchivesPastProject {
-    always all c: Company, i: c.archives |
+    always all c: Company | all i: c.archives |
     i.status = PastProject
 }
 
@@ -212,8 +210,11 @@ pred InternshipExecution {
     (i.status = Ongoing implies some s: Student | i in s.participatesIn) and
     (i.status = Ongoing implies some cl: Complaint | cl.about = i) and
     (i.status = Ongoing implies some cl: Complaint, u: University | cl in u.reads) and
+    (i.status = Ongoing implies some c: Company, s: Student |
+    # c.writes > 0 and # s.writes > 0) and
     (i.status = Finished implies some f: Feedback | f.about = i) and
-    (i.status = Finished implies some c: Company, s: Student | # c.writes > 0 and # s.writes > 0)
+    (i.status = Finished implies some c: Company, s: Student |
+    # c.writes > 0 and # s.writes > 0)
 }
 
 pred show {
