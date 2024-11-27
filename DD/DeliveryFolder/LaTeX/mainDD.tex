@@ -71,7 +71,7 @@ by \par
 \hline
 \textbf{Date:} & \today \\
 \hline
-\textbf{Download page:} & \href{https://github.com/Zero3474/AlkhetiarBonardi.git}{\texttt{\color{blue}{https://github.com/Zero3474/AlkhetiarBonardi.git}}} \\
+\textbf{Download page:} & \href{https://github.com/Zero3474/AlkhetiarBonardi.git}{\texttt{\color{blue}{github.com/Zero3474/AlkhetiarBonardi.git}}} \\
 \hline
 \textbf{Copyright:} & Copyright © 2025, Abdallah Alkhetiar and Daniel Bonardi \\
 & – All rights reserved \\
@@ -97,8 +97,14 @@ The main purpose of the S\&C platform is to grant efficient and effective matchm
 \end{itemize}
 
 	\subsection{Scope}
-Same as purpose?!
-
+\textbf{Students\&Companies} (S\&C) is an internship platform designed to connect students with companies based on skills, experiences, and interests. \\
+The platform offers two main ways to establish connections:
+\begin{itemize}
+\item \textbf{Recommendation system}
+\item \textbf{Proactive searching}
+\end{itemize}
+S\&C also supports the selection process  and gathers feedback on recommendations and provides spaces for users to address issues, share updates, and track internship progress.
+More details can be found in the RASD document.
 	\subsection{Definitions, acronyms, abbreviations}
 TBD
 
@@ -139,6 +145,81 @@ The thin-client approach instead, ensures the smoothest experience for the users
 To facilitate the communication between client and the backend, the system shall implement well-defined RESTful APIs.
 
 	\subsection{Component view}
+\subsection{Component View}
+
+The \textbf{Students\&Companies (S\&C)} platform is built around modular and decoupled components following a microservices architecture. Each component is responsible for specific functionalities, ensuring a clean separation of concerns, scalability, and ease of maintenance.
+
+\subsubsection{Key Components}
+\begin{itemize}
+    \item \textbf{User Management Service} \\
+    Responsible for managing all user-related operations, including:
+    \begin{itemize}
+        \item Registration and login processes for students, companies, and universities.
+        \item Authentication and authorization using secure protocols like OAuth 2.0.
+        \item Profile management, enabling users to update personal information, resumes, and company details.
+    \end{itemize}
+    
+    \item \textbf{Internship Management Service} \\
+    This service handles all functionalities related to internships:
+    \begin{itemize}
+        \item Creation, modification, and deletion of internship postings by companies.
+        \item Managing application workflows, including CV submissions and application tracking.
+        \item Integration with the recommendation system to notify eligible students.
+    \end{itemize}
+
+    \item \textbf{Recommendation Service} \\
+    A core component of the platform, responsible for matching students to internships based on:
+    \begin{itemize}
+        \item Skills and interests specified by students.
+        \item Requirements defined in internship postings.
+        \item Dynamic filtering and scoring to identify the best candidates.
+    \end{itemize}
+    
+    \item \textbf{Notification Service} \\
+    Ensures timely communication between users and the system. Key responsibilities include:
+    \begin{itemize}
+        \item Sending real-time notifications about new internships, application updates, and feedback requests.
+        \item Notifying universities about complaints involving their students.
+    \end{itemize}
+    
+    \item \textbf{Feedback and Complaint Service} \\
+    Handles user feedback and complaints to improve system quality and resolve issues:
+    \begin{itemize}
+        \item Collects feedback on internships and the recommendation system.
+        \item Manages complaints from students and companies, notifying universities when necessary.
+    \end{itemize}
+
+    \item \textbf{Form Management Service} \\
+    Supports the creation and evaluation of application forms for internship screening:
+    \begin{itemize}
+        \item Allows companies to design custom forms with open and closed questions.
+        \item Processes and stores completed forms from students.
+        \item Provides tools for companies to grade forms and generate candidate rankings.
+    \end{itemize}
+
+    \item \textbf{Database Service} \\
+    Manages the persistence layer for storing all user, internship, and system-related data. The database is designed to:
+    \begin{itemize}
+        \item Support distributed storage for scalability and reliability.
+        \item Enforce strict access controls to ensure data privacy and security.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Communication Between Components}
+All services communicate via \textbf{RESTful APIs}, ensuring interoperability and modularity. Each service exposes specific endpoints to support its operations, allowing:
+\begin{itemize}
+    \item Seamless integration between services, ensuring the system functions as a cohesive whole.
+    \item Flexibility for future enhancements or replacement of individual components without impacting the overall architecture.
+\end{itemize}
+
+\subsubsection{Design Benefits}
+The componentized design allows:
+\begin{itemize}
+    \item Independent development, deployment, and scaling of services based on demand.
+    \item Enhanced maintainability, as each service is responsible for a specific functionality.
+    \item High availability and resilience, as the failure of one component does not impact the entire system.
+\end{itemize}
+
 	\subsection{Deployment view}
 	\subsection{Runtime view}
 	\subsection{Component interfaces}
