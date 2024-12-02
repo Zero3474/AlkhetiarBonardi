@@ -133,92 +133,81 @@ The last section describes the procedures followed for implementing, integrating
 \newpage
 
 \section{Architectural design}
-	\subsection{Overview}
+	\subsection{Overview}	
 The S\&C design is based on two architectural choices:
 \begin{itemize}
-\item Microservices architecture
-\item Thin-client model
+\item A 3 tier architecture
+\item A thin-client model
 \end{itemize}
-This choices were made to ensure scalability and modularity, making it easier to modify the system in the future or simply for maintenance.\\
-Thanks to the microservices approach, the system shall be divided into separate and independent modules, each of which is responsible of a single feature, like user management, recommendation system, internship management and report collection.\\
+First of all the 3 tier architecture is built using 3 layers:
+\begin{itemize}
+\item \textbf{Presentation layer}: This layer is in charge of providing all the user interfaces for users to interact with the system.
+\item \textbf{Application layer}: This layer implements the core of the business logic and processes all the requests sent from the presentation layer.
+\item \textbf{Data layer}: This layer is responsible of managing all the data storage.
+\end{itemize}
+The choice of the 3 tier architecture what made to grant these key concepts:
+\begin{itemize}
+\item \textbf{Modularity}: Components are designed address a specific function required by the system, also making it easier to perform maintenance.
+\item \textbf{Scalability}: Since each module function independently from the others, adding or removing feature should be easier.
+\item \textbf{Security}: By implementing a secure communication protocol, users should not be worried about their sensitive data being stolen.
+\end{itemize}
 The thin-client approach instead, ensures the smoothest experience for the users, by keeping the client-side of the application as lightweight as possible. With this approach the client shall focus solely on the rendering of the user interface and the management of basic interactions, the rest of the computation happens on the server-side.\\
-To facilitate the communication between client and the backend, the system shall implement well-defined RESTful APIs.
+To sum it up, in the client there is only the presentation layer, while the application and data layer are in the server.
 
 	\subsection{Component view}
-\subsection{Component View}
+To make it easier to understand component view, we decided to divide it into 3 diagrams. The first represents a high-level view that distinguishes the client-side from the server-side components. The other 2 diagrams represent a more detailed version of the components presented in the server-side in the first diagram.
 
-The \textbf{Students\&Companies (S\&C)} platform is built around modular and decoupled components following a microservices architecture. Each component is responsible for specific functionalities, ensuring a clean separation of concerns, scalability, and ease of maintenance.
-
-\subsubsection{Key Components}
+		\subsubsection{High level component view}
+In the following diagram it is shown how the client-side interacts with the server side through the exposed interfaces.\\
+We can clearly see the 2 sides:
 \begin{itemize}
-    \item \textbf{User Management Service} \\
-    Responsible for managing all user-related operations, including:
-    \begin{itemize}
-        \item Registration and login processes for students, companies, and universities.
-        \item Authentication and authorization using secure protocols like OAuth 2.0.
-        \item Profile management, enabling users to update personal information, resumes, and company details.
-    \end{itemize}
-    
-    \item \textbf{Internship Management Service} \\
-    This service handles all functionalities related to internships:
-    \begin{itemize}
-        \item Creation, modification, and deletion of internship postings by companies.
-        \item Managing application workflows, including CV submissions and application tracking.
-        \item Integration with the recommendation system to notify eligible students.
-    \end{itemize}
-
-    \item \textbf{Recommendation Service} \\
-    A core component of the platform, responsible for matching students to internships based on:
-    \begin{itemize}
-        \item Skills and interests specified by students.
-        \item Requirements defined in internship postings.
-        \item Dynamic filtering and scoring to identify the best candidates.
-    \end{itemize}
-    
-    \item \textbf{Notification Service} \\
-    Ensures timely communication between users and the system. Key responsibilities include:
-    \begin{itemize}
-        \item Sending real-time notifications about new internships, application updates, and feedback requests.
-        \item Notifying universities about complaints involving their students.
-    \end{itemize}
-    
-    \item \textbf{Feedback and Complaint Service} \\
-    Handles user feedback and complaints to improve system quality and resolve issues:
-    \begin{itemize}
-        \item Collects feedback on internships and the recommendation system.
-        \item Manages complaints from students and companies, notifying universities when necessary.
-    \end{itemize}
-
-    \item \textbf{Form Management Service} \\
-    Supports the creation and evaluation of application forms for internship screening:
-    \begin{itemize}
-        \item Allows companies to design custom forms with open and closed questions.
-        \item Processes and stores completed forms from students.
-        \item Provides tools for companies to grade forms and generate candidate rankings.
-    \end{itemize}
-
-    \item \textbf{Database Service} \\
-    Manages the persistence layer for storing all user, internship, and system-related data. The database is designed to:
-    \begin{itemize}
-        \item Support distributed storage for scalability and reliability.
-        \item Enforce strict access controls to ensure data privacy and security.
-    \end{itemize}
+\item \textbf{Client-side}: Since the in the client-side we only have the presentation layer, we can see that on the left of the diagram there are the Users, that can either be accessing the application through a web browser or a mobile device.
+\item \textbf{Server-side}: On the server-side instead, we have both the application and data layer so we have the most important subsystems of the entire application:
+	\begin{itemize}
+	\item \textit{Internship management}: Which is the actual biggest component which manages all the actions that involve internships.
+	\item \textit{Account management}: Which simply manages all the interactions that require some data regarding a user.
+	\end{itemize}
 \end{itemize}
 
-\subsubsection{Communication Between Components}
-All services communicate via \textbf{RESTful APIs}, ensuring interoperability and modularity. Each service exposes specific endpoints to support its operations, allowing:
-\begin{itemize}
-    \item Seamless integration between services, ensuring the system functions as a cohesive whole.
-    \item Flexibility for future enhancements or replacement of individual components without impacting the overall architecture.
-\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Images/Component}
+\caption{High level component view}\label{Component}
+\end{figure}
+\vspace{\baselineskip}
 
-\subsubsection{Design Benefits}
-The componentized design allows:
+		\subsubsection{Internship management diagram}
+The following diagram shows how the subsystem Internship Management is composed and how its modules communicate with external ones. This subsystem contains 6 modules:	
 \begin{itemize}
-    \item Independent development, deployment, and scaling of services based on demand.
-    \item Enhanced maintainability, as each service is responsible for a specific functionality.
-    \item High availability and resilience, as the failure of one component does not impact the entire system.
+\item \textbf{Proactive search}: Allows student to search for specific internship.
+\item \textbf{Internship archival}: Allows companies to archive an internship, and show it on their profile.
+\item \textbf{Feedback}: Allows user to send a feedback.
+\item \textbf{Internship creation}: Allows companies to create an internship, and for this reason it needs to interact with the "Recommendation system" component to notify the compatible students.
+\item \textbf{Complaints}: Allows user to file a complaint, and it also needs to interact with the "Notification system" to notify the universities.
+\item \textbf{Form management}: Manages all the stages of a form, from its creation to the correction, and for this reason it needs to interact with the "Ranking system" component.
 \end{itemize}
+At the same time all components, external or internal to the subsystem, must interact with the DBMS to access all the data required for the interaction.
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Component2}
+\caption{Internship management diagram}\label{Component2}
+\end{figure}
+		
+		\subsubsection{Account management diagram}
+The following diagram shows how the subsystem Account Management is composed and how its modules communicate with external ones. This subsystem contains only 2 modules:
+\begin{itemize}
+\item \textbf{Student manager}: Allows student to sign up, login, add a CV and update their profile.
+\item \textbf{Company manager}: Allows a company to sign up, login and update their profile.
+\end{itemize}
+In both cases the component need to access both the "Authentication" component to safely complete the login and sign up processes, and also the DBMS to manage all the required data.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Component3}
+\caption{Account management diagram}\label{Component3}
+\end{figure}
 
 	\subsection{Deployment view}
 	\subsection{Runtime view}
