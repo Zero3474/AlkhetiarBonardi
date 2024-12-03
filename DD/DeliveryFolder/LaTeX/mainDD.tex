@@ -217,6 +217,8 @@ In both cases the component need to access both the "Authentication" component t
 With the following sequence diagrams, we are going to explain and represent all the interactions that happen between the components of the S\&C system. But since this representation is still a high-level description of interactions, the function names, parameters, results, errors, and other smaller details will be modified or added during the development phase.
 
 		\subsubsection{Login}
+In the login process, the user interacts with the \textit{Web Application} to login in his account. After adding the required information, the data is sent to the \textit{Account Manager} that checks if the credentials are correct through the \textit{Authentication System} that accesses the \textit{DBMS}. If the credentials are correct, the user is shown the home page, otherwise he is shown a message error and can try to login again.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{Images/Seq1}
@@ -226,6 +228,8 @@ With the following sequence diagrams, we are going to explain and represent all 
 \newpage
 
 		\subsubsection{Sign up}
+In the sign up process, the user interacts with the \textit{Web Application} to create a new account. When entering the application, the user is presented with the login page, so he needs to request for the sign up page. After adding the required information, the data is sent to the \textit{Account Manager} that checks if the credentials already exist in the data base. If the given information are correct, the user is shown the loin page, otherwise he is shown a message error and can try to create his account again.	
+		
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{Images/Seq2}
@@ -235,10 +239,67 @@ With the following sequence diagrams, we are going to explain and represent all 
 \newpage
 
 		\subsubsection{Internship creation}
+In the internship creation process, a company interacts with the \textit{Web Application} to post about a new internship. When entering all the correct information, the \textit{Manage Internship} module interacts with the \textit{Recommendation System} to identify all the student that are deemed compatible with the internship. Once the system has gotten the list, all the specified students are notified through the \textit{Notification System}.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{Images/Seq3}
 \caption{Internship creation sequence diagram}\label{Seq3}
+\end{figure}
+
+\newpage
+
+		\subsubsection{Internship application}
+In the internship application process, the student interacts with the \textit{Web Application} to search for a specific internship and apply for it. The student searches for specific keywords in the search bar, which activates the \textit{Manage Internship module} and through the \textit{DBMS} it retrieves the correct internships. The results are show on the \textit{Web Application} and the student can apply for the ones that he prefers. When applying to the internship the \textit{Manage Internship} module interacts with the \textit{Notification System} to notify the company of the candidates.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Seq4}
+\caption{Internship application sequence diagram}\label{Seq4}
+\end{figure}
+
+\newpage
+
+		\subsubsection{Form assignment for internship}
+In the form assignment process, a company interacts with the \textit{Web Application} to assign a form to an already existing internship. In this case the \textit{Web Application} needs to interact with the \textit{Form Management} module to assign the form to the internship, and the \textit{Notification System} to notify all the candidates of the form to fill. Notice that this flow happens only when assigning a valid form, trying to assign an empty form shows an error message.
+		
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Seq5}
+\caption{Form assignment sequence diagram}\label{Seq5}
+\end{figure}
+
+\newpage
+
+		\subsubsection{Form compilation}
+In the form compilation process, the student interacts with the \textit{Web Application} to fill and submit a form for an internship.	In this case the \textit{Web Application} needs to interact with the \textit{Form Management} module to save the answer in the data base, and the \textit{Notification System} to notify the company of the compiled forms they need to correct. Trying to submit an form with a missing answer will prevent the submission and show an error message instead.
+		
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Seq6}
+\caption{Form compilation sequence diagram}\label{Seq6}
+\end{figure}
+
+\newpage
+
+		\subsubsection{Form correction}
+In the form correction process a company interacts with the \textit{Web Application} to correct a form submitted by a student. In this case the \textit{Web Application} needs to interact with the \textit{Form Management} module to save the score of the candidate for later use in the ranking system. The score can be submitted only when each individual question is given a valid score.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Seq7}
+\caption{Form correction sequence diagram}\label{Seq7}
+\end{figure}
+
+\newpage
+
+		\subsubsection{Student selection}
+In the student selection process a company interacts with the \textit{Web Application} to select the candidates that can move to the next phase of the selection process or that were chosen to participate in the actual internship. In this case the \textit{Web Application} needs to interact with the \textit{Internship Selection} module and the \textit{Ranking System} to retrieve from the data base the scores of all the candidates and format the in a readable way. The ranking is shown on the screen of the company application, and they can then choose a list of students that will advance to next phase. For this reason the \textit{Internship Selection} module needs to also interact with the \textit{Notification System}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Seq8}
+\caption{Student selection sequence diagram}\label{Seq8}
 \end{figure}
 
 \newpage
