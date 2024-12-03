@@ -1,0 +1,67 @@
+classDiagram
+
+    class InternshipArchival{
+        + archive(internship: Internship)
+    }
+
+    class Feedback{
+        + send(content: Message)
+    }
+    
+    class Complaints{
+        + send(subject: String, content: Message)
+    }
+    
+    class ManageInternship{
+        + search(keywords: List~String~)
+        + apply(internship: Internship)
+        + post(internship: Internship)
+    }
+    
+    class FormManagement{
+        + create(form: Form)
+        + assign(internship: Internship, form: Form)
+        + submit(internship: Internship, form: Form)
+        + correct(form: Form)
+    }
+    
+    class InternshipSelection{
+        + selectCandidates(internship: Internship, candidates: List~Student~)
+        + checkRanking(internship: Internship)
+    }
+
+    class AccountManager{
+        + login(username: String, password: String)
+    }
+
+    class StudentManager{
+        + signUp(username: String, password: String, additionalData: AccountData)
+        + addCV(CV: File)
+        + updateAccount(editedData: AccountData)
+    }
+
+    class CompanyManager{
+        + signUp(username: String, password:String, additionalData: AccountData)
+        + updateAccount(editedData: AccountData)
+    }
+
+    StudentManager --|> AccountManager
+    CompanyManager --|> AccountManager
+
+    class AuthenticationSystem{
+        + check(username: String, password: String)
+        + alreadyExist(username: String, password: String)
+    }
+
+    class RecommendationSystem{
+        + findCompatibleStudents(internship: Internship)
+    }
+
+    class NotificationSystem{
+        + notify(users: List~User~, message: Message)
+    }
+
+    class RankingSystem{
+        + getRanking(internship: Internship)
+        - formatRanking(ranking: Ranking)
+    }
