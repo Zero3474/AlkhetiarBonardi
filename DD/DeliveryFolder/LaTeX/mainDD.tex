@@ -312,10 +312,126 @@ In the student selection process a company interacts with the \textit{Web Applic
 \end{figure}
 
 \newpage	
+
+In figure [\ref{CompInterface}] we can see a list of all the interfaces and their respective exposed methods. In this section we are going to provide a more detailed description of such interfaces.
+\begin{itemize}
+\item \textbf{Internship Archival}:
+	\begin{itemize}
+	\item \textit{getPastProjects()}: Allows a user to retrieve all past projects of a given company.
+	\item \textit{archive()}: Allows a company to add a concluded internship to their list of past projects.
+	\end{itemize}
+	
+\item \textbf{Feedback}:
+	\begin{itemize}
+	\item \textit{send()}: Allows a user to send a feedback to the developers.
+	\end{itemize}
+	
+\item \textbf{Complaints}:
+	\begin{itemize}
+	\item \textit{getComplaints()}: Allows a university to retrieve all complaints that involve at least one of their student.
+	\item \textit{send()}: Allows a user to file a complaint.
+	\end{itemize}
+	
+\item \textbf{Manage Internship}:
+	\begin{itemize}
+	\item \textit{getInternships()}: Overload parameters
+		\begin{itemize}
+		\item Student: Allows a student to retrieve all the internship to show in his home page.
+		\item Company: Allows a user to retrieve all the internships that have been created by a certain company.
+		\end{itemize}
+	\item \textit{getParticipats()}: Allows a company to retrieve all the candidates of an internship.
+	\item \textit{search()}: Allows a student to retrieve all internships compatible with a list of keywords.
+	\item \textit{apply()}: Allows a student to apply for a specific internship.
+	\item \textit{post()}: Allows a company to post regarding a newly created internship.
+	\end{itemize}
+	
+\item \textbf{Form Management}:
+	\begin{itemize}
+	\item \textit{getCreatedForms()}: Allows a company to retrieve all form they created.
+	\item \textit{getFilledForms()}: Allows a company to retrieve all forms that have been filled for a specific internship.
+	\item \textit{create()}: Allows a company to save the form they created.
+	\item \textit{assign()}: Allows a company to send all the candidates of an internship the form for the first selection phase.
+	\item \textit{submit()}: Allows a student to submit a form regarding a specific internship.
+	\item \textit{correct()}: Allows a company to save the score of a corrected form.
+	\end{itemize}
+	
+\item \textbf{Internship Selection}:
+	\begin{itemize}
+	\item \textit{getCandidates()}: Allows a company to retrieve all the available candidates that want to participate in a given internship.
+	\item \textit{selectCandidates()}: Allows a company to select a list of candidates, allowing them to move on to the next selection phase.
+	\item \textit{checkRanking()}: Allows a company to retrieve the ranking for the current selection phase of a given internship.
+	\end{itemize}
+	
+\item \textbf{Student Manager}:
+	\begin{itemize}
+	\item \textit{getaccountInfo()}: Allows a student to retrieve all the required information to show the profile page.
+	\item \textit{login()}: Allows a student to try logging in his account using the given username and password.
+	\item \textit{signUp()}: Allows a student to try creating a new account with the specified information.
+	\item \textit{addCV()}: Allows a student to add a file in the CV section.
+	\item \textit{update()}: Allows a student to edit the personal information shown in the profile.
+	\end{itemize}
+	
+\item \textbf{Company Manager}:
+	\begin{itemize}
+	\item \textit{getaccountInfo()}: Allows a company to retrieve all the required information to show the profile page.
+	\item \textit{login()}: Allows a company to try logging in his account using the given username and password.
+	\item \textit{signUp()}: Allows a company to try creating a new account with the specified information.
+	\item \textit{update()}: Allows a company to edit the personal information shown in the profile.
+	\end{itemize}
+\end{itemize}
+
+The following modules contain methods that are called by the main modules, so the users cannot directly interact with them.
+
+\begin{itemize}
+\item \textbf{Authentication System}:
+	\begin{itemize}
+	\item \textit{check()}: Checks the correctness of the given credentials. This method is called by the \textit{login} method.
+	\item \textit{alreadyExist()}: Checks if the given information already exist in the database. This method is called by the \textit{signUp} method.
+	\end{itemize}
+	
+\item \textbf{Notification System}:
+	\begin{itemize}
+	\item \textit{getNotifications()}: Retrieves all the notifications to be shown to a specified user.
+	\item \textit{notify()}: Sends a notification to a specified user.
+	\end{itemize}
+	
+\item \textbf{Ranking System}:
+	\begin{itemize}
+	\item \textit{getRanking()}: Retrieves the ranking of a specified internship. This method is called by the \textit{checkRanking} method and returns the result of \textit{formatRanking}.
+	\item \textit{formatRanking()}: Allows to format a ranking in a more readable way.
+	\end{itemize}
+	
+\item \textbf{Recommendation System}:
+	\begin{itemize}
+	\item \textit{findCompatibleStudents()}: Retrieves all the compatible students for a given internship. This method is called by the \textit{post} method of Manage Internship.
+	\end{itemize}
+\end{itemize}
 	
 	\subsection{Selected architectural styles and patterns}
+		\subsubsection{Architectural styles}
+We already discussed about the tree-tier architecture with thin client approach and their benefits in the overview section (2.1).\\
+Our choice in terms of communications protocol is HTTPS. First of all we chose it because it is one of the most used across most platforms, so it should not be too much of a problem to implement and second, is because it is the secure version of HTTP, the main protocol used to share data between a website and a browser. In addition HTTPS grants the security of the communication by encrypting the data to transfer. This is especially important in the case a user has to manage sensitive data regarding his profile.
+
+		\subsubsection{Patterns}
+\begin{itemize}
+\item \textbf{Model-View-Controller (MVC)}: The logic in the application layer is structured using the MVC pattern, which allows the to organize the system in three different components:
+	\begin{itemize}
+	\item \textbf{Model}: Represents all the data logic in the system.
+	\item \textbf{View}: Handles the presentation of the data to the user.
+	\item \textbf{Controller}: Manages the interactions with the model.
+	\end{itemize}
+\item \textbf{Observer pattern}: Allows an object, named the subject, to maintain a list of dependent objects, called observers, and notify them whenever happens a change of state. This pattern is especially recommended given the use of the MVC pattern.
+\item \textbf{Strategy pattern}: Allows the selection of an algorithm at runtime. Instead of implementing a single algorithm directly, the system receives runtime instructions as to which in a family of algorithms to use.
+\item \textbf{Factory method}: Uses factory methods to deal with the problem of creating objects without having to specify their exact classes. The creation of an object is achieved by invoking a factory method, instead of calling a constructor.
+\end{itemize}
 	
 	\subsection{Other design decisions}
+\begin{itemize}
+\item \textbf{OAuth 2.0}: OAuth 2.0, which stands for “Open Authorization”, is a standard designed to allow a website or application to access resources hosted by other web apps on behalf of a user. It provides consented access and restricts actions of what the client app can perform on resources on behalf of the user, without ever sharing the user's credentials.\\
+\textbf{Important}: OAuth 2.0 is an authorization protocol and NOT an authentication protocol, which is why we have a custom \textit{Authentication System} module in the component view and not an authorization one.
+\item \textbf{Notifications API}: Firebase Cloud Messaging (FCM), formerly known as Google Cloud Messaging (GCM), is a cross-platform push notification API for Android, iOS, and web applications. It is one of many tools under the Firebase platform umbrella, allowing you to combine various products for web and mobile production.\\
+Since it's a Google product it is reliable and easy to implement thanks to a detailed documentation and several tutorials provided by the platform itself.
+\end{itemize}
 
 \newpage
 
@@ -455,5 +571,8 @@ In this page the company can add all the required information that allows the sy
 \href{https://dev.to/3bdelrahman/understanding-layers-tiers-and-n-tier-architecture-in-application-development-1hlb}{\textcolor{blue}{https://dev.to/3bdelrahman}}\\
 \href{https://blog.nginx.org/blog/time-to-move-to-a-four-tier-application-architecture#:~:text=Forrester\%27s\%20Four‑Tier\%20Engagement\%20Platform,\%2C\%20aggregation\%2C\%20and\%20services\%20layers.}{\textcolor{blue}{https://blog.nginx.org/blog}}\\
 \href{https://www.klipfolio.com/resources/data-stack/integration-layer}{\textcolor{blue}{https://www.klipfolio.com}}
+
+\textbf{OAuth2.0}\\
+\href{https://auth0.com/intro-to-iam/what-is-oauth-2}{\textcolor{blue}{https://auth0.com}}
 
 \end{document}
