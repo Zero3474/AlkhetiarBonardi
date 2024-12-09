@@ -10,6 +10,11 @@
 \usepackage{tikz}
 \usepackage{microtype}
 \usepackage{setspace}
+\usepackage{color, colortbl}
+
+% Colors
+\definecolor{Gray1}{gray}{0.9}
+\definecolor{Gray2}{gray}{0.95}
 
 % Geometry
 \usepackage{geometry}
@@ -511,6 +516,288 @@ In this page the company can add all the required information that allows the sy
 \newpage
 
 \section{Requirement traceability}
+In this section we are gonna look back at the goals and requirements described in the RASD and map them to the components created in the second chapter of this document. To make it easier to read we wrote again the goals followed by their already mapped requirements and then we added the components.\\
+As we will see each goal is mapped to a single specific component of a subsystem since they were created with this exact purpose to ensure that each component would have a set of task to perform within a single context, providing as much modularity as possible.
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G1} & \textbf{Student can create account} \\
+\hline
+\rowcolor{Gray2}
+RA1 & The platform shall allow users to register \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Account Management
+ 	\begin{itemize}
+ 	\item Student Manager
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G2} & \textbf{Company can create an account} \\
+\hline
+\rowcolor{Gray2}
+RA1 & The platform shall allow users to register \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Account Management
+ 	\begin{itemize}
+ 	\item Company Manager
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G2} & \textbf{Users can update their accounts} \\
+\hline
+\rowcolor{Gray2}
+RA3 & The platform shall allow users to update their existing account \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Account Management
+ 	\begin{itemize}
+ 	\item Student Manager
+	\item Company Manager
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G4} & \textbf{Companies can create internships} \\
+\hline
+\rowcolor{Gray2}
+RI1 & The platform must allow companies to create internships \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Manage Internship
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G5} & \textbf{Students can view all available internships} \\
+\hline
+\rowcolor{Gray2}
+RI2 & The platform must allow students to view all available internships \\
+\hline
+\rowcolor{Gray2}
+RI3 & The platform must allow students to search between the available internship \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Manage Internship
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G6} & \textbf{Companies can create forms for students to fill} \\
+\hline
+\rowcolor{Gray2}
+RF1 & The platform shall allow companies to create custom forms \\
+\hline
+\rowcolor{Gray2}
+RF2 & The platform shall allow companies to save created forms for later use in an internship selection process \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Form Management
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G7} & \textbf{Recommendation system} \\
+\hline
+\rowcolor{Gray2}
+RN1 & The platform shall notify students when an internship suitable for them has been posted \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Manage Internship $\rightarrow$ \textit{findCompatibleStudents()}
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G8} & \textbf{Students can apply for the internships} \\
+\hline
+\rowcolor{Gray2}
+RI4 & The platform must allow students to apply for any available internship \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Manage Internship
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G9} & \textbf{Form evaluation} \\
+\hline
+\rowcolor{Gray2}
+RN7 & The platform shall send companies the list of candidates at the end of the application deadline \\
+\hline
+\rowcolor{Gray2}
+RF3 & The platform shall allow companies to send the candidates that passed the first screening the form for the second screening \\
+\hline
+\rowcolor{Gray2}
+RF4 & The platform shall allow students to fill and submit the application form \\
+\hline
+\rowcolor{Gray2}
+RF5 & The platform shall allow companies to evaluate a submitted form by grading each question \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Form Management
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G10} & \textbf{Ranking candidates} \\
+\hline
+\rowcolor{Gray2}
+RN2 & The platform shall notify students of the result of the first screening \\
+\hline
+\rowcolor{Gray2}
+RN3 & The platform shall notify students of the result of the second screening \\
+\hline
+\rowcolor{Gray2}
+RN4 & The platform shall notify students of the final result of the application \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Internship selection $\rightarrow$ \textit{getRanking()}
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G11} & \textbf{Users can provide feedbacks} \\
+\hline
+\rowcolor{Gray2}
+RN5 & The platform shall notify students/companies to fill a feedback form after the end of the internship \\
+\hline
+\rowcolor{Gray2}
+RR1 & The platform shall allow students and companies to write a feedback at the end of an internship \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Feedback
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.64\textwidth} |}
+\hline
+\rowcolor{Gray1}
+\textbf{G12} & \textbf{Complaints management} \\
+\hline
+\rowcolor{Gray2}
+RI5 & The platform shall allow students/companies involved in an internship to complain about the other party \\
+\hline
+\rowcolor{Gray2}
+RN6 & The platform shall notify universities whenever a complaint is filed involving one of their students \\
+\hline
+\rowcolor{Gray2}
+RR2 & The platform shall allow students and companies involved in an internship to write complaints regarding the other party \\
+\hline
+\rowcolor{Gray2}
+RR3 & The platform shall allow universities to read all complaints that involve their students \\
+\hline
+ & Components mapped to the requirements:
+\begin{itemize}
+\item Internship Management
+ 	\begin{itemize}
+ 	\item Complaints
+ 	\end{itemize}
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
 
 \newpage
 
