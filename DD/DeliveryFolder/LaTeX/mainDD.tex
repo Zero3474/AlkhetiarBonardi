@@ -802,7 +802,39 @@ RR3 & The platform shall allow universities to read all complaints that involve 
 \newpage
 
 \section{Implementation, integration and test plan}
+This chapter explains how to implement, integrate and plan the tests for the application designed in this document. The chapter is divided into 2 fundamental parts. The first one (\textbf{Components development}) talks about how the components designed in this document needs to be implemented, integrate and then test them. The second one (\textbf{System testing}) explains how the testing for the system should be implemented.
 
+	\subsection{Components development}
+The system is subdivided in the following subsystems:
+\begin{itemize}
+\item Web Browser
+\item Mobile Device
+\item Account Management
+\item Internship Management
+\end{itemize}
+The first two are designed for the client side of the application, while the other two are for the server side of the system, managing the data and application layer, as already explained in section 2.\\
+The listed subsystems must be implemented, tested, and integrated by using a bottom-up approach. To make sure the development progresses in the intended way, we provide a development order based on the dependencies. As for the client and server sides, they can be developed in parallel, they will be integrated and tested together in the final integration part. The following table presents the order in which the various dependencies shall be developed and it has also been noted the difficulty of implementation of each stage.
+
+\begin{table}[H]
+\begin{tabular}{| p{0.3\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} |} 
+\hline
+\textbf{Order} & \textbf{Stage} & \textbf{Difficulty} \\ 
+\hline
+1 & stage & diff \\ 
+\hline
+2 & stage & diff \\ 
+\hline
+3 & stage & diff \\ 
+\hline
+4 & stage & diff \\ 
+\hline
+5 & stage & diff \\ 
+\hline
+\end{tabular}
+\end{table}
+	
+	\subsection{System testing}
+	
 \newpage
 
 \section{Effort spent}
