@@ -837,37 +837,21 @@ The first two are designed for the client side of the application, while the lat
 
 \textbf{Implementation and Testing Plan:}
 \begin{itemize}
-    \item \textbf{Account Management:} Focuses on user authentication, role assignment, and data security. Unit tests will validate functionality, followed by integration tests with the database. Testing scenarios will include edge cases for password complexity, role-based access permissions, and session management.
-    \item \textbf{Internship Management:} Handles internship tracking, student assignments, and reporting. This subsystem will undergo rigorous testing, including boundary tests for data handling and stress tests for performance. Additional checks will ensure data integrity during concurrent user operations.
-    \item \textbf{Web Browser Interface:} Ensures compatibility across major browsers and responsive design. Functional tests will verify usability and navigation.
-    \item \textbf{Mobile Device Interface:} Ensures smooth operation on Android and iOS platforms. Device-specific tests and cross-platform validations will be conducted, covering offline functionalities and seamless synchronization with the server.
+    \item \textbf{Account Management:} Focuses on user authentication and the creation/update of accounts. Unit tests will validate functionality, followed by integration tests with the database, since it's mostly composed of only a few components that depend on each other (student/company manager and authentication system) it shouldn't pose any problems and the those aforementioned components can be implemented in parallel with the use of suitable drivers for the simulation of the required interfaces. Testing scenarios will include edge cases for password complexity, role-based access permissions, and session management.
+    \item \textbf{Internship Management:} Handles internship tracking, student assignments, and reporting. It is composed of many different interdependent components some of which are of critical importance (e.g.: Recommendation System, Notification System) and should therefor be given high priority, a parallel implementation plan can also be adopted in this case with the use of drivers/stubs whenever needed but should be proceeded with utmost care and attention since this subsystem represents the core funcionality of the software-to-be. For what regards the testing, the subsystem will undergo rigorous testing, including boundary tests for data handling and stress tests for performance. Additional checks will ensure data integrity during concurrent user operations.
+    \item \textbf{Web Browser Interface:} Ensures compatibility across major browsers and responsive design. Functional tests will verify usability and ease of navigation. Some additional user tests will help identify areas for improvement with regards to the UI and UX.
+    \item \textbf{Mobile Device Interface:} Ensures smooth operation on Android and iOS platforms. Device-specific tests and cross-platform validations will be conducted, covering offline functionalities and seamless synchronization with the server, any performance/functional requirements not met can be immediately discovered through tests.
 \end{itemize}
+
 
 \subsection{System Testing}
 System testing involves validating the entire application as an integrated unit to ensure all components function together seamlessly. The following phases will be executed:
 
 \begin{itemize}
-    \item \textbf{Integration Testing:} Verifies the correct interaction between subsystems. Test cases will focus on data flow, API interactions, and synchronization between client and server sides, but also to verify the compatibility between the different components that interact with each other as described in section 2.2. Special attention will be given to error-handling mechanisms and fallback operations.
-    \item \textbf{Functional Testing:} Ensures the system meets all specified requirements. Scenarios will include user login, internship application workflows, and report generation. Regression tests will be conducted to confirm that new updates do not introduce unintended issues.
-    \item \textbf{Performance Testing:} Evaluates system response under various loads. Stress and load tests will simulate peak usage conditions to identify bottlenecks. Metrics such as response time, throughput, and server utilization will be monitored.
+    \item \textbf{Integration Testing:} Verifies the correct interaction between subsystems. Test cases will focus on data flow, API interactions, and synchronization between client and server sides. Special attention will be given to handling exceptions and invalid requests or states of the user.
+    \item \textbf{Functional Testing:} Ensures the system meets all specified requirements. Scenarios will include user login, internship application workflows, and report generation. Regression tests will be conducted to confirm that new updates do not introduce unintended already faced issues and bugs.
+    \item \textbf{Performance Testing:} Evaluates system response under various loads. Stress and load tests will try to find bottlenecks in the system so that they can be fixed and adjusted. Metrics such as response time, throughput, and server utilization will be monitored.
     \item \textbf{User Acceptance Testing (UAT):} Conducted with end users to validate the system's functionality, usability, and compliance with expectations. Feedback collected during UAT will be analyzed for final adjustments before deployment.
-\end{itemize}
-
-\textbf{Test Environment:} A staging environment mirroring the production setup will be used for all testing activities. This environment will include:
-
-\begin{itemize}
-\item Dedicated servers for database and application hosting, configured with realistic data samples.
-\item Test accounts with varied roles to simulate real-world scenarios, including administrator, student, and external company users.
-\item Monitoring tools to capture performance metrics and logs, providing detailed insights for debugging and optimization.
-\end{itemize}
-
-\textbf{Defect Management:} Issues identified during testing will be tracked using a defect management tool. Each defect will be prioritized based on its severity and impact on system functionality. Weekly review meetings will ensure progress is monitored, and high-priority defects are addressed promptly. \\ \\
-
-\textbf{Deployment Readiness:} Before deployment, a final readiness checklist will be verified, including:
-\begin{itemize}
-    \item Completion of all planned tests with documented results.
-    \item Resolution of all critical and high-severity defects.
-    \item Approval from stakeholders after successful UAT.
 \end{itemize}
 
 This systematic approach ensures that the application is robust, reliable, and ready for deployment.
