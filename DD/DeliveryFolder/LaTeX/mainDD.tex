@@ -111,7 +111,7 @@ The platform offers two main ways to establish connections:
 S\&C also supports the selection process  and gathers feedback on recommendations and provides spaces for users to address issues, share updates, and track internship progress.
 More details can be found in the RASD document.
 	\subsection{Definitions, acronyms, abbreviations}
-TBD
+DDoS: Distributed denial of service, an attack that floods a server with internet traffic.
 
 	\subsection{Revision history}
 Version 1.0 - WIP
@@ -217,7 +217,21 @@ In both cases the component need to access both the "Authentication" component t
 \newpage
 
 	\subsection{Deployment view}
- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Images/Deployment_view}
+\caption{Deployment View Diagram}\label{Deployment_view}
+\end{figure}
+
+\newpage
+
+The deployment view diagram provides a detailed view of the physical architecture of the system, describing how different elements interact with each other and where they are positioned. \\
+Going with an Elasticsearch database will allow us to fully utilize the power of text search and reverse indexing to be able to provide really fast and accurate search results for the users. Since the system has the main function of acting as a recommender system, Elasticsearch seems like the best database technology to go with since it's quite suitable for the implementation of the AI recommender agent. \\
+For what concerns scalability and availability, the inclusion of multiple load balancers and application server instances guarantees higher availability in case of device failures and thus avoiding single point of failures. This can also be seen with how the internal Elasticsearch load balancers and data nodes are replicated, three instances were chosen because that was the recommended nummber by the elasticsearch webpage for commercial databases, this replication not only is useful for higher avilability but even for better scalability thanks to the sharding approach that is implemented by default by the database technology. \\
+A firewall shall also be implemented within the load balancers between the clients and the application servers, to provide protection against DDoS attacks and similar threats. \\
+Now for a short describtion of how the system will work according to the diagram. Users will connect to a load balancer instance that will be chosen with respect to their geographical positions (to minimize latency), these load balancers will redirect user requests to the "best" application server instance according to a load balancing policy. After that, the server will send the request to the main elasticsearch load balancer which could change depending on the availability of the instances. And finally, the request will be completed by an appropriate data node that will handle the execution of the request and send back the result. \\
+With this approach, no single point of failures exist and high availability and scalability are guaranteed, the only issues lie with the difficulty of implementing the load balancing policies of the external devices. \\
+
 	\subsection{Runtime view}
 With the following sequence diagrams, we are going to explain and represent all the interactions that happen between the components of the S\&C system. But since this representation is still a high-level description of interactions, the function names, parameters, results, errors, and other smaller details will be modified or added during the development phase.
 
@@ -837,7 +851,7 @@ The first two are designed for the client side of the application, while the lat
 
 \textbf{Implementation and Testing Plan:}
 \begin{itemize}
-    \item \textbf{Account Management:} Focuses on user authentication and the creation/update of accounts. Unit tests will validate functionality, followed by integration tests with the database, since it's mostly composed of only a few components that depend on each other (student/company manager and authentication system) it shouldn't pose any problems and the those aforementioned components can be implemented in parallel with the use of suitable drivers for the simulation of the required interfaces. Testing scenarios will include edge cases for password complexity, role-based access permissions, and session management.
+    \item \textbf{Account Management:} Focuses on user authentication and the creation/update of accounts. Unit tests will validate functionality, followed by integration tests with the database, since it's mostly composed of only a few components that depend on each other (student/company manager and authentication system) it shouldn't pose any problems and the aforementioned components can be implemented in parallel with the use of suitable drivers for the simulation of the required interfaces. Testing scenarios will include edge cases for password complexity, role-based access permissions, and session management.
     \item \textbf{Internship Management:} Handles internship tracking, student assignments, and reporting. It is composed of many different interdependent components some of which are of critical importance (e.g.: Recommendation System, Notification System) and should therefor be given high priority, a parallel implementation plan can also be adopted in this case with the use of drivers/stubs whenever needed but should be proceeded with utmost care and attention since this subsystem represents the core funcionality of the software-to-be. For what regards the testing, the subsystem will undergo rigorous testing, including boundary tests for data handling and stress tests for performance. Additional checks will ensure data integrity during concurrent user operations.
     \item \textbf{Web Browser Interface:} Ensures compatibility across major browsers and responsive design. Functional tests will verify usability and ease of navigation. Some additional user tests will help identify areas for improvement with regards to the UI and UX.
     \item \textbf{Mobile Device Interface:} Ensures smooth operation on Android and iOS platforms. Device-specific tests and cross-platform validations will be conducted, covering offline functionalities and seamless synchronization with the server, any performance/functional requirements not met can be immediately discovered through tests.
@@ -911,9 +925,10 @@ This systematic approach ensures that the application is robust, reliable, and r
 \textbf{N-tier architectures}\\
 \href{https://dev.to/3bdelrahman/understanding-layers-tiers-and-n-tier-architecture-in-application-development-1hlb}{\textcolor{blue}{https://dev.to/3bdelrahman}}\\
 \href{https://blog.nginx.org/blog/time-to-move-to-a-four-tier-application-architecture#:~:text=Forrester\%27s\%20Four‑Tier\%20Engagement\%20Platform,\%2C\%20aggregation\%2C\%20and\%20services\%20layers.}{\textcolor{blue}{https://blog.nginx.org/blog}}\\
-\href{https://www.klipfolio.com/resources/data-stack/integration-layer}{\textcolor{blue}{https://www.klipfolio.com}}
-
-\textbf{OAuth2.0}\\
+\href{https://www.klipfolio.com/resources/data-stack/integration-layer}{\textcolor{blue}{https://www.klipfolio.com}} \\
+\textbf{Elasticsearch} \\
+\href{https://www.elastic.co}{\textcolor{blue}{https://elastic.co}} \\
+\textbf{OAuth2.0} \\
 \href{https://auth0.com/intro-to-iam/what-is-oauth-2}{\textcolor{blue}{https://auth0.com}}
 
 \end{document}
