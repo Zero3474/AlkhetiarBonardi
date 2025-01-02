@@ -111,13 +111,41 @@ The platform offers two main ways to establish connections:
 S\&C also supports the selection process  and gathers feedback on recommendations and provides spaces for users to address issues, share updates, and track internship progress.
 More details can be found in the RASD document.
 	\subsection{Definitions, acronyms, abbreviations}
-DDoS: Distributed denial of service, an attack that floods a server with internet traffic.
+		\subsubsection{Definitions}
+		\begin{itemize}
+		\item \textbf{Server} $\rightarrow$ The server is a component that generally provides a function or a service to one or many clients.
+		\item \textbf{Client} $\rightarrow$ Clients are components that generally initiate requests to the server for a determined service.
+		\item \textbf{Device} $\rightarrow$ It refers to a general device where the application is designed to work on.
+		\end{itemize}
+		Some of the definitions have been omitted, because they have already been defined in the previous RASD document.
+		
+		\subsubsection{Acronyms}
+		\begin{itemize}
+		\item \textbf{DDoS} $\rightarrow$ Distributed Denial of Service, an attack that floods a server with internet traffic.
+		\item \textbf{DBMS} $\rightarrow$ Data Base Management System, is a software system that allows users to create, define, manipulate and manage databases.
+		\item \textbf{CV} $\rightarrow$ Curriculum Vitae, is a short written summary of a person's career, qualifications, and education.
+		\item \textbf{HTTPS} $\rightarrow$ Hypertext Transfer Protocol Secure, is the secure version of the Hypertext Transfer Protocol (HTTP), the most used protocol used around the internet for communications.
+		\item \textbf{API} $\rightarrow$ Application Programming Interface, is a connection between computers, or between computer programs.
+		\item \textbf{FCM} $\rightarrow$ Firebase Cloud Messaging or Google Cloud Messaging (GCM), a push notification API.
+		\item \textbf{UI} $\rightarrow$ User Interface, is the interface shown to the users to allow interactions with a program.
+		\item \textbf{HTTPS} $\rightarrow$
+		\end{itemize}
+
+		\subsubsection{Abbreviations}
+		\begin{itemize}
+		\item \textbf{Gn} $\rightarrow$ Represent the $n_{th}$ goal defined in the RASD document.
+		\item \textbf{RAn} $\rightarrow$ Represents the $n_{th}$ account related requirement defined in the RASD document.
+		\item \textbf{RIn} $\rightarrow$ Represents the $n_{th}$ internships related requirement defined in the RASD document.
+		\item \textbf{RFn} $\rightarrow$ Represents the $n_{th}$ form related requirement defined in the RASD document.
+		\item \textbf{RNn} $\rightarrow$ Represents the $n_{th}$ notifications related requirement defined in the RASD document.
+		\item \textbf{RRn} $\rightarrow$ Represents the $n_{th}$ requirements related requirement defined in the RASD document.
+		\end{itemize}
 
 	\subsection{Revision history}
-Version 1.0 - WIP
+Version 1.0 - \today
 
 	\subsection{Reference documents}
-TBD
+Assignment IT AY 2024-2025.pdf
 
 	\subsection{Document structure}
 \textbf{Section 1: Introduction} \\
@@ -234,6 +262,8 @@ With this approach, no single point of failures exist and high availability and 
 
 	\subsection{Runtime view}
 With the following sequence diagrams, we are going to explain and represent all the interactions that happen between the components of the S\&C system. But since this representation is still a high-level description of interactions, the function names, parameters, results, errors, and other smaller details will be modified or added during the development phase.
+
+\newpage
 
 		\subsubsection{Login}
 In the login process, the user interacts with the \textit{Web Application} to login in his account. After adding the required information, the data is sent to the \textit{Account Manager} that checks if the credentials are correct through the \textit{Authentication System} that accesses the \textit{DBMS}. If the credentials are correct, the user is shown the home page, otherwise he is shown a message error and can try to login again.
@@ -815,7 +845,7 @@ RR3 & The platform shall allow universities to read all complaints that involve 
 
 \newpage
 
-\section{Implementation, Integration, and Test Plan}
+\section{Implementation, Integration and Test Plan}
 This chapter explains how to implement, integrate, and plan the tests for the application designed in this document. The chapter is divided into two fundamental parts. The first one (\textbf{Components Development}) describes how the components designed in this document should be implemented, integrated, and tested. The second one (\textbf{System Testing}) explains how testing for the system as a whole should be executed.
 
 \subsection{Components Development}
@@ -883,15 +913,15 @@ This systematic approach ensures that the application is robust, reliable, and r
 \hline
 \textbf{Chapter} & \textbf{Effort} \\
 \hline
-1 & 0 h \\
+1 & 4 h \\
 \hline
-2 & 0 h \\
+2 & 5 h \\
 \hline
-3 & 0 h \\
+3 & 2 h \\
 \hline
-4 & 0 h \\
+4 & 6 h \\
 \hline
-5 & 0 h \\
+5 & 5 h \\
 \hline
 \end{tabular}
 \end{table}
@@ -904,15 +934,15 @@ This systematic approach ensures that the application is robust, reliable, and r
 \hline
 \textbf{Chapter} & \textbf{Effort} \\
 \hline
-1 & 0 h \\
+1 & 4 h \\
 \hline
-2 & 0 h \\
+2 & 6 h \\
 \hline
-3 & 0 h \\
+3 & 6 h \\
 \hline
-4 & 0 h \\
+4 & 2 h \\
 \hline
-5 & 0 h \\
+5 & 3 h \\
 \hline
 \end{tabular}
 \end{table}
@@ -925,10 +955,15 @@ This systematic approach ensures that the application is robust, reliable, and r
 \textbf{N-tier architectures}\\
 \href{https://dev.to/3bdelrahman/understanding-layers-tiers-and-n-tier-architecture-in-application-development-1hlb}{\textcolor{blue}{https://dev.to/3bdelrahman}}\\
 \href{https://blog.nginx.org/blog/time-to-move-to-a-four-tier-application-architecture#:~:text=Forrester\%27s\%20Four‑Tier\%20Engagement\%20Platform,\%2C\%20aggregation\%2C\%20and\%20services\%20layers.}{\textcolor{blue}{https://blog.nginx.org/blog}}\\
-\href{https://www.klipfolio.com/resources/data-stack/integration-layer}{\textcolor{blue}{https://www.klipfolio.com}} \\
+\href{https://www.klipfolio.com/resources/data-stack/integration-layer}{\textcolor{blue}{https://www.klipfolio.com}}
+\vspace{1\baselineskip} \\
 \textbf{Elasticsearch} \\
-\href{https://www.elastic.co}{\textcolor{blue}{https://elastic.co}} \\
+\href{https://www.elastic.co}{\textcolor{blue}{https://elastic.co}}
+\vspace{1\baselineskip} \\
 \textbf{OAuth2.0} \\
 \href{https://auth0.com/intro-to-iam/what-is-oauth-2}{\textcolor{blue}{https://auth0.com}}
+\vspace{1\baselineskip} \\
+\textbf{Implementation, integration and testing plan} \\
+\href{https://www.ptc.com/en/success-paths/get-started-with-thingworx-dpm/design/determine-implementation-and-testing-plan}{\textcolor{blue}{https://www.ptc.com/en}}
 
 \end{document}
